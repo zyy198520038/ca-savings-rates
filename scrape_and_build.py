@@ -220,11 +220,12 @@ def build_html(top3: list[dict], updated_at: str) -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>加拿大高息储蓄 Top 3</title>
   <style>
-    body {{ font-family: system-ui, -apple-system, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; }}
+    body {{ font-family: system-ui, -apple-system, sans-serif; max-width: 920px; margin: 2rem auto; padding: 0 1rem; }}
     h1 {{ font-size: 1.5rem; }}
-    table {{ width: 100%; border-collapse: collapse; }}
+    table {{ width: 100%; border-collapse: collapse; table-layout: fixed; }}
     th, td {{ border: 1px solid #ddd; padding: 0.6rem; text-align: left; }}
     th {{ background: #f5f5f5; }}
+    th:last-child, td:last-child {{ white-space: nowrap; width: 1%; }}
     .meta {{ color: #666; font-size: 0.9rem; margin-bottom: 1rem; }}
     .cond-main {{ display: block; }}
     .cond-raw {{ font-size: 0.85em; color: #666; }}
