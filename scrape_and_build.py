@@ -130,23 +130,35 @@ def parse_highinterestsavings(md: str, source_url: str) -> list[dict]:
 
 
 def parse_rate_string(s: str) -> tuple[float | None, str]:
-    """从 '4.60% for the first 3 months' 提取数字和条件说明。"""
+    """从 '4.60% for the first 3 months' 提取数字和条件说明；尽量区分新开户/新资金/仅限时。"""
     m = re.search(r"(\d+\.?\d*)\s*%", s)
     if not m:
         return None, ""
     rate = float(m.group(1))
-    condition = []
-    if re.search(r"first\s+(\d+)\s+months?", s, re.I):
-        mo = re.search(r"first\s+(\d+)\s+months?", s, re.I)
-        if mo:
-            condition.append(f"首{mo.group(1)}个月促销")
-    if re.search(r"new\s+funds?", s, re.I) or "新资金" in s:
-        condition.append("需新资金")
-    if re.search(r"new\s+(?:account|customer)", s, re.I) or "新开户" in s:
-        condition.append("需新开户")
-    if "*" in s or "terms apply" in s.lower():
-        condition.append("条款适用")
-    return rate, "；".join(condition) if condition else "见官网"
+    raw = s.strip()
+    # 明确写出的条件
+    need_new_account = bool(re.search(r"new\s+(?:account|customer|client)", s, re.I) or "新开户" in s)
+    need_new_funds = bool(re.search(r"new\s+funds?", s, re.I) or "新资金" in s or "new money" in s.lower())
+    first_n_months = re.search(r"first\s+(\d+)\s+months?", s, re.I)
+    terms_apply = "*" in s or "terms apply" in s.lower() or "conditions apply" in s.lower()
+
+    parts = []
+    if need_new_account:
+        parts.append("需新开户")
+    if need_new_funds:
+        parts.append("需新资金（老户打新钱）")
+    if first_n_months:
+        n = first_n_months.group(1)
+        if parts:
+            parts.append(f"首{n}个月")
+        else:
+            # 原文只写了「首 N 个月」没写是否新户/新钱，说明里写清楚以官网为准
+            parts.append(f"限时首{n}个月（是否需新开户或新资金请以官网为准）")
+    if terms_apply:
+        parts.append("条款适用")
+
+    condition = "；".join(parts) if parts else "见官网"
+    return rate, condition
 
 
 def dedupe_and_sort(rows: list[dict]) -> list[dict]:
@@ -168,18 +180,29 @@ def filter_whitelist(rows: list[dict]) -> list[dict]:
     return [r for r in rows if any(a in r["bank_product"].lower() for a in allowed)]
 
 
+def _escape(s: str) -> str:
+    """简单转义 HTML。"""
+    return (s or "").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
+
+
 def build_html(top3: list[dict], updated_at: str) -> str:
     """生成单页 HTML，适合 GitHub Pages。"""
     rows_html = ""
     for i, r in enumerate(top3, 1):
         cond = r.get("condition") or "—"
+        rate_note = r.get("rate_display", "").strip()
+        # 若原文和利率数字不同（例如带 "for the first 3 months"），在条件下列出原文
+        if rate_note and rate_note != f'{r["rate"]}%':
+            cond_cell = f'<span class="cond-main">{_escape(cond)}</span><br><span class="cond-raw" title="比价站原文">{_escape(rate_note)}</span>'
+        else:
+            cond_cell = _escape(cond)
         rows_html += f"""
         <tr>
           <td>{i}</td>
-          <td><strong>{r["bank_product"]}</strong></td>
+          <td><strong>{_escape(r["bank_product"])}</strong></td>
           <td>{r["rate"]}%</td>
-          <td>{cond}</td>
-          <td><a href="{r["link"]}" target="_blank" rel="noopener">去官网</a></td>
+          <td>{cond_cell}</td>
+          <td><a href="{_escape(r["link"])}" target="_blank" rel="noopener">去官网</a></td>
         </tr>"""
 
     return f"""<!DOCTYPE html>
@@ -195,6 +218,8 @@ def build_html(top3: list[dict], updated_at: str) -> str:
     th, td {{ border: 1px solid #ddd; padding: 0.6rem; text-align: left; }}
     th {{ background: #f5f5f5; }}
     .meta {{ color: #666; font-size: 0.9rem; margin-bottom: 1rem; }}
+    .cond-main {{ display: block; }}
+    .cond-raw {{ font-size: 0.85em; color: #666; }}
   </style>
 </head>
 <body>
