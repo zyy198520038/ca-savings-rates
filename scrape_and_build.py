@@ -7,7 +7,7 @@ import os
 import re
 import json
 from datetime import datetime
-from config import SOURCES, BANK_WHITELIST
+from config import SOURCES, BANK_WHITELIST, BANK_LINKS
 
 try:
     from firecrawl import Firecrawl
@@ -33,6 +33,21 @@ def scrape_url(url: str) -> str:
     return ""
 
 
+def _extract_markdown_link(text: str) -> str | None:
+    """从 Markdown [text](url) 中提取 url，若有多个取第一个。"""
+    m = re.search(r"\[([^\]]*)\]\((https?://[^)\s]+)\)", text)
+    return m.group(2) if m else None
+
+
+def _resolve_bank_link(row: dict) -> str:
+    """优先使用银行官方营销页：若 BANK_LINKS 能匹配到则用，否则用解析到的 link。"""
+    name = (row.get("bank_product") or "").lower()
+    for key in sorted(BANK_LINKS.keys(), key=lambda x: -len(x)):
+        if key in name:
+            return BANK_LINKS[key]
+    return row.get("link") or row.get("source_url", "")
+
+
 def parse_ratehub(md: str, source_url: str) -> list[dict]:
     """解析 RateHub 页面的利率表格。表格列: Provider | Interest rates | Fees | Insurance"""
     rows = []
@@ -50,19 +65,25 @@ def parse_ratehub(md: str, source_url: str) -> list[dict]:
         if in_table and line.startswith("|") and header_skip is False:
             parts = [p.strip() for p in line.split("|") if p.strip()]
             if len(parts) >= 2:
-                provider = parts[0]
+                provider_cell = parts[0]
+                provider = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", provider_cell).strip()
                 rate_str = parts[1]
                 rate_val, condition = parse_rate_string(rate_str)
                 if rate_val is not None:
-                    rows.append({
+                    link = _extract_markdown_link(provider_cell)
+                    if not link or "ratehub" in link.lower():
+                        link = source_url
+                    row = {
                         "bank_product": provider,
                         "rate": rate_val,
                         "rate_display": rate_str,
                         "condition": condition,
                         "source": "RateHub",
                         "source_url": source_url,
-                        "link": source_url,
-                    })
+                        "link": link,
+                    }
+                    row["link"] = _resolve_bank_link(row)
+                    rows.append(row)
         if in_table and (line.startswith("## ") or "Historical" in line or "Our guide" in line):
             in_table = False
         if in_table and not line.startswith("|") and line and "---" not in line:
@@ -71,7 +92,7 @@ def parse_ratehub(md: str, source_url: str) -> list[dict]:
 
 
 def parse_highinterestsavings(md: str, source_url: str) -> list[dict]:
-    """解析 HighInterestSavings.ca 的表格。列: Brand | Account | Rate | ..."""
+    """解析 HighInterestSavings.ca 的表格。列: Brand | Account | Rate | ...；Account 列含 [text](url) 时取银行链接。"""
     rows = []
     in_table = False
     for line in md.splitlines():
@@ -83,23 +104,26 @@ def parse_highinterestsavings(md: str, source_url: str) -> list[dict]:
             continue
         if in_table and line.startswith("|"):
             parts = [p.strip() for p in line.split("|") if p.strip()]
-            # 至少 Brand, Account, Rate 三列；Rate 可能是 [2.70%](url)
             if len(parts) >= 3:
                 brand = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', parts[0]).strip()
-                account = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', parts[1]).strip()
+                account_cell = parts[1]
+                account = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', account_cell).strip()
                 rate_raw = parts[2]
                 m = re.search(r'\[?(\d+\.?\d*)\s*%\]?', rate_raw)
                 if m:
                     rate_val = float(m.group(1))
-                    rows.append({
+                    link = _extract_markdown_link(account_cell) or source_url
+                    row = {
                         "bank_product": f"{brand} {account}",
                         "rate": rate_val,
                         "rate_display": f"{rate_val}%",
                         "condition": "常规利率",
                         "source": "HighInterestSavings.ca",
                         "source_url": source_url,
-                        "link": source_url,
-                    })
+                        "link": link,
+                    }
+                    row["link"] = _resolve_bank_link(row)
+                    rows.append(row)
         if in_table and not line.startswith("|") and line and "CU =" not in line:
             in_table = False
     return rows
@@ -155,7 +179,7 @@ def build_html(top3: list[dict], updated_at: str) -> str:
           <td><strong>{r["bank_product"]}</strong></td>
           <td>{r["rate"]}%</td>
           <td>{cond}</td>
-          <td><a href="{r["link"]}" target="_blank" rel="noopener">来源</a></td>
+          <td><a href="{r["link"]}" target="_blank" rel="noopener">去官网</a></td>
         </tr>"""
 
     return f"""<!DOCTYPE html>
@@ -183,7 +207,7 @@ def build_html(top3: list[dict], updated_at: str) -> str:
         <th>银行/产品</th>
         <th>利率</th>
         <th>条件</th>
-        <th>链接</th>
+        <th>官网</th>
       </tr>
     </thead>
     <tbody>
