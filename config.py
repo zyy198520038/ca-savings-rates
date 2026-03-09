@@ -1,3 +1,7 @@
+# 邮件订阅：Formspree 表单 ID（在 https://formspree.io 建表单后得到，如 xyzabc）
+# 填好后访客提交的邮箱会发到你邮箱，你手动加入 subscribers.json 并 push
+FORMSPREE_FORM_ID = "xnjgjpaa"
+
 # 数据源：加拿大储蓄利率比价页
 SOURCES = [
     {

@@ -7,7 +7,7 @@ import os
 import re
 import json
 from datetime import datetime
-from config import SOURCES, BANK_WHITELIST, BANK_LINKS
+from config import SOURCES, BANK_WHITELIST, BANK_LINKS, FORMSPREE_FORM_ID
 
 try:
     from firecrawl import Firecrawl
@@ -185,6 +185,14 @@ def _escape(s: str) -> str:
     return (s or "").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
 
 
+def _formspree_action() -> str:
+    """Formspree 表单提交地址；未配置时用 # 避免报错。"""
+    fid = (FORMSPREE_FORM_ID or "").strip()
+    if fid:
+        return f"https://formspree.io/f/{fid}"
+    return "#"
+
+
 def build_html(top3: list[dict], updated_at: str) -> str:
     """生成单页 HTML，适合 GitHub Pages。"""
     rows_html = ""
@@ -239,8 +247,69 @@ def build_html(top3: list[dict], updated_at: str) -> str:
       {rows_html}
     </tbody>
   </table>
+  <section class="subscribe" style="margin-top:2rem; padding:1rem; border:1px solid #eee; border-radius:8px;">
+    <h2 style="font-size:1.1rem; margin-top:0;">📧 每周邮件订阅</h2>
+    <p style="color:#666; font-size:0.9rem; margin:0.5rem 0;">输入邮箱，每周一收到本期 Top 3 推送。</p>
+    <form action="{_formspree_action()}" method="POST">
+      <p style="margin:0.5rem 0;">
+        <label for="sub-email">您的邮箱：</label><br>
+        <input id="sub-email" type="email" name="email" required placeholder="your@email.com" style="width:100%; max-width:320px; padding:0.5rem; border:1px solid #ccc; border-radius:4px; margin-top:0.25rem;">
+      </p>
+      <p style="margin:0.5rem 0;">
+        <label for="sub-message">留言（选填）：</label><br>
+        <textarea id="sub-message" name="message" rows="3" placeholder="可选" style="width:100%; max-width:320px; padding:0.5rem; border:1px solid #ccc; border-radius:4px; margin-top:0.25rem; font-family:inherit; resize:vertical;"></textarea>
+      </p>
+      <button type="submit" style="padding:0.5rem 1rem; background:#333; color:#fff; border:none; border-radius:4px; cursor:pointer;">发送</button>
+    </form>
+  </section>
 </body>
 </html>"""
+
+
+def load_subscribers() -> list[str]:
+    """从 subscribers.json 读取邮箱列表。"""
+    path = os.path.join(os.path.dirname(__file__), "subscribers.json")
+    if not os.path.isfile(path):
+        return []
+    try:
+        with open(path, encoding="utf-8") as f:
+            data = json.load(f)
+        if isinstance(data, list):
+            return [str(e).strip().lower() for e in data if e and "@" in str(e)]
+        return []
+    except Exception:
+        return []
+
+
+def send_newsletter_emails(html_content: str, updated_at: str, top3: list[dict]) -> None:
+    """用 Resend 给 subscribers.json 里所有邮箱发一封本周 Top 3。"""
+    api_key = os.environ.get("RESEND_API_KEY")
+    from_email = (os.environ.get("RESEND_FROM_EMAIL") or "").strip()
+    if not api_key or not from_email:
+        print("  跳过邮件推送（未设置 RESEND_API_KEY 或 RESEND_FROM_EMAIL）")
+        return
+    subscribers = load_subscribers()
+    if not subscribers:
+        print("  订阅列表为空，跳过邮件")
+        return
+    try:
+        import resend
+        resend.api_key = api_key
+    except ImportError:
+        print("  未安装 resend，跳过邮件推送")
+        return
+    subject = f"加拿大高息储蓄 Top 3 · {updated_at[:10]}"
+    for to in subscribers:
+        try:
+            resend.Emails.send({
+                "from": from_email,
+                "to": [to],
+                "subject": subject,
+                "html": html_content,
+            })
+            print(f"  已发送: {to}")
+        except Exception as e:
+            print(f"  发送失败 {to}: {e}")
 
 
 def main():
@@ -280,6 +349,9 @@ def main():
     with open(data_path, "w", encoding="utf-8") as f:
         json.dump({"updated_at": updated_at, "top3": top3}, f, ensure_ascii=False, indent=2)
     print(f"已写入 {data_path}")
+
+    # 给订阅者发邮件（需配置 RESEND_API_KEY、RESEND_FROM_EMAIL 和 subscribers.json）
+    send_newsletter_emails(html, updated_at, top3)
 
 
 if __name__ == "__main__":
