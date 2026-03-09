@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-09 04:46 UTC",
+  "updated_at": "2026-03-09 05:00 UTC",
   "top3": [
     {
       "bank_product": "Scotiabank Momentum PLUS Savings Account",
@@ -8,7 +8,7 @@
       "condition": "首3个月促销；条款适用",
       "source": "RateHub",
       "source_url": "https://www.ratehub.ca/savings-accounts/accounts/high-interest",
-      "link": "https://www.ratehub.ca/savings-accounts/accounts/high-interest"
+      "link": "https://www.scotiabank.com/ca/en/personal/bank-accounts/savings-accounts/momentum-plus-savings-account.html"
     },
     {
       "bank_product": "CIBC eAdvantage Savings Account",
@@ -17,7 +17,7 @@
       "condition": "首3个月促销",
       "source": "RateHub",
       "source_url": "https://www.ratehub.ca/savings-accounts/accounts/high-interest",
-      "link": "https://www.ratehub.ca/savings-accounts/accounts/high-interest"
+      "link": "https://www.cibc.com/en/personal-banking/bank-accounts/savings-accounts/eadvantage-high-interest-savings-account.html"
     },
     {
       "bank_product": "RBC High-Interest eSavings Account",
@@ -26,7 +26,7 @@
       "condition": "见官网",
       "source": "RateHub",
       "source_url": "https://www.ratehub.ca/savings-accounts/accounts/high-interest",
-      "link": "https://www.ratehub.ca/savings-accounts/accounts/high-interest"
+      "link": "https://www.rbcroyalbank.com/bank-accounts/savings-accounts/high-interest-savings-account.html"
     }
   ]
 }
