@@ -28,5 +28,157 @@
       "source_url": "https://www.ratehub.ca/savings-accounts/accounts/high-interest",
       "link": "https://www.rbcroyalbank.com/bank-accounts/savings-accounts/high-interest-savings-account.html"
     }
+  ],
+  "gic_top": [
+    {
+      "bank_product": "Achieva Financial GICs",
+      "rate": 3.6,
+      "term_label": "1年",
+      "term_years": 1,
+      "min_investment": "$1,000",
+      "source": "RateHub GIC",
+      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
+      "link": "https://www.ratehub.ca/gics/best-gic-rates"
+    },
+    {
+      "bank_product": "Saven Financial GICs",
+      "rate": 3.55,
+      "term_label": "1年",
+      "term_years": 1,
+      "min_investment": "$1,000",
+      "source": "RateHub GIC",
+      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
+      "link": "https://www.ratehub.ca/gics/best-gic-rates"
+    },
+    {
+      "bank_product": "Hubert Financial GICs",
+      "rate": 3.45,
+      "term_label": "1年",
+      "term_years": 1,
+      "min_investment": "$1,000",
+      "source": "RateHub GIC",
+      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
+      "link": "https://www.ratehub.ca/gics/best-gic-rates"
+    },
+    {
+      "bank_product": "Achieva Financial GICs",
+      "rate": 3.8,
+      "term_label": "2年",
+      "term_years": 2,
+      "min_investment": "$1,000",
+      "source": "RateHub GIC",
+      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
+      "link": "https://www.ratehub.ca/gics/best-gic-rates"
+    },
+    {
+      "bank_product": "Saven Financial GICs",
+      "rate": 3.6,
+      "term_label": "2年",
+      "term_years": 2,
+      "min_investment": "$1,000",
+      "source": "RateHub GIC",
+      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
+      "link": "https://www.ratehub.ca/gics/best-gic-rates"
+    },
+    {
+      "bank_product": "Hubert Financial GICs",
+      "rate": 3.55,
+      "term_label": "2年",
+      "term_years": 2,
+      "min_investment": "$1,000",
+      "source": "RateHub GIC",
+      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
+      "link": "https://www.ratehub.ca/gics/best-gic-rates"
+    },
+    {
+      "bank_product": "Achieva Financial GICs",
+      "rate": 3.7,
+      "term_label": "3年",
+      "term_years": 3,
+      "min_investment": "$1,000",
+      "source": "RateHub GIC",
+      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
+      "link": "https://www.ratehub.ca/gics/best-gic-rates"
+    },
+    {
+      "bank_product": "Saven Financial GICs",
+      "rate": 3.7,
+      "term_label": "3年",
+      "term_years": 3,
+      "min_investment": "$1,000",
+      "source": "RateHub GIC",
+      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
+      "link": "https://www.ratehub.ca/gics/best-gic-rates"
+    },
+    {
+      "bank_product": "Hubert Financial GICs",
+      "rate": 3.65,
+      "term_label": "3年",
+      "term_years": 3,
+      "min_investment": "$1,000",
+      "source": "RateHub GIC",
+      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
+      "link": "https://www.ratehub.ca/gics/best-gic-rates"
+    },
+    {
+      "bank_product": "Achieva Financial GICs",
+      "rate": 3.75,
+      "term_label": "4年",
+      "term_years": 4,
+      "min_investment": "$1,000",
+      "source": "RateHub GIC",
+      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
+      "link": "https://www.ratehub.ca/gics/best-gic-rates"
+    },
+    {
+      "bank_product": "Hubert Financial GICs",
+      "rate": 3.7,
+      "term_label": "4年",
+      "term_years": 4,
+      "min_investment": "$1,000",
+      "source": "RateHub GIC",
+      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
+      "link": "https://www.ratehub.ca/gics/best-gic-rates"
+    },
+    {
+      "bank_product": "Saven Financial GICs",
+      "rate": 3.7,
+      "term_label": "4年",
+      "term_years": 4,
+      "min_investment": "$1,000",
+      "source": "RateHub GIC",
+      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
+      "link": "https://www.ratehub.ca/gics/best-gic-rates"
+    },
+    {
+      "bank_product": "Achieva Financial GICs",
+      "rate": 3.85,
+      "term_label": "5年",
+      "term_years": 5,
+      "min_investment": "$1,000",
+      "source": "RateHub GIC",
+      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
+      "link": "https://www.ratehub.ca/gics/best-gic-rates"
+    },
+    {
+      "bank_product": "Hubert Financial GICs",
+      "rate": 3.8,
+      "term_label": "5年",
+      "term_years": 5,
+      "min_investment": "$1,000",
+      "source": "RateHub GIC",
+      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
+      "link": "https://www.ratehub.ca/gics/best-gic-rates"
+    },
+    {
+      "bank_product": "MCAN Wealth GICs",
+      "rate": 3.8,
+      "term_label": "5年",
+      "term_years": 5,
+      "min_investment": "$100",
+      "source": "RateHub GIC",
+      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
+      "link": "https://www.ratehub.ca/gics/best-gic-rates"
+    }
   ]
 }

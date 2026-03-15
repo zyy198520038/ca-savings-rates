@@ -1,75 +1,527 @@
 <!DOCTYPE html>
-<html lang="zh-CA">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>加拿大高息储蓄 Top 3</title>
+  <title>Canada High-Interest Savings &amp; GIC Top 3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: system-ui, -apple-system, sans-serif; max-width: 920px; margin: 2rem auto; padding: 0 1rem; }
-    h1 { font-size: 1.5rem; }
-    table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-    th, td { border: 1px solid #ddd; padding: 0.6rem; text-align: left; }
-    th { background: #f5f5f5; }
-    th:first-child, td:first-child { width: 2.5em; }
-    th:nth-child(3), td:nth-child(3) { width: 5em; }
-    th:last-child, td:last-child { white-space: nowrap; width: 6em; min-width: 6em; }
-    .meta { color: #666; font-size: 0.9rem; margin-bottom: 1rem; }
+    :root {
+      --bg: #0c0c0e;
+      --bg-elevated: #161618;
+      --bg-hover: #1c1c1f;
+      --border: #2a2a2e;
+      --text: #e4e4e7;
+      --text-muted: #a1a1aa;
+      --accent: #f97316;
+      --accent-hover: #fb923c;
+      --link: #f97316;
+      --link-hover: #fdba74;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 0.35rem;
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+    .meta {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      margin-bottom: 0.75rem;
+    }
+    .meta strong { color: var(--text); }
+    #tier-filter {
+      background: var(--bg-elevated);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.5rem 2rem 0.5rem 0.75rem;
+      font-size: 0.9rem;
+      font-family: inherit;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23a1a1aa' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.6rem center;
+    }
+    #tier-filter:hover, #tier-filter:focus {
+      border-color: var(--accent);
+      outline: none;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      margin-top: 1rem;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    th, td {
+      padding: 0.75rem 0.85rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      background: var(--bg-elevated);
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+    }
+    tbody tr {
+      background: var(--bg-elevated);
+      transition: background 0.15s ease;
+    }
+    tbody tr:hover {
+      background: var(--bg-hover);
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    td { font-size: 0.9rem; }
+    td a {
+      color: var(--link);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    td a:hover { color: var(--link-hover); }
     .cond-main { display: block; }
-    .cond-raw { font-size: 0.85em; color: #666; }
+    .cond-raw { font-size: 0.8em; color: var(--text-muted); margin-top: 0.15rem; }
+    .td-logo {
+      width: 48px;
+      text-align: left;
+      vertical-align: middle;
+    }
+    .td-logo .bank-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      object-fit: contain;
+      background: var(--bg);
+      display: inline-block;
+    }
+    .td-logo .logo-placeholder { color: var(--text-muted); font-size: 0.9rem; }
+    .td-logo .bank-logo ~ .logo-placeholder { display: none; }
+    .td-logo.no-logo .bank-logo { display: none !important; }
+    .td-logo.no-logo .logo-placeholder { display: inline !important; }
+    @media (max-width: 768px) {
+      thead { display: none; }
+      table { display: block; border: none; margin-top: 0.5rem; }
+      tbody { display: block; }
+      tr {
+        display: block;
+        background: var(--bg-elevated);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        margin-bottom: 1rem;
+        padding: 1rem 1.25rem;
+        transition: border-color 0.15s ease;
+      }
+      tr:hover { border-color: var(--accent); }
+      td {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+        padding: 0.5rem 0;
+        border: none;
+        font-size: 0.9rem;
+      }
+      td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        color: var(--text-muted);
+        min-width: 4.5em;
+        flex-shrink: 0;
+      }
+      td:first-child { padding-top: 0; }
+      td:last-child { padding-bottom: 0; }
+      .bank-cell { margin-left: 0; }
+      .bank-logo { width: 36px; height: 36px; }
+      body { padding: 1rem; }
+      .subscribe input, .subscribe textarea { max-width: 100%; }
+    }
+    .subscribe {
+      margin-top: 2.5rem;
+      padding: 1.5rem;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .subscribe h2 { margin-bottom: 0.5rem; }
+    .subscribe p { color: var(--text-muted); font-size: 0.9rem; margin: 0.5rem 0; }
+    .subscribe label { display: block; margin-bottom: 0.25rem; font-size: 0.9rem; }
+    .subscribe input, .subscribe textarea {
+      width: 100%;
+      max-width: 320px;
+      padding: 0.6rem 0.75rem;
+      margin-top: 0.25rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.9rem;
+    }
+    .subscribe input::placeholder, .subscribe textarea::placeholder { color: var(--text-muted); opacity: 0.8; }
+    .subscribe input:focus, .subscribe textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .subscribe button {
+      margin-top: 0.75rem;
+      padding: 0.6rem 1.25rem;
+      background: var(--accent);
+      color: #0c0c0e;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .subscribe button:hover { background: var(--accent-hover); }
+    .gic-section { margin-top: 2.5rem; }
+    .gic-section h2 { margin-top: 0; }
+    .lang-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .lang-bar .lang-label { color: var(--text-muted); font-size: 0.85rem; margin-right: 0.25rem; }
+    .lang-bar select {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.4rem 0.6rem;
+      color: var(--text);
+      font-size: 0.95rem;
+      font-family: inherit;
+      cursor: pointer;
+      min-width: 10rem;
+    }
+    .lang-bar select:hover, .lang-bar select:focus { border-color: var(--accent); outline: none; }
+    .bottom-actions { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 2.5rem; }
+    .bottom-actions .subscribe, .bottom-actions .coffee { flex: 1; min-width: 280px; }
+    .coffee { padding: 1.5rem; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 12px; }
+    .coffee h2 { margin-bottom: 0.5rem; }
+    .coffee .coffee-btn {
+      display: inline-block;
+      margin-top: 0.75rem;
+      padding: 0.6rem 1.25rem;
+      background: var(--accent);
+      color: #0c0c0e;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: background 0.15s ease;
+    }
+    .coffee .coffee-btn:hover { background: var(--accent-hover); }
   </style>
 </head>
 <body>
-  <h1>🇨🇦 加拿大高息储蓄 Top 3</h1>
-  <p class="meta">数据来自 RateHub、HighInterestSavings.ca，仅供参考。更新时间：2026-03-15 06:19 UTC</p>
+  <div class="lang-bar">
+    <span class="lang-label" data-i18n="lang_label">Language</span>
+    <select id="lang-select" aria-label="Language">
+      <option value="en">🇺🇸 English</option>
+      <option value="zh">🇨🇳 中文</option>
+      <option value="fr">🇫🇷 Français</option>
+      <option value="es">🇪🇸 Español</option>
+      <option value="pa">🇮🇳 ਪੰਜਾਬੀ</option>
+    </select>
+  </div>
+  <h1 data-i18n="h1">🇨🇦 Top 3 High-Interest Savings (Canada)</h1>
+  <p class="meta"><span data-i18n="meta_source">Data from RateHub, HighInterestSavings.ca. Updated:</span> 2026-03-15 06:19 UTC</p>
+  <p class="meta" data-i18n="meta_type">Types: <strong>Big Six</strong>=RBC/TD/BMO/Scotiabank/CIBC/National Bank; <strong>Known</strong>=direct/online banks.</p>
+  <p class="meta"><span data-i18n="filter_label">Filter (savings & GIC):</span> <select id="tier-filter">
+    <option value="all" data-i18n-opt="opt_all">All Top 3</option>
+    <option value="six" selected data-i18n-opt="opt_six">Big Six Top 3</option>
+    <option value="known" data-i18n-opt="opt_known">Known banks Top 3</option>
+  </select></p>
   <table>
     <thead>
       <tr>
         <th>#</th>
-        <th>银行/产品</th>
-        <th>利率</th>
-        <th>条件</th>
-        <th>官网</th>
+        <th>Logo</th>
+        <th data-i18n="th_bank">Bank / Product</th>
+        <th data-i18n="th_type">Type</th>
+        <th data-i18n="th_rate">Rate</th>
+        <th data-i18n="th_condition">Condition</th>
+        <th data-i18n="th_link">Link</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="savings-tbody">
       
         <tr>
-          <td>1</td>
-          <td><strong>Scotiabank Momentum PLUS Savings Account</strong></td>
-          <td>4.75%</td>
-          <td><span class="cond-main">限时首3个月（是否需新开户或新资金请以官网为准）；条款适用</span><br><span class="cond-raw" title="比价站原文">4.75%\* for the first 3 months</span></td>
-          <td><a href="https://www.scotiabank.com/ca/en/personal/bank-accounts/savings-accounts/momentum-plus-savings-account.html" target="_blank" rel="noopener">去官网</a></td>
+          <td data-label="#">1</td>
+          <td data-label="Logo" class="td-logo"><img src="https://www.google.com/s2/favicons?domain=scotiabank.com&amp;sz=128" alt="" class="bank-logo" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('no-logo')"><span class="logo-placeholder">—</span></td>
+          <td data-label="Bank"><strong>Scotiabank Momentum PLUS Savings Account</strong></td>
+          <td class="i18n-tier" data-tier-key="six" data-label="Type">Big Six</td>
+          <td data-label="Rate">4.75%</td>
+          <td data-label="Condition"><span class="i18n-condition" data-condition-parts="[&quot;\u9650\u65f6\u99963\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09&quot;, &quot;\u6761\u6b3e\u9002\u7528&quot;]" data-condition-fallback="First 3 months (see site for new account/funds rules); Terms apply">First 3 months (see site for new account/funds rules); Terms apply</span><br><span class="cond-raw" title="Source">4.75%\* for the first 3 months</span></td>
+          <td data-label="Link"><a href="https://www.scotiabank.com/ca/en/personal/bank-accounts/savings-accounts/momentum-plus-savings-account.html" target="_blank" rel="noopener" class="i18n-link-official">Go to site</a></td>
         </tr>
         <tr>
-          <td>2</td>
-          <td><strong>CIBC eAdvantage Savings Account</strong></td>
-          <td>4.6%</td>
-          <td><span class="cond-main">限时首3个月（是否需新开户或新资金请以官网为准）</span><br><span class="cond-raw" title="比价站原文">4.60% for the first 3 months</span></td>
-          <td><a href="https://www.cibc.com/en/personal-banking/bank-accounts/savings-accounts/eadvantage-high-interest-savings-account.html" target="_blank" rel="noopener">去官网</a></td>
+          <td data-label="#">2</td>
+          <td data-label="Logo" class="td-logo"><img src="https://www.google.com/s2/favicons?domain=cibc.com&amp;sz=128" alt="" class="bank-logo" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('no-logo')"><span class="logo-placeholder">—</span></td>
+          <td data-label="Bank"><strong>CIBC eAdvantage Savings Account</strong></td>
+          <td class="i18n-tier" data-tier-key="six" data-label="Type">Big Six</td>
+          <td data-label="Rate">4.6%</td>
+          <td data-label="Condition"><span class="i18n-condition" data-condition-parts="[&quot;\u9650\u65f6\u99963\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09&quot;]" data-condition-fallback="First 3 months (see site for new account/funds rules)">First 3 months (see site for new account/funds rules)</span><br><span class="cond-raw" title="Source">4.60% for the first 3 months</span></td>
+          <td data-label="Link"><a href="https://www.cibc.com/en/personal-banking/bank-accounts/savings-accounts/eadvantage-high-interest-savings-account.html" target="_blank" rel="noopener" class="i18n-link-official">Go to site</a></td>
         </tr>
         <tr>
-          <td>3</td>
-          <td><strong>RBC High-Interest eSavings Account</strong></td>
-          <td>4.6%</td>
-          <td><span class="cond-main">见官网</span><br><span class="cond-raw" title="比价站原文">4.60%</span></td>
-          <td><a href="https://www.rbcroyalbank.com/bank-accounts/savings-accounts/high-interest-savings-account.html" target="_blank" rel="noopener">去官网</a></td>
+          <td data-label="#">3</td>
+          <td data-label="Logo" class="td-logo"><img src="https://www.google.com/s2/favicons?domain=rbcroyalbank.com&amp;sz=128" alt="" class="bank-logo" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('no-logo')"><span class="logo-placeholder">—</span></td>
+          <td data-label="Bank"><strong>RBC High-Interest eSavings Account</strong></td>
+          <td class="i18n-tier" data-tier-key="six" data-label="Type">Big Six</td>
+          <td data-label="Rate">4.6%</td>
+          <td data-label="Condition"><span class="i18n-condition" data-condition-parts="[&quot;\u89c1\u5b98\u7f51&quot;]" data-condition-fallback="See site">See site</span><br><span class="cond-raw" title="Source">4.60%</span></td>
+          <td data-label="Link"><a href="https://www.rbcroyalbank.com/bank-accounts/savings-accounts/high-interest-savings-account.html" target="_blank" rel="noopener" class="i18n-link-official">Go to site</a></td>
         </tr>
     </tbody>
   </table>
-  <section class="subscribe" style="margin-top:2rem; padding:1rem; border:1px solid #eee; border-radius:8px;">
-    <h2 style="font-size:1.1rem; margin-top:0;">📧 每周邮件订阅</h2>
-    <p style="color:#666; font-size:0.9rem; margin:0.5rem 0;">输入邮箱，每周一收到本期 Top 3 推送。</p>
+  
+  <section class="gic-section">
+  <h2 data-i18n="gic_title">📌 GIC rates (non-registered, top 3 per term)</h2>
+  <p class="meta" data-i18n="gic_meta">Data from RateHub GIC.</p>
+  <table>
+    <thead>
+      <tr>
+        <th data-i18n="th_term">Term</th>
+        <th>Logo</th>
+        <th data-i18n="th_bank">Bank / Product</th>
+        <th data-i18n="th_type">Type</th>
+        <th data-i18n="th_rate">Rate</th>
+        <th data-i18n="th_min_inv">Min. investment</th>
+        <th data-i18n="th_link">Link</th>
+      </tr>
+    </thead>
+    <tbody id="gic-tbody">
+      
+        <tr>
+          <td data-label="Term"><span class="i18n-term" data-term-key="1y">1 year</span></td>
+          <td data-label="Logo" class="td-logo"><img src="https://www.google.com/s2/favicons?domain=td.com&amp;sz=128" alt="" class="bank-logo" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('no-logo')"><span class="logo-placeholder">—</span></td>
+          <td data-label="Bank"><strong>TD Bank GICs</strong></td>
+          <td class="i18n-tier" data-tier-key="six" data-label="Type">Big Six</td>
+          <td data-label="Rate">2.6%</td>
+          <td data-label="Min. investment">$1,000</td>
+          <td data-label="Link"><a href="https://www.td.com/ca/en/personal-banking/personal-investing/products/gic/gic-rates-canada" target="_blank" rel="noopener" class="i18n-link-official">Go to site</a></td>
+        </tr>
+        <tr>
+          <td data-label="Term"><span class="i18n-term" data-term-key="1y">1 year</span></td>
+          <td data-label="Logo" class="td-logo"><img src="https://www.google.com/s2/favicons?domain=nbc.ca&amp;sz=128" alt="" class="bank-logo" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('no-logo')"><span class="logo-placeholder">—</span></td>
+          <td data-label="Bank"><strong>National Bank GICs</strong></td>
+          <td class="i18n-tier" data-tier-key="six" data-label="Type">Big Six</td>
+          <td data-label="Rate">2.5%</td>
+          <td data-label="Min. investment">$500</td>
+          <td data-label="Link"><a href="https://www.nbc.ca/personal/rates/gic-rates.html" target="_blank" rel="noopener" class="i18n-link-official">Go to site</a></td>
+        </tr>
+        <tr>
+          <td data-label="Term"><span class="i18n-term" data-term-key="1y">1 year</span></td>
+          <td data-label="Logo" class="td-logo"><img src="https://www.google.com/s2/favicons?domain=cibc.com&amp;sz=128" alt="" class="bank-logo" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('no-logo')"><span class="logo-placeholder">—</span></td>
+          <td data-label="Bank"><strong>CIBC GICs</strong></td>
+          <td class="i18n-tier" data-tier-key="six" data-label="Type">Big Six</td>
+          <td data-label="Rate">2.45%</td>
+          <td data-label="Min. investment">$1,000</td>
+          <td data-label="Link"><a href="https://www.cibc.com/en/personal-banking/investments/gics.html" target="_blank" rel="noopener" class="i18n-link-official">Go to site</a></td>
+        </tr>
+        <tr>
+          <td data-label="Term"><span class="i18n-term" data-term-key="2y">2 years</span></td>
+          <td data-label="Logo" class="td-logo"><img src="https://www.google.com/s2/favicons?domain=td.com&amp;sz=128" alt="" class="bank-logo" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('no-logo')"><span class="logo-placeholder">—</span></td>
+          <td data-label="Bank"><strong>TD Bank GICs</strong></td>
+          <td class="i18n-tier" data-tier-key="six" data-label="Type">Big Six</td>
+          <td data-label="Rate">2.65%</td>
+          <td data-label="Min. investment">$1,000</td>
+          <td data-label="Link"><a href="https://www.td.com/ca/en/personal-banking/personal-investing/products/gic/gic-rates-canada" target="_blank" rel="noopener" class="i18n-link-official">Go to site</a></td>
+        </tr>
+        <tr>
+          <td data-label="Term"><span class="i18n-term" data-term-key="2y">2 years</span></td>
+          <td data-label="Logo" class="td-logo"><img src="https://www.google.com/s2/favicons?domain=nbc.ca&amp;sz=128" alt="" class="bank-logo" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('no-logo')"><span class="logo-placeholder">—</span></td>
+          <td data-label="Bank"><strong>National Bank GICs</strong></td>
+          <td class="i18n-tier" data-tier-key="six" data-label="Type">Big Six</td>
+          <td data-label="Rate">2.6%</td>
+          <td data-label="Min. investment">$500</td>
+          <td data-label="Link"><a href="https://www.nbc.ca/personal/rates/gic-rates.html" target="_blank" rel="noopener" class="i18n-link-official">Go to site</a></td>
+        </tr>
+        <tr>
+          <td data-label="Term"><span class="i18n-term" data-term-key="2y">2 years</span></td>
+          <td data-label="Logo" class="td-logo"><img src="https://www.google.com/s2/favicons?domain=cibc.com&amp;sz=128" alt="" class="bank-logo" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('no-logo')"><span class="logo-placeholder">—</span></td>
+          <td data-label="Bank"><strong>CIBC GICs</strong></td>
+          <td class="i18n-tier" data-tier-key="six" data-label="Type">Big Six</td>
+          <td data-label="Rate">2.55%</td>
+          <td data-label="Min. investment">$1,000</td>
+          <td data-label="Link"><a href="https://www.cibc.com/en/personal-banking/investments/gics.html" target="_blank" rel="noopener" class="i18n-link-official">Go to site</a></td>
+        </tr>
+        <tr>
+          <td data-label="Term"><span class="i18n-term" data-term-key="3y">3 years</span></td>
+          <td data-label="Logo" class="td-logo"><img src="https://www.google.com/s2/favicons?domain=nbc.ca&amp;sz=128" alt="" class="bank-logo" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('no-logo')"><span class="logo-placeholder">—</span></td>
+          <td data-label="Bank"><strong>National Bank GICs</strong></td>
+          <td class="i18n-tier" data-tier-key="six" data-label="Type">Big Six</td>
+          <td data-label="Rate">2.8%</td>
+          <td data-label="Min. investment">$500</td>
+          <td data-label="Link"><a href="https://www.nbc.ca/personal/rates/gic-rates.html" target="_blank" rel="noopener" class="i18n-link-official">Go to site</a></td>
+        </tr>
+        <tr>
+          <td data-label="Term"><span class="i18n-term" data-term-key="3y">3 years</span></td>
+          <td data-label="Logo" class="td-logo"><img src="https://www.google.com/s2/favicons?domain=td.com&amp;sz=128" alt="" class="bank-logo" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('no-logo')"><span class="logo-placeholder">—</span></td>
+          <td data-label="Bank"><strong>TD Bank GICs</strong></td>
+          <td class="i18n-tier" data-tier-key="six" data-label="Type">Big Six</td>
+          <td data-label="Rate">2.75%</td>
+          <td data-label="Min. investment">$1,000</td>
+          <td data-label="Link"><a href="https://www.td.com/ca/en/personal-banking/personal-investing/products/gic/gic-rates-canada" target="_blank" rel="noopener" class="i18n-link-official">Go to site</a></td>
+        </tr>
+        <tr>
+          <td data-label="Term"><span class="i18n-term" data-term-key="3y">3 years</span></td>
+          <td data-label="Logo" class="td-logo"><img src="https://www.google.com/s2/favicons?domain=cibc.com&amp;sz=128" alt="" class="bank-logo" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('no-logo')"><span class="logo-placeholder">—</span></td>
+          <td data-label="Bank"><strong>CIBC GICs</strong></td>
+          <td class="i18n-tier" data-tier-key="six" data-label="Type">Big Six</td>
+          <td data-label="Rate">2.6%</td>
+          <td data-label="Min. investment">$1,000</td>
+          <td data-label="Link"><a href="https://www.cibc.com/en/personal-banking/investments/gics.html" target="_blank" rel="noopener" class="i18n-link-official">Go to site</a></td>
+        </tr>
+        <tr>
+          <td data-label="Term"><span class="i18n-term" data-term-key="4y">4 years</span></td>
+          <td data-label="Logo" class="td-logo"><img src="https://www.google.com/s2/favicons?domain=nbc.ca&amp;sz=128" alt="" class="bank-logo" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('no-logo')"><span class="logo-placeholder">—</span></td>
+          <td data-label="Bank"><strong>National Bank GICs</strong></td>
+          <td class="i18n-tier" data-tier-key="six" data-label="Type">Big Six</td>
+          <td data-label="Rate">2.9%</td>
+          <td data-label="Min. investment">$500</td>
+          <td data-label="Link"><a href="https://www.nbc.ca/personal/rates/gic-rates.html" target="_blank" rel="noopener" class="i18n-link-official">Go to site</a></td>
+        </tr>
+        <tr>
+          <td data-label="Term"><span class="i18n-term" data-term-key="4y">4 years</span></td>
+          <td data-label="Logo" class="td-logo"><img src="https://www.google.com/s2/favicons?domain=td.com&amp;sz=128" alt="" class="bank-logo" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('no-logo')"><span class="logo-placeholder">—</span></td>
+          <td data-label="Bank"><strong>TD Bank GICs</strong></td>
+          <td class="i18n-tier" data-tier-key="six" data-label="Type">Big Six</td>
+          <td data-label="Rate">2.9%</td>
+          <td data-label="Min. investment">$1,000</td>
+          <td data-label="Link"><a href="https://www.td.com/ca/en/personal-banking/personal-investing/products/gic/gic-rates-canada" target="_blank" rel="noopener" class="i18n-link-official">Go to site</a></td>
+        </tr>
+        <tr>
+          <td data-label="Term"><span class="i18n-term" data-term-key="4y">4 years</span></td>
+          <td data-label="Logo" class="td-logo"><img src="https://www.google.com/s2/favicons?domain=bmo.com&amp;sz=128" alt="" class="bank-logo" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('no-logo')"><span class="logo-placeholder">—</span></td>
+          <td data-label="Bank"><strong>BMO GICs</strong></td>
+          <td class="i18n-tier" data-tier-key="six" data-label="Type">Big Six</td>
+          <td data-label="Rate">2.7%</td>
+          <td data-label="Min. investment">$1,000</td>
+          <td data-label="Link"><a href="https://www.bmo.com/main/personal/investments/gics/" target="_blank" rel="noopener" class="i18n-link-official">Go to site</a></td>
+        </tr>
+        <tr>
+          <td data-label="Term"><span class="i18n-term" data-term-key="5y">5 years</span></td>
+          <td data-label="Logo" class="td-logo"><img src="https://www.google.com/s2/favicons?domain=nbc.ca&amp;sz=128" alt="" class="bank-logo" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('no-logo')"><span class="logo-placeholder">—</span></td>
+          <td data-label="Bank"><strong>National Bank GICs</strong></td>
+          <td class="i18n-tier" data-tier-key="six" data-label="Type">Big Six</td>
+          <td data-label="Rate">3.15%</td>
+          <td data-label="Min. investment">$500</td>
+          <td data-label="Link"><a href="https://www.nbc.ca/personal/rates/gic-rates.html" target="_blank" rel="noopener" class="i18n-link-official">Go to site</a></td>
+        </tr>
+        <tr>
+          <td data-label="Term"><span class="i18n-term" data-term-key="5y">5 years</span></td>
+          <td data-label="Logo" class="td-logo"><img src="https://www.google.com/s2/favicons?domain=bmo.com&amp;sz=128" alt="" class="bank-logo" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('no-logo')"><span class="logo-placeholder">—</span></td>
+          <td data-label="Bank"><strong>BMO GICs</strong></td>
+          <td class="i18n-tier" data-tier-key="six" data-label="Type">Big Six</td>
+          <td data-label="Rate">3.0%</td>
+          <td data-label="Min. investment">$1,000</td>
+          <td data-label="Link"><a href="https://www.bmo.com/main/personal/investments/gics/" target="_blank" rel="noopener" class="i18n-link-official">Go to site</a></td>
+        </tr>
+        <tr>
+          <td data-label="Term"><span class="i18n-term" data-term-key="5y">5 years</span></td>
+          <td data-label="Logo" class="td-logo"><img src="https://www.google.com/s2/favicons?domain=td.com&amp;sz=128" alt="" class="bank-logo" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('no-logo')"><span class="logo-placeholder">—</span></td>
+          <td data-label="Bank"><strong>TD Bank GICs</strong></td>
+          <td class="i18n-tier" data-tier-key="six" data-label="Type">Big Six</td>
+          <td data-label="Rate">3.0%</td>
+          <td data-label="Min. investment">$1,000</td>
+          <td data-label="Link"><a href="https://www.td.com/ca/en/personal-banking/personal-investing/products/gic/gic-rates-canada" target="_blank" rel="noopener" class="i18n-link-official">Go to site</a></td>
+        </tr>
+    </tbody>
+  </table>
+  </section>
+  <script>
+  (function(){
+    var savingsR={'all':"\n        <tr>\n          <td data-label=\"#\">1</td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=scotiabank.com&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>Scotiabank Momentum PLUS Savings Account</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"six\" data-label=\"Type\">Big Six</td>\n          <td data-label=\"Rate\">4.75%</td>\n          <td data-label=\"Condition\"><span class=\"i18n-condition\" data-condition-parts=\"[&quot;\\u9650\\u65f6\\u99963\\u4e2a\\u6708\\uff08\\u662f\\u5426\\u9700\\u65b0\\u5f00\\u6237\\u6216\\u65b0\\u8d44\\u91d1\\u8bf7\\u4ee5\\u5b98\\u7f51\\u4e3a\\u51c6\\uff09&quot;, &quot;\\u6761\\u6b3e\\u9002\\u7528&quot;]\" data-condition-fallback=\"First 3 months (see site for new account/funds rules); Terms apply\">First 3 months (see site for new account/funds rules); Terms apply</span><br><span class=\"cond-raw\" title=\"Source\">4.75%\\* for the first 3 months</span></td>\n          <td data-label=\"Link\"><a href=\"https://www.scotiabank.com/ca/en/personal/bank-accounts/savings-accounts/momentum-plus-savings-account.html\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"#\">2</td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=cibc.com&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>CIBC eAdvantage Savings Account</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"six\" data-label=\"Type\">Big Six</td>\n          <td data-label=\"Rate\">4.6%</td>\n          <td data-label=\"Condition\"><span class=\"i18n-condition\" data-condition-parts=\"[&quot;\\u9650\\u65f6\\u99963\\u4e2a\\u6708\\uff08\\u662f\\u5426\\u9700\\u65b0\\u5f00\\u6237\\u6216\\u65b0\\u8d44\\u91d1\\u8bf7\\u4ee5\\u5b98\\u7f51\\u4e3a\\u51c6\\uff09&quot;]\" data-condition-fallback=\"First 3 months (see site for new account/funds rules)\">First 3 months (see site for new account/funds rules)</span><br><span class=\"cond-raw\" title=\"Source\">4.60% for the first 3 months</span></td>\n          <td data-label=\"Link\"><a href=\"https://www.cibc.com/en/personal-banking/bank-accounts/savings-accounts/eadvantage-high-interest-savings-account.html\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"#\">3</td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=rbcroyalbank.com&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>RBC High-Interest eSavings Account</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"six\" data-label=\"Type\">Big Six</td>\n          <td data-label=\"Rate\">4.6%</td>\n          <td data-label=\"Condition\"><span class=\"i18n-condition\" data-condition-parts=\"[&quot;\\u89c1\\u5b98\\u7f51&quot;]\" data-condition-fallback=\"See site\">See site</span><br><span class=\"cond-raw\" title=\"Source\">4.60%</span></td>\n          <td data-label=\"Link\"><a href=\"https://www.rbcroyalbank.com/bank-accounts/savings-accounts/high-interest-savings-account.html\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>",'six':"\n        <tr>\n          <td data-label=\"#\">1</td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=scotiabank.com&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>Scotiabank Momentum PLUS Savings Account</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"six\" data-label=\"Type\">Big Six</td>\n          <td data-label=\"Rate\">4.75%</td>\n          <td data-label=\"Condition\"><span class=\"i18n-condition\" data-condition-parts=\"[&quot;\\u9650\\u65f6\\u99963\\u4e2a\\u6708\\uff08\\u662f\\u5426\\u9700\\u65b0\\u5f00\\u6237\\u6216\\u65b0\\u8d44\\u91d1\\u8bf7\\u4ee5\\u5b98\\u7f51\\u4e3a\\u51c6\\uff09&quot;, &quot;\\u6761\\u6b3e\\u9002\\u7528&quot;]\" data-condition-fallback=\"First 3 months (see site for new account/funds rules); Terms apply\">First 3 months (see site for new account/funds rules); Terms apply</span><br><span class=\"cond-raw\" title=\"Source\">4.75%\\* for the first 3 months</span></td>\n          <td data-label=\"Link\"><a href=\"https://www.scotiabank.com/ca/en/personal/bank-accounts/savings-accounts/momentum-plus-savings-account.html\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"#\">2</td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=cibc.com&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>CIBC eAdvantage Savings Account</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"six\" data-label=\"Type\">Big Six</td>\n          <td data-label=\"Rate\">4.6%</td>\n          <td data-label=\"Condition\"><span class=\"i18n-condition\" data-condition-parts=\"[&quot;\\u9650\\u65f6\\u99963\\u4e2a\\u6708\\uff08\\u662f\\u5426\\u9700\\u65b0\\u5f00\\u6237\\u6216\\u65b0\\u8d44\\u91d1\\u8bf7\\u4ee5\\u5b98\\u7f51\\u4e3a\\u51c6\\uff09&quot;]\" data-condition-fallback=\"First 3 months (see site for new account/funds rules)\">First 3 months (see site for new account/funds rules)</span><br><span class=\"cond-raw\" title=\"Source\">4.60% for the first 3 months</span></td>\n          <td data-label=\"Link\"><a href=\"https://www.cibc.com/en/personal-banking/bank-accounts/savings-accounts/eadvantage-high-interest-savings-account.html\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"#\">3</td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=rbcroyalbank.com&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>RBC High-Interest eSavings Account</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"six\" data-label=\"Type\">Big Six</td>\n          <td data-label=\"Rate\">4.6%</td>\n          <td data-label=\"Condition\"><span class=\"i18n-condition\" data-condition-parts=\"[&quot;\\u89c1\\u5b98\\u7f51&quot;]\" data-condition-fallback=\"See site\">See site</span><br><span class=\"cond-raw\" title=\"Source\">4.60%</span></td>\n          <td data-label=\"Link\"><a href=\"https://www.rbcroyalbank.com/bank-accounts/savings-accounts/high-interest-savings-account.html\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>",'known':"\n        <tr>\n          <td data-label=\"#\">1</td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=simplii.com&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>Simplii Financial High-Interest Savings Account</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"known\" data-label=\"Type\">Known banks</td>\n          <td data-label=\"Rate\">4.5%</td>\n          <td data-label=\"Condition\"><span class=\"i18n-condition\" data-condition-parts=\"[&quot;\\u9650\\u65f6\\u99964\\u4e2a\\u6708\\uff08\\u662f\\u5426\\u9700\\u65b0\\u5f00\\u6237\\u6216\\u65b0\\u8d44\\u91d1\\u8bf7\\u4ee5\\u5b98\\u7f51\\u4e3a\\u51c6\\uff09&quot;, &quot;\\u6761\\u6b3e\\u9002\\u7528&quot;]\" data-condition-fallback=\"First 4 months (see site for new account/funds rules); Terms apply\">First 4 months (see site for new account/funds rules); Terms apply</span><br><span class=\"cond-raw\" title=\"Source\">4.50%\\* for the first 4 months</span></td>\n          <td data-label=\"Link\"><a href=\"https://www.simplii.com/en/bank-accounts/high-interest-savings.html\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"#\">2</td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=tangerine.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>Tangerine Savings Account</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"known\" data-label=\"Type\">Known banks</td>\n          <td data-label=\"Rate\">4.5%</td>\n          <td data-label=\"Condition\"><span class=\"i18n-condition\" data-condition-parts=\"[&quot;\\u9650\\u65f6\\u99965\\u4e2a\\u6708\\uff08\\u662f\\u5426\\u9700\\u65b0\\u5f00\\u6237\\u6216\\u65b0\\u8d44\\u91d1\\u8bf7\\u4ee5\\u5b98\\u7f51\\u4e3a\\u51c6\\uff09&quot;]\" data-condition-fallback=\"First 5 months (see site for new account/funds rules)\">First 5 months (see site for new account/funds rules)</span><br><span class=\"cond-raw\" title=\"Source\">4.50% for the first 5 months</span></td>\n          <td data-label=\"Link\"><a href=\"https://www.tangerine.ca/en/personal/save/savings-account\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"#\">3</td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=savenfinancial.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>Saven Financial High-Interest Savings Account</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"known\" data-label=\"Type\">Known banks</td>\n          <td data-label=\"Rate\">2.85%</td>\n          <td data-label=\"Condition\"><span class=\"i18n-condition\" data-condition-parts=\"[&quot;\\u89c1\\u5b98\\u7f51&quot;]\" data-condition-fallback=\"See site\">See site</span></td>\n          <td data-label=\"Link\"><a href=\"https://savenfinancial.ca/en/on-high-interest-savings-account\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>"};
+    var gicR=null;
+    var gicTbody=document.getElementById('gic-tbody');
+    if(gicTbody) gicR={'all':"\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"1y\">1 year</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=achieva.mb.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>Achieva Financial GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"credit\" data-label=\"Type\">Credit unions</td>\n          <td data-label=\"Rate\">3.6%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://www.achieva.mb.ca/gics\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"1y\">1 year</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=savenfinancial.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>Saven Financial GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"known\" data-label=\"Type\">Known banks</td>\n          <td data-label=\"Rate\">3.55%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://savenfinancial.ca/en/gics\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"1y\">1 year</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=happysavings.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>Hubert Financial GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"credit\" data-label=\"Type\">Credit unions</td>\n          <td data-label=\"Rate\">3.45%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://happysavings.ca/gics/\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"2y\">2 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=achieva.mb.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>Achieva Financial GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"credit\" data-label=\"Type\">Credit unions</td>\n          <td data-label=\"Rate\">3.8%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://www.achieva.mb.ca/gics\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"2y\">2 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=savenfinancial.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>Saven Financial GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"known\" data-label=\"Type\">Known banks</td>\n          <td data-label=\"Rate\">3.6%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://savenfinancial.ca/en/gics\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"2y\">2 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=happysavings.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>Hubert Financial GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"credit\" data-label=\"Type\">Credit unions</td>\n          <td data-label=\"Rate\">3.55%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://happysavings.ca/gics/\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"3y\">3 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=achieva.mb.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>Achieva Financial GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"credit\" data-label=\"Type\">Credit unions</td>\n          <td data-label=\"Rate\">3.7%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://www.achieva.mb.ca/gics\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"3y\">3 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=savenfinancial.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>Saven Financial GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"known\" data-label=\"Type\">Known banks</td>\n          <td data-label=\"Rate\">3.7%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://savenfinancial.ca/en/gics\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"3y\">3 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=happysavings.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>Hubert Financial GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"credit\" data-label=\"Type\">Credit unions</td>\n          <td data-label=\"Rate\">3.65%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://happysavings.ca/gics/\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"4y\">4 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=achieva.mb.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>Achieva Financial GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"credit\" data-label=\"Type\">Credit unions</td>\n          <td data-label=\"Rate\">3.75%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://www.achieva.mb.ca/gics\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"4y\">4 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=happysavings.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>Hubert Financial GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"credit\" data-label=\"Type\">Credit unions</td>\n          <td data-label=\"Rate\">3.7%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://happysavings.ca/gics/\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"4y\">4 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=savenfinancial.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>Saven Financial GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"known\" data-label=\"Type\">Known banks</td>\n          <td data-label=\"Rate\">3.7%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://savenfinancial.ca/en/gics\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"5y\">5 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=achieva.mb.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>Achieva Financial GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"credit\" data-label=\"Type\">Credit unions</td>\n          <td data-label=\"Rate\">3.85%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://www.achieva.mb.ca/gics\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"5y\">5 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=happysavings.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>Hubert Financial GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"credit\" data-label=\"Type\">Credit unions</td>\n          <td data-label=\"Rate\">3.8%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://happysavings.ca/gics/\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"5y\">5 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=mcanwealth.com&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>MCAN Wealth GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"credit\" data-label=\"Type\">Credit unions</td>\n          <td data-label=\"Rate\">3.8%</td>\n          <td data-label=\"Min. investment\">$100</td>\n          <td data-label=\"Link\"><a href=\"https://www.mcanwealth.com/gic-rates/\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>",'six':"\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"1y\">1 year</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=td.com&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>TD Bank GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"six\" data-label=\"Type\">Big Six</td>\n          <td data-label=\"Rate\">2.6%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://www.td.com/ca/en/personal-banking/personal-investing/products/gic/gic-rates-canada\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"1y\">1 year</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=nbc.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>National Bank GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"six\" data-label=\"Type\">Big Six</td>\n          <td data-label=\"Rate\">2.5%</td>\n          <td data-label=\"Min. investment\">$500</td>\n          <td data-label=\"Link\"><a href=\"https://www.nbc.ca/personal/rates/gic-rates.html\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"1y\">1 year</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=cibc.com&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>CIBC GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"six\" data-label=\"Type\">Big Six</td>\n          <td data-label=\"Rate\">2.45%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://www.cibc.com/en/personal-banking/investments/gics.html\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"2y\">2 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=td.com&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>TD Bank GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"six\" data-label=\"Type\">Big Six</td>\n          <td data-label=\"Rate\">2.65%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://www.td.com/ca/en/personal-banking/personal-investing/products/gic/gic-rates-canada\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"2y\">2 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=nbc.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>National Bank GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"six\" data-label=\"Type\">Big Six</td>\n          <td data-label=\"Rate\">2.6%</td>\n          <td data-label=\"Min. investment\">$500</td>\n          <td data-label=\"Link\"><a href=\"https://www.nbc.ca/personal/rates/gic-rates.html\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"2y\">2 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=cibc.com&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>CIBC GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"six\" data-label=\"Type\">Big Six</td>\n          <td data-label=\"Rate\">2.55%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://www.cibc.com/en/personal-banking/investments/gics.html\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"3y\">3 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=nbc.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>National Bank GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"six\" data-label=\"Type\">Big Six</td>\n          <td data-label=\"Rate\">2.8%</td>\n          <td data-label=\"Min. investment\">$500</td>\n          <td data-label=\"Link\"><a href=\"https://www.nbc.ca/personal/rates/gic-rates.html\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"3y\">3 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=td.com&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>TD Bank GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"six\" data-label=\"Type\">Big Six</td>\n          <td data-label=\"Rate\">2.75%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://www.td.com/ca/en/personal-banking/personal-investing/products/gic/gic-rates-canada\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"3y\">3 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=cibc.com&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>CIBC GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"six\" data-label=\"Type\">Big Six</td>\n          <td data-label=\"Rate\">2.6%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://www.cibc.com/en/personal-banking/investments/gics.html\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"4y\">4 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=nbc.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>National Bank GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"six\" data-label=\"Type\">Big Six</td>\n          <td data-label=\"Rate\">2.9%</td>\n          <td data-label=\"Min. investment\">$500</td>\n          <td data-label=\"Link\"><a href=\"https://www.nbc.ca/personal/rates/gic-rates.html\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"4y\">4 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=td.com&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>TD Bank GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"six\" data-label=\"Type\">Big Six</td>\n          <td data-label=\"Rate\">2.9%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://www.td.com/ca/en/personal-banking/personal-investing/products/gic/gic-rates-canada\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"4y\">4 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=bmo.com&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>BMO GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"six\" data-label=\"Type\">Big Six</td>\n          <td data-label=\"Rate\">2.7%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://www.bmo.com/main/personal/investments/gics/\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"5y\">5 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=nbc.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>National Bank GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"six\" data-label=\"Type\">Big Six</td>\n          <td data-label=\"Rate\">3.15%</td>\n          <td data-label=\"Min. investment\">$500</td>\n          <td data-label=\"Link\"><a href=\"https://www.nbc.ca/personal/rates/gic-rates.html\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"5y\">5 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=bmo.com&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>BMO GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"six\" data-label=\"Type\">Big Six</td>\n          <td data-label=\"Rate\">3.0%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://www.bmo.com/main/personal/investments/gics/\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"5y\">5 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=td.com&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>TD Bank GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"six\" data-label=\"Type\">Big Six</td>\n          <td data-label=\"Rate\">3.0%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://www.td.com/ca/en/personal-banking/personal-investing/products/gic/gic-rates-canada\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>",'known':"\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"1y\">1 year</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=savenfinancial.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>Saven Financial GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"known\" data-label=\"Type\">Known banks</td>\n          <td data-label=\"Rate\">3.55%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://savenfinancial.ca/en/gics\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"1y\">1 year</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=eqbank.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>EQ Bank GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"known\" data-label=\"Type\">Known banks</td>\n          <td data-label=\"Rate\">3.0%</td>\n          <td data-label=\"Min. investment\">$100</td>\n          <td data-label=\"Link\"><a href=\"https://www.eqbank.ca/personal-banking/investments/gics\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"1y\">1 year</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=oaken.com&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>Oaken Financial GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"known\" data-label=\"Type\">Known banks</td>\n          <td data-label=\"Rate\">3.0%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://www.oaken.com/gics/\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"2y\">2 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=savenfinancial.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>Saven Financial GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"known\" data-label=\"Type\">Known banks</td>\n          <td data-label=\"Rate\">3.6%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://savenfinancial.ca/en/gics\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"2y\">2 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=oaken.com&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>Oaken Financial GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"known\" data-label=\"Type\">Known banks</td>\n          <td data-label=\"Rate\">3.3%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://www.oaken.com/gics/\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"2y\">2 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=eqbank.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>EQ Bank GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"known\" data-label=\"Type\">Known banks</td>\n          <td data-label=\"Rate\">3.25%</td>\n          <td data-label=\"Min. investment\">$100</td>\n          <td data-label=\"Link\"><a href=\"https://www.eqbank.ca/personal-banking/investments/gics\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"3y\">3 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=savenfinancial.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>Saven Financial GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"known\" data-label=\"Type\">Known banks</td>\n          <td data-label=\"Rate\">3.7%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://savenfinancial.ca/en/gics\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"3y\">3 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=eqbank.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>EQ Bank GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"known\" data-label=\"Type\">Known banks</td>\n          <td data-label=\"Rate\">3.6%</td>\n          <td data-label=\"Min. investment\">$100</td>\n          <td data-label=\"Link\"><a href=\"https://www.eqbank.ca/personal-banking/investments/gics\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"3y\">3 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=oaken.com&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>Oaken Financial GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"known\" data-label=\"Type\">Known banks</td>\n          <td data-label=\"Rate\">3.6%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://www.oaken.com/gics/\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"4y\">4 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=savenfinancial.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>Saven Financial GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"known\" data-label=\"Type\">Known banks</td>\n          <td data-label=\"Rate\">3.7%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://savenfinancial.ca/en/gics\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"4y\">4 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=eqbank.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>EQ Bank GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"known\" data-label=\"Type\">Known banks</td>\n          <td data-label=\"Rate\">3.65%</td>\n          <td data-label=\"Min. investment\">$100</td>\n          <td data-label=\"Link\"><a href=\"https://www.eqbank.ca/personal-banking/investments/gics\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"4y\">4 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=oaken.com&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>Oaken Financial GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"known\" data-label=\"Type\">Known banks</td>\n          <td data-label=\"Rate\">3.6%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://www.oaken.com/gics/\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"5y\">5 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=oaken.com&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>Oaken Financial GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"known\" data-label=\"Type\">Known banks</td>\n          <td data-label=\"Rate\">3.8%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://www.oaken.com/gics/\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"5y\">5 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=savenfinancial.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>Saven Financial GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"known\" data-label=\"Type\">Known banks</td>\n          <td data-label=\"Rate\">3.8%</td>\n          <td data-label=\"Min. investment\">$1,000</td>\n          <td data-label=\"Link\"><a href=\"https://savenfinancial.ca/en/gics\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>\n        <tr>\n          <td data-label=\"Term\"><span class=\"i18n-term\" data-term-key=\"5y\">5 years</span></td>\n          <td data-label=\"Logo\" class=\"td-logo\"><img src=\"https://www.google.com/s2/favicons?domain=eqbank.ca&amp;sz=128\" alt=\"\" class=\"bank-logo\" loading=\"lazy\" referrerpolicy=\"no-referrer\" onerror=\"this.parentElement.classList.add('no-logo')\"><span class=\"logo-placeholder\">\u2014</span></td>\n          <td data-label=\"Bank\"><strong>EQ Bank GICs</strong></td>\n          <td class=\"i18n-tier\" data-tier-key=\"known\" data-label=\"Type\">Known banks</td>\n          <td data-label=\"Rate\">3.75%</td>\n          <td data-label=\"Min. investment\">$100</td>\n          <td data-label=\"Link\"><a href=\"https://www.eqbank.ca/personal-banking/investments/gics\" target=\"_blank\" rel=\"noopener\" class=\"i18n-link-official\">Go to site</a></td>\n        </tr>"};
+    function applyFilter(v){
+      document.getElementById('savings-tbody').innerHTML=savingsR[v]||savingsR['all'];
+      if(gicR&&gicTbody) gicTbody.innerHTML=gicR[v]||gicR['all'];
+      if(window.applyLang) window.applyLang(document.documentElement.lang||'en');
+    }
+    document.getElementById('tier-filter').onchange=function(){ applyFilter(this.value); };
+  })();
+  </script>
+  <div class="bottom-actions">
+  <section class="subscribe">
+    <h2 data-i18n="subscribe_title">📧 Weekly email</h2>
+    <p class="meta" data-i18n="subscribe_desc">Get Top 3 in your inbox every Monday.</p>
     <form action="https://formspree.io/f/xnjgjpaa" method="POST">
-      <p style="margin:0.5rem 0;">
-        <label for="sub-email">您的邮箱：</label><br>
-        <input id="sub-email" type="email" name="email" required placeholder="your@email.com" style="width:100%; max-width:320px; padding:0.5rem; border:1px solid #ccc; border-radius:4px; margin-top:0.25rem;">
+      <p>
+        <label for="sub-email" data-i18n="email_label">Your email</label>
+        <input id="sub-email" type="email" name="email" required placeholder="your@email.com">
       </p>
-      <p style="margin:0.5rem 0;">
-        <label for="sub-message">留言（选填）：</label><br>
-        <textarea id="sub-message" name="message" rows="3" placeholder="可选" style="width:100%; max-width:320px; padding:0.5rem; border:1px solid #ccc; border-radius:4px; margin-top:0.25rem; font-family:inherit; resize:vertical;"></textarea>
+      <p>
+        <label for="sub-message" data-i18n="message_label">Message (optional)</label>
+        <textarea id="sub-message" name="message" rows="3" placeholder="Optional"></textarea>
       </p>
-      <button type="submit" style="padding:0.5rem 1rem; background:#333; color:#fff; border:none; border-radius:4px; cursor:pointer;">发送</button>
+      <button type="submit" data-i18n="submit_btn">Subscribe</button>
     </form>
   </section>
+  
+  </div>
+  <script>
+  var conditionPartTranslations = {"en": {"\u89c1\u5b98\u7f51": "See site", "\u9700\u65b0\u5f00\u6237": "New account required", "\u9700\u65b0\u8d44\u91d1\uff08\u8001\u6237\u6253\u65b0\u94b1\uff09": "New funds required", "\u6761\u6b3e\u9002\u7528": "Terms apply", "\u5e38\u89c4\u5229\u7387": "Standard rate", "\u2014": "\u2014", "\u99963\u4e2a\u6708": "First 3 months", "\u99964\u4e2a\u6708": "First 4 months", "\u99965\u4e2a\u6708": "First 5 months", "\u99966\u4e2a\u6708": "First 6 months", "\u999612\u4e2a\u6708": "First 12 months", "\u9650\u65f6\u99963\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09": "First 3 months (see site for new account/funds rules)", "\u9650\u65f6\u99964\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09": "First 4 months (see site for new account/funds rules)", "\u9650\u65f6\u99965\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09": "First 5 months (see site for new account/funds rules)", "\u9650\u65f6\u99966\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09": "First 6 months (see site for new account/funds rules)", "\u9650\u65f6\u999612\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09": "First 12 months (see site for new account/funds rules)"}, "zh": {"\u89c1\u5b98\u7f51": "\u89c1\u5b98\u7f51", "\u9700\u65b0\u5f00\u6237": "\u9700\u65b0\u5f00\u6237", "\u9700\u65b0\u8d44\u91d1\uff08\u8001\u6237\u6253\u65b0\u94b1\uff09": "\u9700\u65b0\u8d44\u91d1\uff08\u8001\u6237\u6253\u65b0\u94b1\uff09", "\u6761\u6b3e\u9002\u7528": "\u6761\u6b3e\u9002\u7528", "\u5e38\u89c4\u5229\u7387": "\u5e38\u89c4\u5229\u7387", "\u2014": "\u2014", "\u99963\u4e2a\u6708": "\u99963\u4e2a\u6708", "\u99964\u4e2a\u6708": "\u99964\u4e2a\u6708", "\u99965\u4e2a\u6708": "\u99965\u4e2a\u6708", "\u99966\u4e2a\u6708": "\u99966\u4e2a\u6708", "\u999612\u4e2a\u6708": "\u999612\u4e2a\u6708", "\u9650\u65f6\u99963\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09": "\u9650\u65f6\u99963\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09", "\u9650\u65f6\u99964\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09": "\u9650\u65f6\u99964\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09", "\u9650\u65f6\u99965\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09": "\u9650\u65f6\u99965\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09", "\u9650\u65f6\u99966\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09": "\u9650\u65f6\u99966\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09", "\u9650\u65f6\u999612\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09": "\u9650\u65f6\u999612\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09"}, "fr": {"\u89c1\u5b98\u7f51": "Voir le site", "\u9700\u65b0\u5f00\u6237": "Nouveau compte requis", "\u9700\u65b0\u8d44\u91d1\uff08\u8001\u6237\u6253\u65b0\u94b1\uff09": "Nouveaux fonds requis", "\u6761\u6b3e\u9002\u7528": "Conditions applicables", "\u5e38\u89c4\u5229\u7387": "Taux standard", "\u2014": "\u2014", "\u99963\u4e2a\u6708": "3 premiers mois", "\u99964\u4e2a\u6708": "4 premiers mois", "\u99965\u4e2a\u6708": "5 premiers mois", "\u99966\u4e2a\u6708": "6 premiers mois", "\u999612\u4e2a\u6708": "12 premiers mois", "\u9650\u65f6\u99963\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09": "3 premiers mois (voir le site pour conditions)", "\u9650\u65f6\u99964\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09": "4 premiers mois (voir le site pour conditions)", "\u9650\u65f6\u99965\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09": "5 premiers mois (voir le site pour conditions)", "\u9650\u65f6\u99966\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09": "6 premiers mois (voir le site pour conditions)", "\u9650\u65f6\u999612\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09": "12 premiers mois (voir le site pour conditions)"}, "es": {"\u89c1\u5b98\u7f51": "Ver sitio", "\u9700\u65b0\u5f00\u6237": "Cuenta nueva requerida", "\u9700\u65b0\u8d44\u91d1\uff08\u8001\u6237\u6253\u65b0\u94b1\uff09": "Nuevos fondos requeridos", "\u6761\u6b3e\u9002\u7528": "Aplican t\u00e9rminos", "\u5e38\u89c4\u5229\u7387": "Tasa est\u00e1ndar", "\u2014": "\u2014", "\u99963\u4e2a\u6708": "Primeros 3 meses", "\u99964\u4e2a\u6708": "Primeros 4 meses", "\u99965\u4e2a\u6708": "Primeros 5 meses", "\u99966\u4e2a\u6708": "Primeros 6 meses", "\u999612\u4e2a\u6708": "Primeros 12 meses", "\u9650\u65f6\u99963\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09": "Primeros 3 meses (ver sitio para condiciones)", "\u9650\u65f6\u99964\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09": "Primeros 4 meses (ver sitio para condiciones)", "\u9650\u65f6\u99965\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09": "Primeros 5 meses (ver sitio para condiciones)", "\u9650\u65f6\u99966\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09": "Primeros 6 meses (ver sitio para condiciones)", "\u9650\u65f6\u999612\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09": "Primeros 12 meses (ver sitio para condiciones)"}, "pa": {"\u89c1\u5b98\u7f51": "\u0a38\u0a3e\u0a08\u0a1f \u0a26\u0a47\u0a16\u0a4b", "\u9700\u65b0\u5f00\u6237": "\u0a28\u0a35\u0a3e\u0a02 \u0a16\u0a3e\u0a24\u0a3e \u0a32\u0a4b\u0a5c\u0a40\u0a02\u0a26\u0a3e", "\u9700\u65b0\u8d44\u91d1\uff08\u8001\u6237\u6253\u65b0\u94b1\uff09": "\u0a28\u0a35\u0a47\u0a02 \u0a2b\u0a70\u0a21 \u0a32\u0a4b\u0a5c\u0a40\u0a02\u0a26\u0a47", "\u6761\u6b3e\u9002\u7528": "\u0a38\u0a3c\u0a30\u0a24\u0a3e\u0a02 \u0a32\u0a3e\u0a17\u0a42", "\u5e38\u89c4\u5229\u7387": "\u0a2e\u0a3f\u0a06\u0a30\u0a40 \u0a26\u0a30", "\u2014": "\u2014", "\u99963\u4e2a\u6708": "\u0a2a\u0a39\u0a3f\u0a32\u0a47 3 \u0a2e\u0a39\u0a40\u0a28\u0a47", "\u99964\u4e2a\u6708": "\u0a2a\u0a39\u0a3f\u0a32\u0a47 4 \u0a2e\u0a39\u0a40\u0a28\u0a47", "\u99965\u4e2a\u6708": "\u0a2a\u0a39\u0a3f\u0a32\u0a47 5 \u0a2e\u0a39\u0a40\u0a28\u0a47", "\u99966\u4e2a\u6708": "\u0a2a\u0a39\u0a3f\u0a32\u0a47 6 \u0a2e\u0a39\u0a40\u0a28\u0a47", "\u999612\u4e2a\u6708": "\u0a2a\u0a39\u0a3f\u0a32\u0a47 12 \u0a2e\u0a39\u0a40\u0a28\u0a47", "\u9650\u65f6\u99963\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09": "\u0a2a\u0a39\u0a3f\u0a32\u0a47 3 \u0a2e\u0a39\u0a40\u0a28\u0a47 (\u0a28\u0a35\u0a3e\u0a02 \u0a16\u0a3e\u0a24\u0a3e/\u0a2b\u0a70\u0a21 \u0a32\u0a08 \u0a38\u0a3e\u0a08\u0a1f \u0a26\u0a47\u0a16\u0a4b)", "\u9650\u65f6\u99964\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09": "\u0a2a\u0a39\u0a3f\u0a32\u0a47 4 \u0a2e\u0a39\u0a40\u0a28\u0a47 (\u0a28\u0a35\u0a3e\u0a02 \u0a16\u0a3e\u0a24\u0a3e/\u0a2b\u0a70\u0a21 \u0a32\u0a08 \u0a38\u0a3e\u0a08\u0a1f \u0a26\u0a47\u0a16\u0a4b)", "\u9650\u65f6\u99965\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09": "\u0a2a\u0a39\u0a3f\u0a32\u0a47 5 \u0a2e\u0a39\u0a40\u0a28\u0a47 (\u0a28\u0a35\u0a3e\u0a02 \u0a16\u0a3e\u0a24\u0a3e/\u0a2b\u0a70\u0a21 \u0a32\u0a08 \u0a38\u0a3e\u0a08\u0a1f \u0a26\u0a47\u0a16\u0a4b)", "\u9650\u65f6\u99966\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09": "\u0a2a\u0a39\u0a3f\u0a32\u0a47 6 \u0a2e\u0a39\u0a40\u0a28\u0a47 (\u0a28\u0a35\u0a3e\u0a02 \u0a16\u0a3e\u0a24\u0a3e/\u0a2b\u0a70\u0a21 \u0a32\u0a08 \u0a38\u0a3e\u0a08\u0a1f \u0a26\u0a47\u0a16\u0a4b)", "\u9650\u65f6\u999612\u4e2a\u6708\uff08\u662f\u5426\u9700\u65b0\u5f00\u6237\u6216\u65b0\u8d44\u91d1\u8bf7\u4ee5\u5b98\u7f51\u4e3a\u51c6\uff09": "\u0a2a\u0a39\u0a3f\u0a32\u0a47 12 \u0a2e\u0a39\u0a40\u0a28\u0a47 (\u0a28\u0a35\u0a3e\u0a02 \u0a16\u0a3e\u0a24\u0a3e/\u0a2b\u0a70\u0a21 \u0a32\u0a08 \u0a38\u0a3e\u0a08\u0a1f \u0a26\u0a47\u0a16\u0a4b)"}};
+  var i18n={
+    en:{ h1:"🇨🇦 Top 3 High-Interest Savings (Canada)", meta_source:"Data from RateHub, HighInterestSavings.ca. Updated:", meta_type:"Types: <strong>Big Six</strong>=RBC/TD/BMO/Scotiabank/CIBC/National Bank; <strong>Known</strong>=direct/online banks.", filter_label:"Filter (savings & GIC):", opt_all:"All Top 3", opt_six:"Big Six Top 3", opt_known:"Known banks Top 3", th_bank:"Bank / Product", th_type:"Type", th_rate:"Rate", th_condition:"Condition", th_link:"Link", th_term:"Term", th_min_inv:"Min. investment", tier_six:"Big Six", tier_known:"Known banks", tier_credit:"Credit unions", tier_other:"Other", term_1y:"1 year", term_2y:"2 years", term_3y:"3 years", term_4y:"4 years", term_5y:"5 years", gic_title:"📌 GIC rates (non-registered, top 3 per term)", gic_meta:"Data from RateHub GIC.", gic_no_data_before:"No GIC table this run. See ", gic_no_data_link:"RateHub GIC", subscribe_title:"📧 Weekly email", subscribe_desc:"Get Top 3 in your inbox every Monday.", email_label:"Your email", message_label:"Message (optional)", submit_btn:"Subscribe", coffee_title:"☕ Buy me a coffee", coffee_desc:"Like this site? Tip me via Stripe.", coffee_btn:"Tip", lang_label:"Language", link_go:"Go to site", link_compare:"Compare" },
+    zh:{ h1:"🇨🇦 活期/短期高息储蓄 Top 3", meta_source:"数据来自 RateHub、HighInterestSavings.ca，仅供参考。更新时间：", meta_type:"类型说明：<strong>六大行</strong>=加拿大六大商业银行（RBC/TD/BMO/Scotiabank/CIBC/National Bank），<strong>知名银行/直销</strong>=常见直销或网络银行，<strong>其他</strong>=未分类。", filter_label:"筛选（储蓄与 GIC 同步）：", opt_all:"全部 Top 3", opt_six:"六大行 Top 3", opt_known:"知名银行/直销 Top 3", th_bank:"银行/产品", th_type:"类型", th_rate:"利率", th_condition:"条件", th_link:"官网", th_term:"期限", th_min_inv:"最低投资", tier_six:"六大行", tier_known:"知名银行/直销", tier_credit:"信贷/中小机构", tier_other:"其他", term_1y:"1年", term_2y:"2年", term_3y:"3年", term_4y:"4年", term_5y:"5年", gic_title:"📌 GIC 定存利率（非注册，各期限 Top 3）", gic_meta:"数据来自 RateHub GIC，仅供参考。", gic_no_data_before:"本次未解析到 GIC 表格。请查看 ", gic_no_data_link:"RateHub GIC 比价页", subscribe_title:"📧 每周邮件订阅", subscribe_desc:"输入邮箱，每周一收到本期 Top 3 推送。", email_label:"您的邮箱", message_label:"留言（选填）", submit_btn:"订阅", coffee_title:"☕ 请我喝杯咖啡", coffee_desc:"喜欢这个网站？可以通过 Stripe 打赏我。", coffee_btn:"打赏", lang_label:"语言", link_go:"去官网", link_compare:"比价页" },
+    fr:{ h1:"🇨🇦 Top 3 Épargne à intérêt élevé (Canada)", meta_source:"Données de RateHub, HighInterestSavings.ca. Mis à jour :", meta_type:"Types : <strong>Six grandes</strong>=RBC/TD/BMO/Scotiabank/CIBC/BNC ; <strong>Connues</strong>=banques en ligne.", filter_label:"Filtrer (épargne et GIC) :", opt_all:"Tous Top 3", opt_six:"Six grandes Top 3", opt_known:"Banques connues Top 3", th_bank:"Banque / Produit", th_type:"Type", th_rate:"Taux", th_condition:"Condition", th_link:"Lien", th_term:"Terme", th_min_inv:"Min. invest.", tier_six:"Six grandes", tier_known:"Banques connues", tier_credit:"Caisses", tier_other:"Autre", term_1y:"1 an", term_2y:"2 ans", term_3y:"3 ans", term_4y:"4 ans", term_5y:"5 ans", gic_title:"📌 Taux GIC (non enregistré, top 3 par terme)", gic_meta:"Données de RateHub GIC.", gic_no_data_before:"Pas de tableau GIC. Voir ", gic_no_data_link:"RateHub GIC", subscribe_title:"📧 Infolettre", subscribe_desc:"Recevez le Top 3 chaque lundi.", email_label:"Votre courriel", message_label:"Message (optionnel)", submit_btn:"S'abonner", coffee_title:"☕ Offrez-moi un café", coffee_desc:"Vous aimez ? Vous pouvez me remercier via Stripe.", coffee_btn:"Don", lang_label:"Langue", link_go:"Site", link_compare:"Comparer" },
+    es:{ h1:"🇨🇦 Top 3 Ahorros con alto interés (Canadá)", meta_source:"Datos de RateHub, HighInterestSavings.ca. Actualizado:", meta_type:"Tipos: <strong>Seis grandes</strong>=RBC/TD/BMO/Scotiabank/CIBC/National Bank; <strong>Conocidos</strong>=bancos en línea.", filter_label:"Filtrar (ahorros y GIC):", opt_all:"Todos Top 3", opt_six:"Seis grandes Top 3", opt_known:"Bancos conocidos Top 3", th_bank:"Banco / Producto", th_type:"Tipo", th_rate:"Tasa", th_condition:"Condición", th_link:"Enlace", th_term:"Plazo", th_min_inv:"Min. inversión", tier_six:"Seis grandes", tier_known:"Conocidos", tier_credit:"Cajas", tier_other:"Otro", term_1y:"1 año", term_2y:"2 años", term_3y:"3 años", term_4y:"4 años", term_5y:"5 años", gic_title:"📌 Tasas GIC (no registrado, top 3 por plazo)", gic_meta:"Datos de RateHub GIC.", gic_no_data_before:"Sin tabla GIC. Ver ", gic_no_data_link:"RateHub GIC", subscribe_title:"📧 Correo semanal", subscribe_desc:"Recibe el Top 3 cada lunes.", email_label:"Tu correo", message_label:"Mensaje (opcional)", submit_btn:"Suscribir", coffee_title:"☕ Invítame un café", coffee_desc:"¿Te gusta? Puedes apoyarme por Stripe.", coffee_btn:"Propina", lang_label:"Idioma", link_go:"Ir al sitio", link_compare:"Comparar" },
+    pa:{ h1:"🇨🇦 ਟਾਪ 3 ਉੱਚ-ਬਿਆਜ ਬੱਚਤ (ਕੈਨੇਡਾ)", meta_source:"RateHub, HighInterestSavings.ca ਤੋਂ ਡਾਟਾ। ਅੱਪਡੇਟ:", meta_type:"ਕਿਸਮਾਂ: <strong>ਛੇ ਵੱਡੇ</strong>=RBC/TD/BMO/Scotiabank/CIBC/National Bank; <strong>ਜਾਣੇ-ਪਛਾਣੇ</strong>=ਔਨਲਾਈਨ ਬੈਂਕ।", filter_label:"ਫਿਲਟਰ (ਬੱਚਤ ਅਤੇ GIC):", opt_all:"ਸਭ ਟਾਪ 3", opt_six:"ਛੇ ਵੱਡੇ ਟਾਪ 3", opt_known:"ਜਾਣੇ-ਪਛਾਣੇ ਟਾਪ 3", th_bank:"ਬੈਂਕ / ਉਤਪਾਦ", th_type:"ਕਿਸਮ", th_rate:"ਦਰ", th_condition:"ਸ਼ਰਤ", th_link:"ਲਿੰਕ", th_term:"ਮਿਆਦ", th_min_inv:"ਘੱਟੋ-ਘੱਟ ਨਿਵੇਸ਼", tier_six:"ਛੇ ਵੱਡੇ", tier_known:"ਜਾਣੇ-ਪਛਾਣੇ", tier_credit:"ਕ੍ਰੈਡਿਟ ਯੂਨੀਅਨ", tier_other:"ਹੋਰ", term_1y:"1 ਸਾਲ", term_2y:"2 ਸਾਲ", term_3y:"3 ਸਾਲ", term_4y:"4 ਸਾਲ", term_5y:"5 ਸਾਲ", gic_title:"📌 GIC ਦਰਾਂ (ਗੈਰ-ਰਜਿਸਟਰਡ)", gic_meta:"RateHub GIC ਤੋਂ ਡਾਟਾ।", gic_no_data_before:"ਇਸ ਰਨ ਵਿੱਚ GIC ਟੇਬਲ ਨਹੀਂ। ", gic_no_data_link:"RateHub GIC", subscribe_title:"📧 ਹਫ਼ਤਾਵਾਰੀ ਈਮੇਲ", subscribe_desc:"ਹਰ ਸੋਮਵਾਰ ਟਾਪ 3 ਆਪਣੇ ਇਨਬਾਕਸ ਵਿੱਚ ਲਓ।", email_label:"ਤੁਹਾਡਾ ਈਮੇਲ", message_label:"ਸੁਨੇਹਾ (ਵਿਕਲਪਿਕ)", submit_btn:"ਗਾਹਕ ਬਣੋ", coffee_title:"☕ ਮੈਨੂੰ ਕੌਫੀ ਪਿਲਾਓ", coffee_desc:"ਸਾਈਟ ਪਸੰਦ ਹੈ? Stripe ਰਾਹੀਂ ਟਿਪ ਕਰ ਸਕਦੇ ਹੋ।", coffee_btn:"ਟਿਪ", lang_label:"ਭਾਸ਼ਾ", link_go:"ਸਾਈਟ 'ਤੇ ਜਾਓ", link_compare:"ਤੁਲਨਾ ਕਰੋ" }
+  };
+  function applyLang(lang){
+    if(!i18n[lang]) lang='en';
+    document.documentElement.lang=lang;
+    document.querySelectorAll('[data-i18n]').forEach(function(el){ var k=el.dataset.i18n; if(i18n[lang][k]) el.innerHTML=i18n[lang][k]; });
+    document.querySelectorAll('[data-i18n-opt]').forEach(function(el){ var k=el.dataset.i18nOpt; if(i18n[lang][k]) el.textContent=i18n[lang][k]; });
+    document.querySelectorAll('.i18n-link-official').forEach(function(el){ el.textContent=i18n[lang].link_go||'Go to site'; });
+    document.querySelectorAll('.i18n-link-compare').forEach(function(el){ el.textContent=i18n[lang].link_compare||'Compare'; });
+    document.querySelectorAll('.i18n-tier').forEach(function(el){ var k=el.dataset.tierKey; if(k&&i18n[lang]['tier_'+k]) el.textContent=i18n[lang]['tier_'+k]; });
+    document.querySelectorAll('.i18n-term').forEach(function(el){ var k=el.dataset.termKey; if(k&&i18n[lang]['term_'+k]) el.textContent=i18n[lang]['term_'+k]; });
+    document.querySelectorAll('.i18n-condition').forEach(function(el){ var parts=[]; try{ parts=JSON.parse(el.dataset.conditionParts||'[]'); }catch(e){} var sep=lang==='zh'?'；':'; '; var tr=conditionPartTranslations[lang]||{}; el.innerHTML=parts.map(function(p){ return tr[p]||p; }).join(sep)||el.dataset.conditionFallback||'—'; });
+    var langSel=document.getElementById('lang-select'); if(langSel) langSel.value=lang;
+    try{ localStorage.setItem('ca-savings-lang',lang); }catch(e){}
+  }
+  window.applyLang=applyLang;
+  var saved=localStorage.getItem('ca-savings-lang');
+  applyLang(saved&&i18n[saved]?saved:'en');
+  var langSel=document.getElementById('lang-select'); if(langSel) langSel.addEventListener('change',function(){ applyLang(this.value); });
+  </script>
 </body>
 </html>
