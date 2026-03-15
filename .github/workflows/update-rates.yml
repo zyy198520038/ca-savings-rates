@@ -30,7 +30,7 @@ jobs:
           FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           RESEND_FROM_EMAIL: ${{ secrets.RESEND_FROM_EMAIL }}
-        run: python scrape_and_build.py
+        run: python scrape_and_build.py  # 发信需在仓库 Secrets 中配置上述三个变量
 
       - name: Commit and push if changed
         run: |
