@@ -1,5 +1,7 @@
 # 加拿大高息储蓄 Top 3
 
+https://zyy198520038.github.io/ca-savings-rates/
+
 每周自动从 [RateHub](https://www.ratehub.ca/savings-accounts/accounts/high-interest) 和 [HighInterestSavings.ca](https://www.highinterestsavings.ca/chart/) 抓取储蓄利率，汇总后展示**当前最高的 3 条**，并标注条件（如：首 N 个月促销、需新资金、需新开户等）。
 
 - **网站**：用 GitHub Pages 托管，你打开链接即可查看。
