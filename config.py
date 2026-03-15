@@ -1,10 +1,15 @@
+import os
+
 # 邮件订阅：Formspree 表单 ID（在 https://formspree.io 建表单后得到，如 xyzabc）
 # 填好后访客提交的邮箱会发到你邮箱，你手动加入 subscribers.json 并 push
 FORMSPREE_FORM_ID = "xnjgjpaa"
 
 # 请我喝杯咖啡：填 Stripe Payment Link 或 Ko-fi / Buy Me a Coffee 等链接，留空则不显示
 # 在 Stripe Dashboard 创建 One-time payment 即可得到 Payment Link
-COFFEE_URL = ""
+COFFEE_URL = "https://buy.stripe.com/eVq4gA98f3GH3yS3FdaEE00"
+
+# 网站公开 URL，用于邮件中「访问网站」按钮。可覆盖为环境变量 SITE_URL
+SITE_URL = os.environ.get("SITE_URL", "https://yiyunzhu.github.io/ca-savings-rates")
 
 # 数据源：加拿大储蓄利率比价页（活期/短期高息储蓄）
 SOURCES = [

@@ -11,11 +11,19 @@ const REPO = process.env.GITHUB_REPO || "";
 const TOKEN = process.env.GITHUB_TOKEN || "";
 const FILE_PATH = "subscribers.json";
 
+const VALID_LANGS = new Set(["en", "zh", "fr", "es", "pa"]);
+
 function getEmailFromBody(body) {
   if (!body) return null;
   const email = typeof body === "string" ? (() => { try { return JSON.parse(body).email; } catch { return null; } })() : (body.email || body.Email);
   if (typeof email !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) return null;
   return email.trim().toLowerCase();
+}
+
+function getLangFromBody(body) {
+  if (!body || typeof body !== "object") return "en";
+  const lang = (body.lang || body.language || "en").toString().trim().toLowerCase();
+  return VALID_LANGS.has(lang) ? lang : "en";
 }
 
 async function getFileSha(contentUrl) {
@@ -28,7 +36,7 @@ async function getFileSha(contentUrl) {
   return { sha: data.sha, content };
 }
 
-async function updateSubscribers(newEmail) {
+async function updateSubscribers(newEmail, lang) {
   const [owner, repo] = REPO.split("/").filter(Boolean);
   if (!owner || !repo || !TOKEN) {
     throw new Error("Missing GITHUB_REPO or GITHUB_TOKEN");
@@ -43,10 +51,11 @@ async function updateSubscribers(newEmail) {
     list = [];
   }
   const normalized = newEmail.trim().toLowerCase();
-  if (list.map((e) => String(e).trim().toLowerCase()).includes(normalized)) {
+  const existingEmails = list.map((e) => (typeof e === "object" && e && e.email ? e.email : String(e)).trim().toLowerCase());
+  if (existingEmails.includes(normalized)) {
     return { updated: false, message: "already subscribed" };
   }
-  list.push(normalized);
+  list.push({ email: normalized, lang: VALID_LANGS.has(lang) ? lang : "en" });
   const body = JSON.stringify(list, null, 2);
   const putRes = await fetch(base, {
     method: "PUT",
@@ -92,7 +101,7 @@ export default async function handler(req, res) {
       }
     } else if (body.includes("=")) {
       const params = new URLSearchParams(body);
-      body = { email: params.get("email") || params.get("Email") };
+      body = { email: params.get("email") || params.get("Email"), lang: params.get("lang") };
     } else {
       body = {};
     }
@@ -103,9 +112,10 @@ export default async function handler(req, res) {
   if (!email) {
     return res.status(400).json({ ok: false, error: "Invalid or missing email" });
   }
+  const lang = getLangFromBody(body);
 
   try {
-    const result = await updateSubscribers(email);
+    const result = await updateSubscribers(email, lang);
     return res.status(200).json({ ok: true, ...result });
   } catch (e) {
     console.error(e);

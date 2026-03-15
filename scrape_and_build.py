@@ -3,12 +3,13 @@
 抓取 RateHub 与 HighInterestSavings.ca 的储蓄利率，汇总后取 Top 3，生成静态页。
 依赖环境变量 FIRECRAWL_API_KEY。
 """
+import argparse
 import os
 import re
 import json
 from datetime import datetime
 from urllib.parse import urlparse
-from config import SOURCES, GIC_SOURCES, BANK_WHITELIST, BANK_LINKS, GIC_LINKS, BANK_TIER, FORMSPREE_FORM_ID, COFFEE_URL
+from config import SOURCES, GIC_SOURCES, BANK_WHITELIST, BANK_LINKS, GIC_LINKS, BANK_TIER, FORMSPREE_FORM_ID, COFFEE_URL, SITE_URL
 
 try:
     from firecrawl import Firecrawl
@@ -115,6 +116,97 @@ def _condition_parts_and_default(cond: str) -> tuple[list[str], str]:
     trans = CONDITION_PART_TRANSLATIONS
     default_en = "; ".join(trans.get(p, {}).get("en", p) for p in parts)
     return parts, default_en
+
+
+def _newsletter_condition_for_lang(cond: str, lang: str) -> str:
+    """邮件正文中条件列按 lang 翻译。"""
+    raw = (cond or "—").strip()
+    parts = [p.strip() for p in raw.split("；") if p.strip()]
+    if not parts:
+        parts = ["—"]
+    trans = CONDITION_PART_TRANSLATIONS
+    sep = "；" if lang == "zh" else "; "
+    return sep.join((trans.get(p, {}).get(lang, trans.get(p, {}).get("en", p)) for p in parts))
+
+
+# 邮件正文与主题的 i18n（en/zh/fr/es/pa）
+NEWSLETTER_I18N = {
+    "en": {
+        "title": "Big Six Top 3 — Canada High-Interest Savings",
+        "meta_note": "Data from RateHub, HighInterestSavings.ca. For reference only.",
+        "th_bank": "Bank / Product",
+        "th_type": "Type",
+        "th_rate": "Rate",
+        "th_condition": "Condition",
+        "th_link": "Link",
+        "tier_six": "Big Six",
+        "link_go": "Go to site →",
+        "gic_cta_line": "We also have GIC rates on the site.",
+        "visit_site_btn": "Visit site",
+        "footer": "You received this because you subscribed. Reply to unsubscribe.",
+        "newsletter_subject": "Big Six Top 3 — Canada High-Interest Savings · {date}",
+    },
+    "zh": {
+        "title": "六大行 Top 3 — 加拿大高息储蓄",
+        "meta_note": "数据来自 RateHub、HighInterestSavings.ca，仅供参考。",
+        "th_bank": "银行/产品",
+        "th_type": "类型",
+        "th_rate": "利率",
+        "th_condition": "条件",
+        "th_link": "链接",
+        "tier_six": "六大行",
+        "link_go": "去官网 →",
+        "gic_cta_line": "网站上还有 GIC 定存利率，可前往查看。",
+        "visit_site_btn": "访问网站",
+        "footer": "本邮件由订阅推送发送，退订请回复说明。",
+        "newsletter_subject": "六大行 Top 3 — 加拿大高息储蓄 · {date}",
+    },
+    "fr": {
+        "title": "Six grandes Top 3 — Épargne à intérêt élevé (Canada)",
+        "meta_note": "Données de RateHub, HighInterestSavings.ca. À titre indicatif.",
+        "th_bank": "Banque / Produit",
+        "th_type": "Type",
+        "th_rate": "Taux",
+        "th_condition": "Condition",
+        "th_link": "Lien",
+        "tier_six": "Six grandes",
+        "link_go": "Site →",
+        "gic_cta_line": "Nous avons aussi les taux GIC sur le site.",
+        "visit_site_btn": "Visiter le site",
+        "footer": "Reçu suite à votre abonnement. Répondez pour vous désabonner.",
+        "newsletter_subject": "Six grandes Top 3 — Épargne à intérêt élevé (Canada) · {date}",
+    },
+    "es": {
+        "title": "Seis grandes Top 3 — Ahorros con alto interés (Canadá)",
+        "meta_note": "Datos de RateHub, HighInterestSavings.ca. Solo referencia.",
+        "th_bank": "Banco / Producto",
+        "th_type": "Tipo",
+        "th_rate": "Tasa",
+        "th_condition": "Condición",
+        "th_link": "Enlace",
+        "tier_six": "Seis grandes",
+        "link_go": "Ir al sitio →",
+        "gic_cta_line": "También tenemos tasas GIC en el sitio.",
+        "visit_site_btn": "Visitar sitio",
+        "footer": "Recibiste esto por suscripción. Responde para darte de baja.",
+        "newsletter_subject": "Seis grandes Top 3 — Ahorros alto interés (Canadá) · {date}",
+    },
+    "pa": {
+        "title": "ਛੇ ਵੱਡੇ ਟਾਪ 3 — ਕੈਨੇਡਾ ਉੱਚ-ਬਿਆਜ ਬੱਚਤ",
+        "meta_note": "RateHub, HighInterestSavings.ca ਤੋਂ ਡਾਟਾ। ਸਿਰਫ਼ ਹਵਾਲਾ।",
+        "th_bank": "ਬੈਂਕ / ਉਤਪਾਦ",
+        "th_type": "ਕਿਸਮ",
+        "th_rate": "ਦਰ",
+        "th_condition": "ਸ਼ਰਤ",
+        "th_link": "ਲਿੰਕ",
+        "tier_six": "ਛੇ ਵੱਡੇ",
+        "link_go": "ਸਾਈਟ 'ਤੇ ਜਾਓ →",
+        "gic_cta_line": "ਸਾਈਟ 'ਤੇ GIC ਦਰਾਂ ਵੀ ਹਨ।",
+        "visit_site_btn": "ਸਾਈਟ 'ਤੇ ਜਾਓ",
+        "footer": "ਗਾਹਕੀ ਕਾਰਨ ਪ੍ਰਾਪਤ। ਗਾਹਕੀ ਰੱਦ ਕਰਨ ਲਈ ਜਵਾਬ ਦਿਓ।",
+        "newsletter_subject": "ਛੇ ਵੱਡੇ ਟਾਪ 3 — ਕੈਨੇਡਾ ਉੱਚ-ਬਿਆਜ ਬੱਚਤ · {date}",
+    },
+}
 
 
 def _resolve_gic_link(bank_product: str, fallback_url: str) -> tuple[str, bool]:
@@ -446,6 +538,9 @@ def build_html(top3: list[dict], top3_six: list[dict], top3_known: list[dict], g
         coffee_html = f"""
   <section class="coffee">
     <h2 data-i18n="coffee_title">☕ Buy me a coffee</h2>
+    <div class="coffee-visual">
+      <img src="assets/coffee-cup.png" alt="" width="240" height="auto" loading="lazy">
+    </div>
     <p class="meta" data-i18n="coffee_desc">Like this site? Tip me via Stripe.</p>
     <a href="{_escape(COFFEE_URL)}" target="_blank" rel="noopener" class="coffee-btn" data-i18n="coffee_btn">Tip</a>
   </section>"""
@@ -683,23 +778,41 @@ def build_html(top3: list[dict], top3_six: list[dict], top3_known: list[dict], g
       min-width: 10rem;
     }}
     .lang-bar select:hover, .lang-bar select:focus {{ border-color: var(--accent); outline: none; }}
-    .bottom-actions {{ display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 2.5rem; }}
-    .bottom-actions .subscribe, .bottom-actions .coffee {{ flex: 1; min-width: 280px; }}
-    .coffee {{ padding: 1.5rem; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 12px; }}
-    .coffee h2 {{ margin-bottom: 0.5rem; }}
+    .bottom-actions {{ display: flex; align-items: stretch; gap: 1.5rem; flex-wrap: wrap; margin-top: 2.5rem; }}
+    .bottom-actions .subscribe, .bottom-actions .coffee {{ flex: 1; min-width: 280px; margin-top: 0; }}
+    .coffee {{ padding: 1.5rem; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 12px; display: flex; flex-direction: column; }}
+    .coffee h2 {{ margin-bottom: 0.5rem; margin-top: 0; }}
+    .coffee .meta {{ margin-bottom: 0.5rem; }}
+    .coffee-visual {{ position: relative; margin: 1.25rem auto 1rem; width: 260px; flex: 1; min-height: 140px; display: flex; align-items: center; justify-content: center; background-color: #161618; }}
+    .coffee-visual::before {{ content: ""; position: absolute; inset: 0; background-color: #161618; z-index: 0; }}
+    .coffee-visual img {{ position: relative; z-index: 1; display: block; width: 240px; height: auto; max-width: 100%; }}
     .coffee .coffee-btn {{
       display: inline-block;
+      width: fit-content;
       margin-top: 0.75rem;
       padding: 0.6rem 1.25rem;
       background: var(--accent);
       color: #0c0c0e;
       font-weight: 600;
+      border: none;
       border-radius: 8px;
       text-decoration: none;
       font-size: 0.9rem;
+      font-family: inherit;
+      cursor: pointer;
       transition: background 0.15s ease;
     }}
     .coffee .coffee-btn:hover {{ background: var(--accent-hover); }}
+    footer.page-footer {{
+      margin-top: 3rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      line-height: 1.5;
+      text-align: center;
+    }}
+    footer.page-footer p {{ margin: 0.25rem 0; }}
   </style>
 </head>
 <body>
@@ -756,7 +869,8 @@ def build_html(top3: list[dict], top3_six: list[dict], top3_known: list[dict], g
   <section class="subscribe">
     <h2 data-i18n="subscribe_title">📧 Weekly email</h2>
     <p class="meta" data-i18n="subscribe_desc">Get Top 3 in your inbox every Monday.</p>
-    <form action="{_formspree_action()}" method="POST">
+    <form action="{_formspree_action()}" method="POST" id="subscribe-form">
+      <input type="hidden" name="lang" id="sub-lang" value="en">
       <p>
         <label for="sub-email" data-i18n="email_label">Your email</label>
         <input id="sub-email" type="email" name="email" required placeholder="your@email.com">
@@ -770,14 +884,18 @@ def build_html(top3: list[dict], top3_six: list[dict], top3_known: list[dict], g
   </section>
   {coffee_html}
   </div>
+  <footer class="page-footer" role="contentinfo">
+    <p data-i18n="footer_copyright">© 2025 Canada Savings Top 3. All rights reserved.</p>
+    <p data-i18n="footer_disclaimer">Rates and data are for reference only. Not investment or legal advice.</p>
+  </footer>
   <script>
   var conditionPartTranslations = {condition_part_translations_js};
   var i18n={{
-    en:{{ h1:"🇨🇦 Top 3 High-Interest Savings (Canada)", meta_source:"Data from RateHub, HighInterestSavings.ca. Updated:", meta_type:"Types: <strong>Big Six</strong>=RBC/TD/BMO/Scotiabank/CIBC/National Bank; <strong>Known</strong>=direct/online banks.", filter_label:"Filter (savings & GIC):", opt_all:"All Top 3", opt_six:"Big Six Top 3", opt_known:"Known banks Top 3", th_bank:"Bank / Product", th_type:"Type", th_rate:"Rate", th_condition:"Condition", th_link:"Link", th_term:"Term", th_min_inv:"Min. investment", tier_six:"Big Six", tier_known:"Known banks", tier_credit:"Credit unions", tier_other:"Other", term_1y:"1 year", term_2y:"2 years", term_3y:"3 years", term_4y:"4 years", term_5y:"5 years", gic_title:"📌 GIC rates (non-registered, top 3 per term)", gic_meta:"Data from RateHub GIC.", gic_no_data_before:"No GIC table this run. See ", gic_no_data_link:"RateHub GIC", subscribe_title:"📧 Weekly email", subscribe_desc:"Get Top 3 in your inbox every Monday.", email_label:"Your email", message_label:"Message (optional)", submit_btn:"Subscribe", coffee_title:"☕ Buy me a coffee", coffee_desc:"Like this site? Tip me via Stripe.", coffee_btn:"Tip", lang_label:"Language", link_go:"Go to site", link_compare:"Compare" }},
-    zh:{{ h1:"🇨🇦 活期/短期高息储蓄 Top 3", meta_source:"数据来自 RateHub、HighInterestSavings.ca，仅供参考。更新时间：", meta_type:"类型说明：<strong>六大行</strong>=加拿大六大商业银行（RBC/TD/BMO/Scotiabank/CIBC/National Bank），<strong>知名银行/直销</strong>=常见直销或网络银行，<strong>其他</strong>=未分类。", filter_label:"筛选（储蓄与 GIC 同步）：", opt_all:"全部 Top 3", opt_six:"六大行 Top 3", opt_known:"知名银行/直销 Top 3", th_bank:"银行/产品", th_type:"类型", th_rate:"利率", th_condition:"条件", th_link:"官网", th_term:"期限", th_min_inv:"最低投资", tier_six:"六大行", tier_known:"知名银行/直销", tier_credit:"信贷/中小机构", tier_other:"其他", term_1y:"1年", term_2y:"2年", term_3y:"3年", term_4y:"4年", term_5y:"5年", gic_title:"📌 GIC 定存利率（非注册，各期限 Top 3）", gic_meta:"数据来自 RateHub GIC，仅供参考。", gic_no_data_before:"本次未解析到 GIC 表格。请查看 ", gic_no_data_link:"RateHub GIC 比价页", subscribe_title:"📧 每周邮件订阅", subscribe_desc:"输入邮箱，每周一收到本期 Top 3 推送。", email_label:"您的邮箱", message_label:"留言（选填）", submit_btn:"订阅", coffee_title:"☕ 请我喝杯咖啡", coffee_desc:"喜欢这个网站？可以通过 Stripe 打赏我。", coffee_btn:"打赏", lang_label:"语言", link_go:"去官网", link_compare:"比价页" }},
-    fr:{{ h1:"🇨🇦 Top 3 Épargne à intérêt élevé (Canada)", meta_source:"Données de RateHub, HighInterestSavings.ca. Mis à jour :", meta_type:"Types : <strong>Six grandes</strong>=RBC/TD/BMO/Scotiabank/CIBC/BNC ; <strong>Connues</strong>=banques en ligne.", filter_label:"Filtrer (épargne et GIC) :", opt_all:"Tous Top 3", opt_six:"Six grandes Top 3", opt_known:"Banques connues Top 3", th_bank:"Banque / Produit", th_type:"Type", th_rate:"Taux", th_condition:"Condition", th_link:"Lien", th_term:"Terme", th_min_inv:"Min. invest.", tier_six:"Six grandes", tier_known:"Banques connues", tier_credit:"Caisses", tier_other:"Autre", term_1y:"1 an", term_2y:"2 ans", term_3y:"3 ans", term_4y:"4 ans", term_5y:"5 ans", gic_title:"📌 Taux GIC (non enregistré, top 3 par terme)", gic_meta:"Données de RateHub GIC.", gic_no_data_before:"Pas de tableau GIC. Voir ", gic_no_data_link:"RateHub GIC", subscribe_title:"📧 Infolettre", subscribe_desc:"Recevez le Top 3 chaque lundi.", email_label:"Votre courriel", message_label:"Message (optionnel)", submit_btn:"S'abonner", coffee_title:"☕ Offrez-moi un café", coffee_desc:"Vous aimez ? Vous pouvez me remercier via Stripe.", coffee_btn:"Don", lang_label:"Langue", link_go:"Site", link_compare:"Comparer" }},
-    es:{{ h1:"🇨🇦 Top 3 Ahorros con alto interés (Canadá)", meta_source:"Datos de RateHub, HighInterestSavings.ca. Actualizado:", meta_type:"Tipos: <strong>Seis grandes</strong>=RBC/TD/BMO/Scotiabank/CIBC/National Bank; <strong>Conocidos</strong>=bancos en línea.", filter_label:"Filtrar (ahorros y GIC):", opt_all:"Todos Top 3", opt_six:"Seis grandes Top 3", opt_known:"Bancos conocidos Top 3", th_bank:"Banco / Producto", th_type:"Tipo", th_rate:"Tasa", th_condition:"Condición", th_link:"Enlace", th_term:"Plazo", th_min_inv:"Min. inversión", tier_six:"Seis grandes", tier_known:"Conocidos", tier_credit:"Cajas", tier_other:"Otro", term_1y:"1 año", term_2y:"2 años", term_3y:"3 años", term_4y:"4 años", term_5y:"5 años", gic_title:"📌 Tasas GIC (no registrado, top 3 por plazo)", gic_meta:"Datos de RateHub GIC.", gic_no_data_before:"Sin tabla GIC. Ver ", gic_no_data_link:"RateHub GIC", subscribe_title:"📧 Correo semanal", subscribe_desc:"Recibe el Top 3 cada lunes.", email_label:"Tu correo", message_label:"Mensaje (opcional)", submit_btn:"Suscribir", coffee_title:"☕ Invítame un café", coffee_desc:"¿Te gusta? Puedes apoyarme por Stripe.", coffee_btn:"Propina", lang_label:"Idioma", link_go:"Ir al sitio", link_compare:"Comparar" }},
-    pa:{{ h1:"🇨🇦 ਟਾਪ 3 ਉੱਚ-ਬਿਆਜ ਬੱਚਤ (ਕੈਨੇਡਾ)", meta_source:"RateHub, HighInterestSavings.ca ਤੋਂ ਡਾਟਾ। ਅੱਪਡੇਟ:", meta_type:"ਕਿਸਮਾਂ: <strong>ਛੇ ਵੱਡੇ</strong>=RBC/TD/BMO/Scotiabank/CIBC/National Bank; <strong>ਜਾਣੇ-ਪਛਾਣੇ</strong>=ਔਨਲਾਈਨ ਬੈਂਕ।", filter_label:"ਫਿਲਟਰ (ਬੱਚਤ ਅਤੇ GIC):", opt_all:"ਸਭ ਟਾਪ 3", opt_six:"ਛੇ ਵੱਡੇ ਟਾਪ 3", opt_known:"ਜਾਣੇ-ਪਛਾਣੇ ਟਾਪ 3", th_bank:"ਬੈਂਕ / ਉਤਪਾਦ", th_type:"ਕਿਸਮ", th_rate:"ਦਰ", th_condition:"ਸ਼ਰਤ", th_link:"ਲਿੰਕ", th_term:"ਮਿਆਦ", th_min_inv:"ਘੱਟੋ-ਘੱਟ ਨਿਵੇਸ਼", tier_six:"ਛੇ ਵੱਡੇ", tier_known:"ਜਾਣੇ-ਪਛਾਣੇ", tier_credit:"ਕ੍ਰੈਡਿਟ ਯੂਨੀਅਨ", tier_other:"ਹੋਰ", term_1y:"1 ਸਾਲ", term_2y:"2 ਸਾਲ", term_3y:"3 ਸਾਲ", term_4y:"4 ਸਾਲ", term_5y:"5 ਸਾਲ", gic_title:"📌 GIC ਦਰਾਂ (ਗੈਰ-ਰਜਿਸਟਰਡ)", gic_meta:"RateHub GIC ਤੋਂ ਡਾਟਾ।", gic_no_data_before:"ਇਸ ਰਨ ਵਿੱਚ GIC ਟੇਬਲ ਨਹੀਂ। ", gic_no_data_link:"RateHub GIC", subscribe_title:"📧 ਹਫ਼ਤਾਵਾਰੀ ਈਮੇਲ", subscribe_desc:"ਹਰ ਸੋਮਵਾਰ ਟਾਪ 3 ਆਪਣੇ ਇਨਬਾਕਸ ਵਿੱਚ ਲਓ।", email_label:"ਤੁਹਾਡਾ ਈਮੇਲ", message_label:"ਸੁਨੇਹਾ (ਵਿਕਲਪਿਕ)", submit_btn:"ਗਾਹਕ ਬਣੋ", coffee_title:"☕ ਮੈਨੂੰ ਕੌਫੀ ਪਿਲਾਓ", coffee_desc:"ਸਾਈਟ ਪਸੰਦ ਹੈ? Stripe ਰਾਹੀਂ ਟਿਪ ਕਰ ਸਕਦੇ ਹੋ।", coffee_btn:"ਟਿਪ", lang_label:"ਭਾਸ਼ਾ", link_go:"ਸਾਈਟ 'ਤੇ ਜਾਓ", link_compare:"ਤੁਲਨਾ ਕਰੋ" }}
+    en:{{ h1:"🇨🇦 Top 3 High-Interest Savings (Canada)", meta_source:"Data from RateHub, HighInterestSavings.ca. Updated:", meta_type:"Types: <strong>Big Six</strong>=RBC/TD/BMO/Scotiabank/CIBC/National Bank; <strong>Known</strong>=direct/online banks.", filter_label:"Filter (savings & GIC):", opt_all:"All Top 3", opt_six:"Big Six Top 3", opt_known:"Known banks Top 3", th_bank:"Bank / Product", th_type:"Type", th_rate:"Rate", th_condition:"Condition", th_link:"Link", th_term:"Term", th_min_inv:"Min. investment", tier_six:"Big Six", tier_known:"Known banks", tier_credit:"Credit unions", tier_other:"Other", term_1y:"1 year", term_2y:"2 years", term_3y:"3 years", term_4y:"4 years", term_5y:"5 years", gic_title:"📌 GIC rates (non-registered, top 3 per term)", gic_meta:"Data from RateHub GIC.", gic_no_data_before:"No GIC table this run. See ", gic_no_data_link:"RateHub GIC", subscribe_title:"📧 Weekly email", subscribe_desc:"Get Top 3 in your inbox every Monday.", email_label:"Your email", message_label:"Message (optional)", submit_btn:"Subscribe", coffee_title:"☕ Buy me a coffee", coffee_desc:"Like this site? Tip me via Stripe.", coffee_btn:"Tip", lang_label:"Language", link_go:"Go to site", link_compare:"Compare", footer_copyright:"© 2025 Canada Savings Top 3. All rights reserved.", footer_disclaimer:"Rates and data are for reference only. Not investment or legal advice." }},
+    zh:{{ h1:"🇨🇦 活期/短期高息储蓄 Top 3", meta_source:"数据来自 RateHub、HighInterestSavings.ca，仅供参考。更新时间：", meta_type:"类型说明：<strong>六大行</strong>=加拿大六大商业银行（RBC/TD/BMO/Scotiabank/CIBC/National Bank），<strong>知名银行/直销</strong>=常见直销或网络银行，<strong>其他</strong>=未分类。", filter_label:"筛选（储蓄与 GIC 同步）：", opt_all:"全部 Top 3", opt_six:"六大行 Top 3", opt_known:"知名银行/直销 Top 3", th_bank:"银行/产品", th_type:"类型", th_rate:"利率", th_condition:"条件", th_link:"官网", th_term:"期限", th_min_inv:"最低投资", tier_six:"六大行", tier_known:"知名银行/直销", tier_credit:"信贷/中小机构", tier_other:"其他", term_1y:"1年", term_2y:"2年", term_3y:"3年", term_4y:"4年", term_5y:"5年", gic_title:"📌 GIC 定存利率（非注册，各期限 Top 3）", gic_meta:"数据来自 RateHub GIC，仅供参考。", gic_no_data_before:"本次未解析到 GIC 表格。请查看 ", gic_no_data_link:"RateHub GIC 比价页", subscribe_title:"📧 每周邮件订阅", subscribe_desc:"输入邮箱，每周一收到本期 Top 3 推送。", email_label:"您的邮箱", message_label:"留言（选填）", submit_btn:"订阅", coffee_title:"☕ 请我喝杯咖啡", coffee_desc:"喜欢这个网站？可以通过 Stripe 打赏我。", coffee_btn:"打赏", lang_label:"语言", link_go:"去官网", link_compare:"比价页", footer_copyright:"© 2025 加拿大储蓄 Top 3。保留所有权利。", footer_disclaimer:"利率与数据仅供参考，不构成投资或法律建议。" }},
+    fr:{{ h1:"🇨🇦 Top 3 Épargne à intérêt élevé (Canada)", meta_source:"Données de RateHub, HighInterestSavings.ca. Mis à jour :", meta_type:"Types : <strong>Six grandes</strong>=RBC/TD/BMO/Scotiabank/CIBC/BNC ; <strong>Connues</strong>=banques en ligne.", filter_label:"Filtrer (épargne et GIC) :", opt_all:"Tous Top 3", opt_six:"Six grandes Top 3", opt_known:"Banques connues Top 3", th_bank:"Banque / Produit", th_type:"Type", th_rate:"Taux", th_condition:"Condition", th_link:"Lien", th_term:"Terme", th_min_inv:"Min. invest.", tier_six:"Six grandes", tier_known:"Banques connues", tier_credit:"Caisses", tier_other:"Autre", term_1y:"1 an", term_2y:"2 ans", term_3y:"3 ans", term_4y:"4 ans", term_5y:"5 ans", gic_title:"📌 Taux GIC (non enregistré, top 3 par terme)", gic_meta:"Données de RateHub GIC.", gic_no_data_before:"Pas de tableau GIC. Voir ", gic_no_data_link:"RateHub GIC", subscribe_title:"📧 Infolettre", subscribe_desc:"Recevez le Top 3 chaque lundi.", email_label:"Votre courriel", message_label:"Message (optionnel)", submit_btn:"S'abonner", coffee_title:"☕ Offrez-moi un café", coffee_desc:"Vous aimez ? Vous pouvez me remercier via Stripe.", coffee_btn:"Don", lang_label:"Langue", link_go:"Site", link_compare:"Comparer", footer_copyright:"© 2025 Canada Savings Top 3. Tous droits réservés.", footer_disclaimer:"Taux et données à titre indicatif uniquement. Pas un conseil en investissement ou juridique." }},
+    es:{{ h1:"🇨🇦 Top 3 Ahorros con alto interés (Canadá)", meta_source:"Datos de RateHub, HighInterestSavings.ca. Actualizado:", meta_type:"Tipos: <strong>Seis grandes</strong>=RBC/TD/BMO/Scotiabank/CIBC/National Bank; <strong>Conocidos</strong>=bancos en línea.", filter_label:"Filtrar (ahorros y GIC):", opt_all:"Todos Top 3", opt_six:"Seis grandes Top 3", opt_known:"Bancos conocidos Top 3", th_bank:"Banco / Producto", th_type:"Tipo", th_rate:"Tasa", th_condition:"Condición", th_link:"Enlace", th_term:"Plazo", th_min_inv:"Min. inversión", tier_six:"Seis grandes", tier_known:"Conocidos", tier_credit:"Cajas", tier_other:"Otro", term_1y:"1 año", term_2y:"2 años", term_3y:"3 años", term_4y:"4 años", term_5y:"5 años", gic_title:"📌 Tasas GIC (no registrado, top 3 por plazo)", gic_meta:"Datos de RateHub GIC.", gic_no_data_before:"Sin tabla GIC. Ver ", gic_no_data_link:"RateHub GIC", subscribe_title:"📧 Correo semanal", subscribe_desc:"Recibe el Top 3 cada lunes.", email_label:"Tu correo", message_label:"Mensaje (opcional)", submit_btn:"Suscribir", coffee_title:"☕ Invítame un café", coffee_desc:"¿Te gusta? Puedes apoyarme por Stripe.", coffee_btn:"Propina", lang_label:"Idioma", link_go:"Ir al sitio", link_compare:"Comparar", footer_copyright:"© 2025 Canada Savings Top 3. Todos los derechos reservados.", footer_disclaimer:"Tasas y datos solo de referencia. No son asesoramiento legal o de inversión." }},
+    pa:{{ h1:"🇨🇦 ਟਾਪ 3 ਉੱਚ-ਬਿਆਜ ਬੱਚਤ (ਕੈਨੇਡਾ)", meta_source:"RateHub, HighInterestSavings.ca ਤੋਂ ਡਾਟਾ। ਅੱਪਡੇਟ:", meta_type:"ਕਿਸਮਾਂ: <strong>ਛੇ ਵੱਡੇ</strong>=RBC/TD/BMO/Scotiabank/CIBC/National Bank; <strong>ਜਾਣੇ-ਪਛਾਣੇ</strong>=ਔਨਲਾਈਨ ਬੈਂਕ।", filter_label:"ਫਿਲਟਰ (ਬੱਚਤ ਅਤੇ GIC):", opt_all:"ਸਭ ਟਾਪ 3", opt_six:"ਛੇ ਵੱਡੇ ਟਾਪ 3", opt_known:"ਜਾਣੇ-ਪਛਾਣੇ ਟਾਪ 3", th_bank:"ਬੈਂਕ / ਉਤਪਾਦ", th_type:"ਕਿਸਮ", th_rate:"ਦਰ", th_condition:"ਸ਼ਰਤ", th_link:"ਲਿੰਕ", th_term:"ਮਿਆਦ", th_min_inv:"ਘੱਟੋ-ਘੱਟ ਨਿਵੇਸ਼", tier_six:"ਛੇ ਵੱਡੇ", tier_known:"ਜਾਣੇ-ਪਛਾਣੇ", tier_credit:"ਕ੍ਰੈਡਿਟ ਯੂਨੀਅਨ", tier_other:"ਹੋਰ", term_1y:"1 ਸਾਲ", term_2y:"2 ਸਾਲ", term_3y:"3 ਸਾਲ", term_4y:"4 ਸਾਲ", term_5y:"5 ਸਾਲ", gic_title:"📌 GIC ਦਰਾਂ (ਗੈਰ-ਰਜਿਸਟਰਡ)", gic_meta:"RateHub GIC ਤੋਂ ਡਾਟਾ।", gic_no_data_before:"ਇਸ ਰਨ ਵਿੱਚ GIC ਟੇਬਲ ਨਹੀਂ। ", gic_no_data_link:"RateHub GIC", subscribe_title:"📧 ਹਫ਼ਤਾਵਾਰੀ ਈਮੇਲ", subscribe_desc:"ਹਰ ਸੋਮਵਾਰ ਟਾਪ 3 ਆਪਣੇ ਇਨਬਾਕਸ ਵਿੱਚ ਲਓ।", email_label:"ਤੁਹਾਡਾ ਈਮੇਲ", message_label:"ਸੁਨੇਹਾ (ਵਿਕਲਪਿਕ)", submit_btn:"ਗਾਹਕ ਬਣੋ", coffee_title:"☕ ਮੈਨੂੰ ਕੌਫੀ ਪਿਲਾਓ", coffee_desc:"ਸਾਈਟ ਪਸੰਦ ਹੈ? Stripe ਰਾਹੀਂ ਟਿਪ ਕਰ ਸਕਦੇ ਹੋ।", coffee_btn:"ਟਿਪ", lang_label:"ਭਾਸ਼ਾ", link_go:"ਸਾਈਟ 'ਤੇ ਜਾਓ", link_compare:"ਤੁਲਨਾ ਕਰੋ", footer_copyright:"© 2025 Canada Savings Top 3. ਸਾਰੇ ਅਧਿਕਾਰ ਰਾਖਵੇਂ।", footer_disclaimer:"ਦਰਾਂ ਅਤੇ ਡਾਟਾ ਸਿਰਫ਼ ਹਵਾਲੇ ਲਈ। ਨਿਵੇਸ਼ ਜਾਂ ਕਾਨੂੰਨੀ ਸਲਾਹ ਨਹੀਂ।" }}
   }};
   function applyLang(lang){{
     if(!i18n[lang]) lang='en';
@@ -790,112 +908,109 @@ def build_html(top3: list[dict], top3_six: list[dict], top3_known: list[dict], g
     document.querySelectorAll('.i18n-term').forEach(function(el){{ var k=el.dataset.termKey; if(k&&i18n[lang]['term_'+k]) el.textContent=i18n[lang]['term_'+k]; }});
     document.querySelectorAll('.i18n-condition').forEach(function(el){{ var parts=[]; try{{ parts=JSON.parse(el.dataset.conditionParts||'[]'); }}catch(e){{}} var sep=lang==='zh'?'；':'; '; var tr=conditionPartTranslations[lang]||{{}}; el.innerHTML=parts.map(function(p){{ return tr[p]||p; }}).join(sep)||el.dataset.conditionFallback||'—'; }});
     var langSel=document.getElementById('lang-select'); if(langSel) langSel.value=lang;
+    var subLang=document.getElementById('sub-lang'); if(subLang) subLang.value=lang;
     try{{ localStorage.setItem('ca-savings-lang',lang); }}catch(e){{}}
   }}
   window.applyLang=applyLang;
   var saved=localStorage.getItem('ca-savings-lang');
   applyLang(saved&&i18n[saved]?saved:'en');
-  var langSel=document.getElementById('lang-select'); if(langSel) langSel.addEventListener('change',function(){{ applyLang(this.value); }});
+  var langSel=document.getElementById('lang-select'); if(langSel) langSel.addEventListener('change',function(){{ applyLang(this.value); var subLang=document.getElementById('sub-lang'); if(subLang) subLang.value=this.value; }});
+  var subForm=document.getElementById('subscribe-form'); if(subForm) subForm.addEventListener('submit',function(){{ var subLang=document.getElementById('sub-lang'); var sel=document.getElementById('lang-select'); if(subLang&&sel) subLang.value=sel.value; }});
   </script>
 </body>
 </html>"""
 
 
-def build_newsletter_html(top3: list[dict], gic_top: list[dict], updated_at: str) -> str:
-    """生成邮件正文 HTML：活期 Top 3 + 可选 GIC 表，不含订阅表单。"""
+def build_newsletter_html(lang: str, top3_six: list[dict], updated_at: str, site_url: str) -> str:
+    """生成邮件正文 HTML：仅六大行 Top 3，无 GIC 表；含 GIC 说明与「访问网站」按钮。"""
+    t = NEWSLETTER_I18N.get(lang) or NEWSLETTER_I18N["en"]
     rows_html = ""
-    for i, r in enumerate(top3, 1):
-        cond = _escape(r.get("condition") or "—")
+    for i, r in enumerate(top3_six, 1):
+        cond = _escape(_newsletter_condition_for_lang(r.get("condition") or "—", lang))
         link = _escape(r.get("link") or "")
-        tier = _get_bank_tier(r.get("bank_product", ""))
+        tier_label = _escape(t.get("tier_six", "Big Six"))
+        link_go = _escape(t.get("link_go", "Go to site →"))
         rows_html += f"""
     <tr>
       <td style="padding:8px 12px; border-bottom:1px solid #eee; font-size:15px;">{i}</td>
       <td style="padding:8px 12px; border-bottom:1px solid #eee; font-size:15px;"><strong>{_escape(r["bank_product"])}</strong></td>
-      <td style="padding:8px 12px; border-bottom:1px solid #eee; font-size:14px; color:#555;">{_escape(tier)}</td>
+      <td style="padding:8px 12px; border-bottom:1px solid #eee; font-size:14px; color:#555;">{tier_label}</td>
       <td style="padding:8px 12px; border-bottom:1px solid #eee; font-size:15px;">{r["rate"]}%</td>
       <td style="padding:8px 12px; border-bottom:1px solid #eee; font-size:14px; color:#555;">{cond}</td>
-      <td style="padding:8px 12px; border-bottom:1px solid #eee;"><a href="{link}" style="color:#0066cc; text-decoration:none;">去官网 →</a></td>
+      <td style="padding:8px 12px; border-bottom:1px solid #eee;"><a href="{link}" style="color:#0066cc; text-decoration:none;">{link_go}</a></td>
     </tr>"""
-    gic_table = ""
-    if gic_top:
-        gic_rows = ""
-        for r in gic_top:
-            tier = _get_bank_tier(r.get("bank_product", ""))
-            link, is_official = _resolve_gic_link(r.get("bank_product", ""), r.get("link", ""))
-            link_text = "去官网 →" if is_official else "比价页 →"
-            gic_rows += f"""
-    <tr>
-      <td style="padding:8px 12px; border-bottom:1px solid #eee; font-size:14px;">{_escape(r.get("term_label", ""))}</td>
-      <td style="padding:8px 12px; border-bottom:1px solid #eee; font-size:14px;"><strong>{_escape(r["bank_product"])}</strong></td>
-      <td style="padding:8px 12px; border-bottom:1px solid #eee; font-size:13px; color:#555;">{_escape(tier)}</td>
-      <td style="padding:8px 12px; border-bottom:1px solid #eee; font-size:14px;">{r["rate"]}%</td>
-      <td style="padding:8px 12px; border-bottom:1px solid #eee; font-size:13px; color:#555;">{_escape(r.get("min_investment", "—"))}</td>
-      <td style="padding:8px 12px; border-bottom:1px solid #eee;"><a href="{_escape(link)}" style="color:#0066cc; text-decoration:none;">{link_text}</a></td>
-    </tr>"""
-        gic_table = f"""
-    <h2 style="font-size:16px; margin-top:24px;">GIC 定存（各期限 Top 3）</h2>
-    <table style="width:100%; border-collapse:collapse; margin-top:8px;">
-      <thead>
-        <tr style="background:#f6f6f6;">
-          <th style="padding:8px 12px; text-align:left; font-size:12px; color:#666;">期限</th>
-          <th style="padding:8px 12px; text-align:left; font-size:12px; color:#666;">银行/产品</th>
-          <th style="padding:8px 12px; text-align:left; font-size:12px; color:#666;">类型</th>
-          <th style="padding:8px 12px; text-align:left; font-size:12px; color:#666;">利率</th>
-          <th style="padding:8px 12px; text-align:left; font-size:12px; color:#666;">最低投资</th>
-          <th style="padding:8px 12px; text-align:left; font-size:12px; color:#666;">链接</th>
-        </tr>
-      </thead>
-      <tbody>
-{gic_rows}
-      </tbody>
-    </table>"""
+    th_bank = _escape(t.get("th_bank", "Bank / Product"))
+    th_type = _escape(t.get("th_type", "Type"))
+    th_rate = _escape(t.get("th_rate", "Rate"))
+    th_condition = _escape(t.get("th_condition", "Condition"))
+    th_link = _escape(t.get("th_link", "Link"))
+    gic_cta = _escape(t.get("gic_cta_line", "We also have GIC rates on the site."))
+    visit_btn = _escape(t.get("visit_site_btn", "Visit site"))
+    footer = _escape(t.get("footer", "You received this because you subscribed. Reply to unsubscribe."))
+    title = _escape(t.get("title", "Big Six Top 3 — Canada High-Interest Savings"))
+    meta_note = _escape(t.get("meta_note", "Data from RateHub, HighInterestSavings.ca. For reference only."))
+    site_url_esc = _escape(site_url)
     return f"""<!DOCTYPE html>
-<html lang="zh-CA">
+<html lang="{lang}-CA">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
 <body style="margin:0; font-family: system-ui, -apple-system, sans-serif; font-size:15px; line-height:1.5; color:#333;">
   <div style="max-width:560px; margin:0 auto; padding:24px 16px;">
-    <h1 style="margin:0 0 8px 0; font-size:20px;">🇨🇦 活期高息储蓄 Top 3</h1>
-    <p style="margin:0 0 20px 0; font-size:13px; color:#888;">{updated_at} · 数据来自 RateHub、HighInterestSavings.ca，仅供参考</p>
+    <h1 style="margin:0 0 8px 0; font-size:20px;">🇨🇦 {title}</h1>
+    <p style="margin:0 0 20px 0; font-size:13px; color:#888;">{updated_at} · {meta_note}</p>
     <table style="width:100%; border-collapse:collapse;">
       <thead>
         <tr style="background:#f6f6f6;">
           <th style="padding:8px 12px; text-align:left; font-size:13px; color:#666;">#</th>
-          <th style="padding:8px 12px; text-align:left; font-size:13px; color:#666;">银行/产品</th>
-          <th style="padding:8px 12px; text-align:left; font-size:13px; color:#666;">类型</th>
-          <th style="padding:8px 12px; text-align:left; font-size:13px; color:#666;">利率</th>
-          <th style="padding:8px 12px; text-align:left; font-size:13px; color:#666;">条件</th>
-          <th style="padding:8px 12px; text-align:left; font-size:13px; color:#666;">链接</th>
+          <th style="padding:8px 12px; text-align:left; font-size:13px; color:#666;">{th_bank}</th>
+          <th style="padding:8px 12px; text-align:left; font-size:13px; color:#666;">{th_type}</th>
+          <th style="padding:8px 12px; text-align:left; font-size:13px; color:#666;">{th_rate}</th>
+          <th style="padding:8px 12px; text-align:left; font-size:13px; color:#666;">{th_condition}</th>
+          <th style="padding:8px 12px; text-align:left; font-size:13px; color:#666;">{th_link}</th>
         </tr>
       </thead>
       <tbody>
 {rows_html}
       </tbody>
     </table>
-{gic_table}
-    <p style="margin:24px 0 0 0; font-size:12px; color:#999;">本邮件由订阅推送发送，退订请回复说明。</p>
+    <p style="margin:20px 0 12px 0; font-size:14px; color:#555;">{gic_cta}</p>
+    <p style="margin:0 0 24px 0;"><a href="{site_url_esc}" style="display:inline-block; padding:10px 20px; background:#0066cc; color:#fff; text-decoration:none; border-radius:6px; font-size:15px;">{visit_btn}</a></p>
+    <p style="margin:24px 0 0 0; font-size:12px; color:#999;">{footer}</p>
   </div>
 </body>
 </html>"""
 
 
-def load_subscribers() -> list[str]:
-    """从 subscribers.json 读取邮箱列表。"""
+def load_subscribers() -> list[dict]:
+    """从 subscribers.json 读取订阅列表。支持旧格式 ["a@b.com"]（视为 en）与新格式 [{"email":"a@b.com","lang":"zh"}]。"""
     path = os.path.join(os.path.dirname(__file__), "subscribers.json")
     if not os.path.isfile(path):
         return []
     try:
         with open(path, encoding="utf-8") as f:
             data = json.load(f)
-        if isinstance(data, list):
-            return [str(e).strip().lower() for e in data if e and "@" in str(e)]
-        return []
     except Exception:
         return []
+    if not isinstance(data, list):
+        return []
+    out = []
+    valid_langs = {"en", "zh", "fr", "es", "pa"}
+    for e in data:
+        if isinstance(e, dict):
+            email = (e.get("email") or "").strip().lower()
+            lang = (e.get("lang") or "en").strip().lower()
+            if lang not in valid_langs:
+                lang = "en"
+            if email and "@" in email:
+                out.append({"email": email, "lang": lang})
+        else:
+            email = str(e).strip().lower()
+            if email and "@" in email:
+                out.append({"email": email, "lang": "en"})
+    return out
 
 
-def send_newsletter_emails(html_content: str, updated_at: str, top3: list[dict]) -> None:
-    """用 Resend 给 subscribers.json 里所有邮箱发一封本周 Top 3。"""
+def send_newsletter_emails(top3_six: list[dict], updated_at: str, site_url: str) -> None:
+    """按订阅者语言分别生成正文与主题，用 Resend 发送。"""
     api_key = os.environ.get("RESEND_API_KEY")
     from_email = (os.environ.get("RESEND_FROM_EMAIL") or "").strip()
     print("  [发信] RESEND_API_KEY 已设置" if api_key else "  [发信] RESEND_API_KEY 未设置")
@@ -914,21 +1029,32 @@ def send_newsletter_emails(html_content: str, updated_at: str, top3: list[dict])
     except ImportError:
         print("  未安装 resend，跳过邮件推送")
         return
-    subject = f"加拿大高息储蓄 Top 3 · {updated_at[:10]}"
-    for to in subscribers:
+    html_cache: dict[str, str] = {}
+    date_str = updated_at[:10]
+    for sub in subscribers:
+        to = sub["email"]
+        lang = sub.get("lang", "en")
+        if lang not in html_cache:
+            html_cache[lang] = build_newsletter_html(lang, top3_six, updated_at, site_url)
+        t = NEWSLETTER_I18N.get(lang) or NEWSLETTER_I18N["en"]
+        subject = (t.get("newsletter_subject") or "Big Six Top 3 — Canada High-Interest Savings · {date}").format(date=date_str)
         try:
             resend.Emails.send({
                 "from": from_email,
                 "to": [to],
                 "subject": subject,
-                "html": html_content,
+                "html": html_cache[lang],
             })
-            print(f"  已发送: {to}")
+            print(f"  已发送: {to} ({lang})")
         except Exception as e:
             print(f"  发送失败 {to}: {e}")
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--preview-newsletter", action="store_true", help="Write newsletter HTML per language to newsletter_preview_*.html, do not send email")
+    args = parser.parse_args()
+
     all_rows = []
     for src in SOURCES:
         url = src["url"]
@@ -999,8 +1125,16 @@ def main():
         json.dump({"updated_at": updated_at, "top3": top3, "gic_top": gic_top}, f, ensure_ascii=False, indent=2)
     print(f"已写入 {data_path}")
 
-    newsletter_html = build_newsletter_html(top3, gic_top, updated_at)
-    send_newsletter_emails(newsletter_html, updated_at, top3)
+    site_url = SITE_URL
+    if args.preview_newsletter:
+        for lang in ["en", "zh", "fr", "es", "pa"]:
+            html = build_newsletter_html(lang, top3_six, updated_at, site_url)
+            p = os.path.join(os.path.dirname(__file__), f"newsletter_preview_{lang}.html")
+            with open(p, "w", encoding="utf-8") as f:
+                f.write(html)
+            print(f"已写入 {p}")
+    else:
+        send_newsletter_emails(top3_six, updated_at, site_url)
 
 
 if __name__ == "__main__":
