@@ -1,1 +1,2 @@
 firecrawl-py>=4.0.0
+resend>=2.0.0

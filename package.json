@@ -1,0 +1,8 @@
+{
+  "name": "ca-savings-rates",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev:api": "node scripts/serve-api.mjs"
+  }
+}

@@ -26,6 +26,8 @@ jobs:
       - name: Scrape and build
         env:
           FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RESEND_FROM_EMAIL: ${{ secrets.RESEND_FROM_EMAIL }}
         run: python scrape_and_build.py
 
       - name: Commit and push if changed
