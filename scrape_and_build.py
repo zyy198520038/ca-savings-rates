@@ -269,6 +269,47 @@ def build_html(top3: list[dict], updated_at: str) -> str:
 </html>"""
 
 
+def build_newsletter_html(top3: list[dict], updated_at: str) -> str:
+    """生成邮件正文 HTML：不含订阅表单，布局简洁，便于邮件客户端显示。"""
+    rows_html = ""
+    for i, r in enumerate(top3, 1):
+        cond = _escape(r.get("condition") or "—")
+        link = _escape(r.get("link") or "")
+        rows_html += f"""
+    <tr>
+      <td style="padding:8px 12px; border-bottom:1px solid #eee; font-size:15px;">{i}</td>
+      <td style="padding:8px 12px; border-bottom:1px solid #eee; font-size:15px;"><strong>{_escape(r["bank_product"])}</strong></td>
+      <td style="padding:8px 12px; border-bottom:1px solid #eee; font-size:15px;">{r["rate"]}%</td>
+      <td style="padding:8px 12px; border-bottom:1px solid #eee; font-size:14px; color:#555;">{cond}</td>
+      <td style="padding:8px 12px; border-bottom:1px solid #eee;"><a href="{link}" style="color:#0066cc; text-decoration:none;">去官网 →</a></td>
+    </tr>"""
+    return f"""<!DOCTYPE html>
+<html lang="zh-CA">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+<body style="margin:0; font-family: system-ui, -apple-system, sans-serif; font-size:15px; line-height:1.5; color:#333;">
+  <div style="max-width:560px; margin:0 auto; padding:24px 16px;">
+    <h1 style="margin:0 0 8px 0; font-size:20px;">🇨🇦 加拿大高息储蓄 Top 3</h1>
+    <p style="margin:0 0 20px 0; font-size:13px; color:#888;">{updated_at} · 数据来自 RateHub、HighInterestSavings.ca，仅供参考</p>
+    <table style="width:100%; border-collapse:collapse;">
+      <thead>
+        <tr style="background:#f6f6f6;">
+          <th style="padding:8px 12px; text-align:left; font-size:13px; color:#666;">#</th>
+          <th style="padding:8px 12px; text-align:left; font-size:13px; color:#666;">银行/产品</th>
+          <th style="padding:8px 12px; text-align:left; font-size:13px; color:#666;">利率</th>
+          <th style="padding:8px 12px; text-align:left; font-size:13px; color:#666;">条件</th>
+          <th style="padding:8px 12px; text-align:left; font-size:13px; color:#666;">链接</th>
+        </tr>
+      </thead>
+      <tbody>
+{rows_html}
+      </tbody>
+    </table>
+    <p style="margin:24px 0 0 0; font-size:12px; color:#999;">本邮件由订阅推送发送，退订请回复说明。</p>
+  </div>
+</body>
+</html>"""
+
+
 def load_subscribers() -> list[str]:
     """从 subscribers.json 读取邮箱列表。"""
     path = os.path.join(os.path.dirname(__file__), "subscribers.json")
@@ -288,10 +329,13 @@ def send_newsletter_emails(html_content: str, updated_at: str, top3: list[dict])
     """用 Resend 给 subscribers.json 里所有邮箱发一封本周 Top 3。"""
     api_key = os.environ.get("RESEND_API_KEY")
     from_email = (os.environ.get("RESEND_FROM_EMAIL") or "").strip()
+    print("  [发信] RESEND_API_KEY 已设置" if api_key else "  [发信] RESEND_API_KEY 未设置")
+    print("  [发信] RESEND_FROM_EMAIL 已设置" if from_email else "  [发信] RESEND_FROM_EMAIL 未设置")
     if not api_key or not from_email:
         print("  跳过邮件推送（未设置 RESEND_API_KEY 或 RESEND_FROM_EMAIL）")
         return
     subscribers = load_subscribers()
+    print(f"  [发信] 订阅人数: {len(subscribers)}")
     if not subscribers:
         print("  订阅列表为空，跳过邮件")
         return
@@ -353,8 +397,9 @@ def main():
         json.dump({"updated_at": updated_at, "top3": top3}, f, ensure_ascii=False, indent=2)
     print(f"已写入 {data_path}")
 
-    # 给订阅者发邮件（需配置 RESEND_API_KEY、RESEND_FROM_EMAIL 和 subscribers.json）
-    send_newsletter_emails(html, updated_at, top3)
+    # 给订阅者发邮件（使用专用邮件模板：无订阅表单、更简洁）
+    newsletter_html = build_newsletter_html(top3, updated_at)
+    send_newsletter_emails(newsletter_html, updated_at, top3)
 
 
 if __name__ == "__main__":
