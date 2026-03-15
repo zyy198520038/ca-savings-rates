@@ -9,7 +9,7 @@ FORMSPREE_FORM_ID = "xnjgjpaa"
 COFFEE_URL = "https://buy.stripe.com/eVq4gA98f3GH3yS3FdaEE00"
 
 # 网站公开 URL，用于邮件中「访问网站」按钮。可覆盖为环境变量 SITE_URL
-SITE_URL = os.environ.get("SITE_URL", "https://yiyunzhu.github.io/ca-savings-rates")
+SITE_URL = os.environ.get("SITE_URL", "https://zyy198520038.github.io/ca-savings-rates/")
 
 # 数据源：加拿大储蓄利率比价页（活期/短期高息储蓄）
 SOURCES = [
