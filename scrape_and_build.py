@@ -539,7 +539,7 @@ def build_html(top3: list[dict], top3_six: list[dict], top3_known: list[dict], g
   <section class="coffee">
     <h2 data-i18n="coffee_title">☕ Buy me a coffee</h2>
     <div class="coffee-visual">
-      <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/2615.svg" alt="" width="240" height="auto" loading="lazy">
+      <img src="assets/coffee-cup.png" alt="" width="240" height="auto" loading="lazy">
     </div>
     <p class="meta" data-i18n="coffee_desc">Like this site? Tip me via Stripe.</p>
     <a href="{_escape(COFFEE_URL)}" target="_blank" rel="noopener" class="coffee-btn" data-i18n="coffee_btn">Tip</a>
