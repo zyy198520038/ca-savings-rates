@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-23 15:54 UTC",
+  "updated_at": "2026-03-30 16:01 UTC",
   "top3": [
     {
       "bank_product": "Scotiabank Momentum PLUS Savings Account",
@@ -111,11 +111,11 @@
       "link": "https://www.ratehub.ca/gics/best-gic-rates"
     },
     {
-      "bank_product": "Hubert Financial GICs",
+      "bank_product": "EQ Bank GICs",
       "rate": 3.65,
       "term_label": "3年",
       "term_years": 3,
-      "min_investment": "$1,000",
+      "min_investment": "$100",
       "source": "RateHub GIC",
       "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
       "link": "https://www.ratehub.ca/gics/best-gic-rates"
@@ -161,21 +161,21 @@
       "link": "https://www.ratehub.ca/gics/best-gic-rates"
     },
     {
-      "bank_product": "Hubert Financial GICs",
-      "rate": 3.8,
+      "bank_product": "EQ Bank GICs",
+      "rate": 3.85,
       "term_label": "5年",
       "term_years": 5,
-      "min_investment": "$1,000",
+      "min_investment": "$100",
       "source": "RateHub GIC",
       "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
       "link": "https://www.ratehub.ca/gics/best-gic-rates"
     },
     {
-      "bank_product": "MCAN Wealth GICs",
+      "bank_product": "Hubert Financial GICs",
       "rate": 3.8,
       "term_label": "5年",
       "term_years": 5,
-      "min_investment": "$100",
+      "min_investment": "$1,000",
       "source": "RateHub GIC",
       "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
       "link": "https://www.ratehub.ca/gics/best-gic-rates"
