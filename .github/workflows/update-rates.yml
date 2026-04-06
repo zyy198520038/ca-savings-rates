@@ -9,9 +9,16 @@ permissions:
 
 on:
   schedule:
-    # 每周一 15:00 UTC（温哥华约早上 8 点）
+    # 每周一 15:00 UTC（温哥华约早上 8 点）— 更新利率
     - cron: '0 15 * * 1'
+    # 每月 5 号 16:00 UTC — 强制更新房产数据（GVR 通常月初发布）
+    - cron: '0 16 5 * *'
   workflow_dispatch: # 允许手动运行
+    inputs:
+      force_property:
+        description: '强制重新抓取房产数据（忽略本月缓存）'
+        required: false
+        default: 'false'
 
 jobs:
   update:
@@ -38,7 +45,8 @@ jobs:
           FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           RESEND_FROM_EMAIL: ${{ secrets.RESEND_FROM_EMAIL }}
-        # property_data.json 已提交到仓库作为缓存；若本月已更新则自动跳过房产 scrape
+          # 每月 5 号触发或手动指定时，强制刷新房产缓存
+          FORCE_PROPERTY_REFRESH: ${{ (github.event.schedule == '0 16 5 * *' || github.event.inputs.force_property == 'true') && 'true' || 'false' }}
         run: python scrape_and_build.py
 
       - name: Commit and push if changed
@@ -46,4 +54,4 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add index.html top3.json property_data.json
-          git diff --staged --quiet || (git commit -m "chore: update top 3 savings rates" && git push)
+          git diff --staged --quiet || (git commit -m "chore: update rates and property data" && git push)

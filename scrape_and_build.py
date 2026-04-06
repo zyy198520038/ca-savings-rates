@@ -2324,7 +2324,8 @@ def main():
         except Exception:
             cached_prop = {}
     cached_updated = (cached_prop.get("metro") or {}).get("updated_at", "")
-    prop_is_current = cached_updated.startswith(now_ym)
+    force_refresh = os.environ.get("FORCE_PROPERTY_REFRESH", "false").lower() == "true"
+    prop_is_current = cached_updated.startswith(now_ym) and not force_refresh
 
     if prop_is_current:
         print(f"房产数据已是本月（{cached_updated[:7]}），跳过重新 scrape，使用缓存")
@@ -2337,6 +2338,10 @@ def main():
         property_areas = scrape_property_areas()
         property_hpi   = scrape_property_hpi_pdf()
         if property_metro:
+            # 保护机制：如果新抓的 hpi_by_area 为空，保留旧缓存中的数据
+            if not property_hpi and cached_prop.get("hpi_by_area"):
+                print(f"  警告：新抓取的 hpi_by_area 为空，保留旧缓存数据（{len(cached_prop['hpi_by_area'])} 条）")
+                property_hpi = cached_prop["hpi_by_area"]
             with open(prop_path, "w", encoding="utf-8") as f:
                 json.dump({"metro": property_metro, "areas": property_areas, "hpi_by_area": property_hpi},
                           f, ensure_ascii=False, indent=2)
