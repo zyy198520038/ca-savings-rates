@@ -1116,11 +1116,11 @@ def build_html(top3: list[dict], top3_six: list[dict], top3_known: list[dict], g
       var gicTbody=document.getElementById('gic-tbody');
       if(gicTbody) gicR={{'all':{gic_all_js},'six':{gic_six_js},'known':{gic_known_js}}};
       function applyFilter(v){{
-        var sRows=savingsR[v];
         var noData='<tr><td colspan="7" style="padding:1rem;text-align:center;color:var(--text-muted);">—</td></tr>';
+        var sRows=savingsR[v]||savingsR['all'];
         document.getElementById('savings-tbody').innerHTML=sRows||noData;
         if(gicR&&gicTbody){{
-          var gRows=gicR[v];
+          var gRows=gicR[v]||gicR['all'];
           gicTbody.innerHTML=gRows||noData;
         }}
         if(window.applyLang) window.applyLang(document.documentElement.lang||'en');
