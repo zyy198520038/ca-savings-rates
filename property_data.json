@@ -3,39 +3,264 @@
     "source_url": "https://www.gvrealtors.ca/market-watch/monthly-market-report/march-2026.html",
     "updated_at": "March 2026",
     "detached": {
-      "sales": 571,
-      "benchmark": 1854800,
-      "benchmark_yoy_pct": -8.2,
-      "dom": 46,
-      "sar": "11%"
+      "benchmark": 1854800
     },
     "attached": {
-      "sales": 446,
-      "benchmark": 1047100,
-      "benchmark_yoy_pct": -5.7,
-      "dom": 34,
-      "sar": "17.2%"
+      "benchmark": 1047100
     },
     "apartment": {
-      "sales": 999,
-      "benchmark": 706700,
-      "benchmark_yoy_pct": -7.8,
-      "dom": 38,
-      "sar": "15.7%"
+      "benchmark": 706700
     },
-    "total_sales": 2032,
-    "total_sales_yoy_pct": -2.8,
-    "total_sales_10yr_avg": 2981,
-    "total_sales_vs_10yr_pct": -31.8,
-    "composite_benchmark": 1104300,
-    "composite_benchmark_yoy_pct": -6.8,
-    "composite_benchmark_mom_pct": 0.4,
-    "total_active": 14774,
-    "total_active_yoy_pct": 1.6,
-    "new_listings": 5792,
-    "new_listings_yoy_pct": -10.3,
-    "total_sar": "14.2%"
+    "total_active": null,
+    "new_listings": null
   },
+  "areas": [
+    {
+      "area": "Vancouver West",
+      "type": "Attached",
+      "listed": 260,
+      "sold": 254,
+      "ratio": "217"
+    },
+    {
+      "area": "Vancouver West",
+      "type": "Apartment",
+      "listed": 191,
+      "sold": 191,
+      "ratio": "169"
+    },
+    {
+      "area": "Vancouver East",
+      "type": "Detached",
+      "listed": 860,
+      "sold": 821,
+      "ratio": "814"
+    },
+    {
+      "area": "Vancouver East",
+      "type": "Attached",
+      "listed": 240,
+      "sold": 248,
+      "ratio": "248"
+    },
+    {
+      "area": "Vancouver East",
+      "type": "Apartment",
+      "listed": 175,
+      "sold": 202,
+      "ratio": "195"
+    },
+    {
+      "area": "Burnaby",
+      "type": "Detached",
+      "listed": 312,
+      "sold": 314,
+      "ratio": "305"
+    },
+    {
+      "area": "Burnaby",
+      "type": "Attached",
+      "listed": 159,
+      "sold": 184,
+      "ratio": "161"
+    },
+    {
+      "area": "Burnaby",
+      "type": "Apartment",
+      "listed": 120,
+      "sold": 111,
+      "ratio": "120"
+    },
+    {
+      "area": "New Westminster",
+      "type": "Detached",
+      "listed": 530,
+      "sold": 477,
+      "ratio": "454"
+    },
+    {
+      "area": "New Westminster",
+      "type": "Attached",
+      "listed": 43,
+      "sold": 39,
+      "ratio": "55"
+    },
+    {
+      "area": "New Westminster",
+      "type": "Apartment",
+      "listed": 38,
+      "sold": 41,
+      "ratio": "51"
+    },
+    {
+      "area": "Richmond",
+      "type": "Detached",
+      "listed": 197,
+      "sold": 178,
+      "ratio": "163"
+    },
+    {
+      "area": "Richmond",
+      "type": "Attached",
+      "listed": 217,
+      "sold": 220,
+      "ratio": "186"
+    },
+    {
+      "area": "Richmond",
+      "type": "Apartment",
+      "listed": 154,
+      "sold": 157,
+      "ratio": "165"
+    },
+    {
+      "area": "Coquitlam",
+      "type": "Detached",
+      "listed": 362,
+      "sold": 353,
+      "ratio": "375"
+    },
+    {
+      "area": "Coquitlam",
+      "type": "Attached",
+      "listed": 194,
+      "sold": 200,
+      "ratio": "168"
+    },
+    {
+      "area": "Coquitlam",
+      "type": "Apartment",
+      "listed": 152,
+      "sold": 112,
+      "ratio": "136"
+    },
+    {
+      "area": "Port Coquitlam",
+      "type": "Detached",
+      "listed": 276,
+      "sold": 205,
+      "ratio": "262"
+    },
+    {
+      "area": "Port Coquitlam",
+      "type": "Attached",
+      "listed": 74,
+      "sold": 68,
+      "ratio": "77"
+    },
+    {
+      "area": "Port Coquitlam",
+      "type": "Apartment",
+      "listed": 42,
+      "sold": 45,
+      "ratio": "34"
+    },
+    {
+      "area": "Port Moody",
+      "type": "Detached",
+      "listed": 78,
+      "sold": 72,
+      "ratio": "65"
+    },
+    {
+      "area": "Port Moody",
+      "type": "Attached",
+      "listed": 51,
+      "sold": 58,
+      "ratio": "47"
+    },
+    {
+      "area": "Port Moody",
+      "type": "Apartment",
+      "listed": 39,
+      "sold": 44,
+      "ratio": "42"
+    },
+    {
+      "area": "North Vancouver",
+      "type": "Detached",
+      "listed": 85,
+      "sold": 87,
+      "ratio": "72"
+    },
+    {
+      "area": "North Vancouver",
+      "type": "Attached",
+      "listed": 248,
+      "sold": 214,
+      "ratio": "206"
+    },
+    {
+      "area": "North Vancouver",
+      "type": "Apartment",
+      "listed": 113,
+      "sold": 97,
+      "ratio": "108"
+    },
+    {
+      "area": "West Vancouver",
+      "type": "Detached",
+      "listed": 267,
+      "sold": 246,
+      "ratio": "211"
+    },
+    {
+      "area": "West Vancouver",
+      "type": "Attached",
+      "listed": 198,
+      "sold": 164,
+      "ratio": "151"
+    },
+    {
+      "area": "West Vancouver",
+      "type": "Apartment",
+      "listed": 13,
+      "sold": 20,
+      "ratio": "14"
+    },
+    {
+      "area": "Maple Ridge",
+      "type": "Detached",
+      "listed": 62,
+      "sold": 41,
+      "ratio": "57"
+    },
+    {
+      "area": "Maple Ridge",
+      "type": "Attached",
+      "listed": 210,
+      "sold": 237,
+      "ratio": "204"
+    },
+    {
+      "area": "Maple Ridge",
+      "type": "Apartment",
+      "listed": 93,
+      "sold": 106,
+      "ratio": "90"
+    },
+    {
+      "area": "South Delta",
+      "type": "Detached",
+      "listed": 73,
+      "sold": 66,
+      "ratio": "66"
+    },
+    {
+      "area": "South Delta",
+      "type": "Attached",
+      "listed": 111,
+      "sold": 114,
+      "ratio": "110"
+    },
+    {
+      "area": "South Delta",
+      "type": "Apartment",
+      "listed": 47,
+      "sold": 54,
+      "ratio": "37"
+    }
+  ],
   "hpi_by_area": [
     {
       "area": "Burnaby East",
@@ -996,253 +1221,6 @@
       "3yr": 3.8,
       "5yr": 26.2,
       "source": "FVREB"
-    }
-  ],
-  "areas": [
-    {
-      "area": "Vancouver West",
-      "type": "Attached",
-      "listed": 260,
-      "sold": 254,
-      "ratio": "217"
-    },
-    {
-      "area": "Vancouver West",
-      "type": "Apartment",
-      "listed": 191,
-      "sold": 191,
-      "ratio": "169"
-    },
-    {
-      "area": "Vancouver East",
-      "type": "Detached",
-      "listed": 860,
-      "sold": 821,
-      "ratio": "814"
-    },
-    {
-      "area": "Vancouver East",
-      "type": "Attached",
-      "listed": 240,
-      "sold": 248,
-      "ratio": "248"
-    },
-    {
-      "area": "Vancouver East",
-      "type": "Apartment",
-      "listed": 175,
-      "sold": 202,
-      "ratio": "195"
-    },
-    {
-      "area": "Burnaby",
-      "type": "Detached",
-      "listed": 312,
-      "sold": 314,
-      "ratio": "305"
-    },
-    {
-      "area": "Burnaby",
-      "type": "Attached",
-      "listed": 159,
-      "sold": 184,
-      "ratio": "161"
-    },
-    {
-      "area": "Burnaby",
-      "type": "Apartment",
-      "listed": 120,
-      "sold": 111,
-      "ratio": "120"
-    },
-    {
-      "area": "New Westminster",
-      "type": "Detached",
-      "listed": 530,
-      "sold": 477,
-      "ratio": "454"
-    },
-    {
-      "area": "New Westminster",
-      "type": "Attached",
-      "listed": 43,
-      "sold": 39,
-      "ratio": "55"
-    },
-    {
-      "area": "New Westminster",
-      "type": "Apartment",
-      "listed": 38,
-      "sold": 41,
-      "ratio": "51"
-    },
-    {
-      "area": "Richmond",
-      "type": "Detached",
-      "listed": 197,
-      "sold": 178,
-      "ratio": "163"
-    },
-    {
-      "area": "Richmond",
-      "type": "Attached",
-      "listed": 217,
-      "sold": 220,
-      "ratio": "186"
-    },
-    {
-      "area": "Richmond",
-      "type": "Apartment",
-      "listed": 154,
-      "sold": 157,
-      "ratio": "165"
-    },
-    {
-      "area": "Coquitlam",
-      "type": "Detached",
-      "listed": 362,
-      "sold": 353,
-      "ratio": "375"
-    },
-    {
-      "area": "Coquitlam",
-      "type": "Attached",
-      "listed": 194,
-      "sold": 200,
-      "ratio": "168"
-    },
-    {
-      "area": "Coquitlam",
-      "type": "Apartment",
-      "listed": 152,
-      "sold": 112,
-      "ratio": "136"
-    },
-    {
-      "area": "Port Coquitlam",
-      "type": "Detached",
-      "listed": 276,
-      "sold": 205,
-      "ratio": "262"
-    },
-    {
-      "area": "Port Coquitlam",
-      "type": "Attached",
-      "listed": 74,
-      "sold": 68,
-      "ratio": "77"
-    },
-    {
-      "area": "Port Coquitlam",
-      "type": "Apartment",
-      "listed": 42,
-      "sold": 45,
-      "ratio": "34"
-    },
-    {
-      "area": "Port Moody",
-      "type": "Detached",
-      "listed": 78,
-      "sold": 72,
-      "ratio": "65"
-    },
-    {
-      "area": "Port Moody",
-      "type": "Attached",
-      "listed": 51,
-      "sold": 58,
-      "ratio": "47"
-    },
-    {
-      "area": "Port Moody",
-      "type": "Apartment",
-      "listed": 39,
-      "sold": 44,
-      "ratio": "42"
-    },
-    {
-      "area": "North Vancouver",
-      "type": "Detached",
-      "listed": 85,
-      "sold": 87,
-      "ratio": "72"
-    },
-    {
-      "area": "North Vancouver",
-      "type": "Attached",
-      "listed": 248,
-      "sold": 214,
-      "ratio": "206"
-    },
-    {
-      "area": "North Vancouver",
-      "type": "Apartment",
-      "listed": 113,
-      "sold": 97,
-      "ratio": "108"
-    },
-    {
-      "area": "West Vancouver",
-      "type": "Detached",
-      "listed": 267,
-      "sold": 246,
-      "ratio": "211"
-    },
-    {
-      "area": "West Vancouver",
-      "type": "Attached",
-      "listed": 198,
-      "sold": 164,
-      "ratio": "151"
-    },
-    {
-      "area": "West Vancouver",
-      "type": "Apartment",
-      "listed": 13,
-      "sold": 20,
-      "ratio": "14"
-    },
-    {
-      "area": "Maple Ridge",
-      "type": "Detached",
-      "listed": 62,
-      "sold": 41,
-      "ratio": "57"
-    },
-    {
-      "area": "Maple Ridge",
-      "type": "Attached",
-      "listed": 210,
-      "sold": 237,
-      "ratio": "204"
-    },
-    {
-      "area": "Maple Ridge",
-      "type": "Apartment",
-      "listed": 93,
-      "sold": 106,
-      "ratio": "90"
-    },
-    {
-      "area": "South Delta",
-      "type": "Detached",
-      "listed": 73,
-      "sold": 66,
-      "ratio": "66"
-    },
-    {
-      "area": "South Delta",
-      "type": "Attached",
-      "listed": 111,
-      "sold": 114,
-      "ratio": "110"
-    },
-    {
-      "area": "South Delta",
-      "type": "Apartment",
-      "listed": 47,
-      "sold": 54,
-      "ratio": "37"
     }
   ]
 }
