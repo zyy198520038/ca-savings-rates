@@ -38,11 +38,12 @@ jobs:
           FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           RESEND_FROM_EMAIL: ${{ secrets.RESEND_FROM_EMAIL }}
-        run: python scrape_and_build.py  # 发信需在仓库 Secrets 中配置上述三个变量
+        # property_data.json 已提交到仓库作为缓存；若本月已更新则自动跳过房产 scrape
+        run: python scrape_and_build.py
 
       - name: Commit and push if changed
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add index.html top3.json property_data.json
-          git diff --staged --quiet || (git commit -m "chore: update rates and property data" && git push)
+          git diff --staged --quiet || (git commit -m "chore: update top 3 savings rates" && git push)
