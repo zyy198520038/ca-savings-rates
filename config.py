@@ -34,6 +34,16 @@ GIC_SOURCES = [
     },
 ]
 
+# 温哥华房产数据源
+PROPERTY_METRO_URL_TEMPLATE = "https://www.gvrealtors.ca/market-watch/monthly-market-report/{month}-{year}.html"
+PROPERTY_AREAS_URL = "https://www.gvrealtors.ca/market-watch/summary-of-homes-listed-and-sold.html"
+PROPERTY_AREAS = [
+    "Vancouver West", "Vancouver East", "Burnaby", "New Westminster",
+    "Richmond", "Coquitlam", "Port Coquitlam", "Port Moody",
+    "North Vancouver", "West Vancouver", "Maple Ridge", "South Delta",
+]
+PROPERTY_TYPES = ["Detached", "Attached", "Apartment"]
+
 # 可选：只保留这些银行（None = 不过滤，显示所有）
 BANK_WHITELIST = None  # 例如: ["TD", "RBC", "Scotiabank", "Tangerine", "EQ Bank", "Simplii", ...]
 
