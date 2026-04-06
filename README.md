@@ -72,3 +72,5 @@ python scrape_and_build.py --rebuild-property
 - 房产数据：[Greater Vancouver REALTORS®](https://www.gvrealtors.ca/market-watch/monthly-market-report/) MLS® HPI
 
 > 数据仅供参考，实际以各银行及 GVR 官网为准。
+
+> **更新失败？** 数据抓取依赖第三方页面结构，源站改版时解析可能中断。若网站数据长时间未更新，请到仓库 [Actions](https://github.com/zyy198520038/ca-savings-rates/actions) 页面查看最近一次运行的日志，根据报错信息排查。
