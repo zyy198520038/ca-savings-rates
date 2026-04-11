@@ -909,8 +909,8 @@ def build_html(top3: list[dict], top3_six: list[dict], top3_known: list[dict], g
     .re-snap-overview {{ border-left: 3px solid var(--accent); }}
     .re-snap-title {{ font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 0.6rem; }}
     .re-snap-row {{ display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; font-size: 0.8rem; margin-bottom: 0.35rem; }}
-    .re-snap-label {{ color: var(--text-muted); flex-shrink: 0; }}
-    .re-snap-val {{ text-align: right; }}
+    .re-snap-label {{ color: var(--text-muted); flex-shrink: 0; max-width: 55%; }}
+    .re-snap-val {{ text-align: right; min-width: 0; word-break: break-word; }}
     .re-snap-icon {{ font-size: 1.5rem; text-align: center; margin-bottom: 0.3rem; }}
     .re-snap-type {{ font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); text-align: center; margin-bottom: 0.4rem; }}
     .re-snap-price {{ font-size: 1.25rem; font-weight: 700; color: var(--accent); text-align: center; margin-bottom: 0.15rem; }}
