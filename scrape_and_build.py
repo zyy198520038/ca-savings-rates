@@ -2318,10 +2318,20 @@ def main():
             cached_prop = {}
     cached_updated = (cached_prop.get("metro") or {}).get("updated_at", "")
     force_refresh = os.environ.get("FORCE_PROPERTY_REFRESH", "false").lower() == "true"
-    prop_is_current = cached_updated.startswith(now_ym) and not force_refresh
+    # Support both "2026-04" (ISO) and "April 2026" / "March 2026" (human) formats
+    def _updated_matches_month(updated_str: str, ym: str) -> bool:
+        if updated_str.startswith(ym):
+            return True
+        try:
+            from datetime import datetime as _dt
+            parsed = _dt.strptime(updated_str.strip(), "%B %Y")
+            return parsed.strftime("%Y-%m") == ym
+        except Exception:
+            return False
+    prop_is_current = _updated_matches_month(cached_updated, now_ym) and not force_refresh
 
     if prop_is_current:
-        print(f"房产数据已是本月（{cached_updated[:7]}），跳过重新 scrape，使用缓存")
+        print(f"房产数据已是本月（{cached_updated}），跳过重新 scrape，使用缓存")
         property_metro = cached_prop.get("metro", {})
         property_areas = cached_prop.get("areas", [])
         property_hpi   = cached_prop.get("hpi_by_area", [])
@@ -2335,6 +2345,16 @@ def main():
             if not property_hpi and cached_prop.get("hpi_by_area"):
                 print(f"  警告：新抓取的 hpi_by_area 为空，保留旧缓存数据（{len(cached_prop['hpi_by_area'])} 条）")
                 property_hpi = cached_prop["hpi_by_area"]
+            # 保护机制：如果新抓的 metro 缺少 sales/dom，从旧缓存补充
+            cached_metro = cached_prop.get("metro") or {}
+            for ptype in ("detached", "attached", "apartment"):
+                new_ptype = property_metro.get(ptype) or {}
+                old_ptype = cached_metro.get(ptype) or {}
+                if new_ptype and old_ptype:
+                    for field in ("sales", "dom", "sar"):
+                        if new_ptype.get(field) is None and old_ptype.get(field) is not None:
+                            print(f"  警告：新抓取的 metro.{ptype}.{field} 为空，保留旧缓存值 {old_ptype[field]}")
+                            new_ptype[field] = old_ptype[field]
             with open(prop_path, "w", encoding="utf-8") as f:
                 json.dump({"metro": property_metro, "areas": property_areas, "hpi_by_area": property_hpi},
                           f, ensure_ascii=False, indent=2)
