@@ -3,16 +3,38 @@
     "source_url": "https://www.gvrealtors.ca/market-watch/monthly-market-report/march-2026.html",
     "updated_at": "March 2026",
     "detached": {
-      "benchmark": 1854800
+      "benchmark": 1854800,
+      "sales": 571,
+      "benchmark_yoy_pct": -8.2,
+      "dom": 46,
+      "sar": "11%"
     },
     "attached": {
-      "benchmark": 1047100
+      "benchmark": 1047100,
+      "sales": 446,
+      "benchmark_yoy_pct": -5.7,
+      "dom": 34,
+      "sar": "17.2%"
     },
     "apartment": {
-      "benchmark": 706700
+      "benchmark": 706700,
+      "sales": 999,
+      "benchmark_yoy_pct": -7.8,
+      "dom": 38,
+      "sar": "15.7%"
     },
-    "total_active": null,
-    "new_listings": null
+    "total_active": 14774,
+    "new_listings": 5792,
+    "total_sales": 2032,
+    "total_sales_yoy_pct": -2.8,
+    "total_sales_10yr_avg": 2981,
+    "total_sales_vs_10yr_pct": -31.8,
+    "composite_benchmark": 1104300,
+    "composite_benchmark_yoy_pct": -6.8,
+    "composite_benchmark_mom_pct": 0.4,
+    "total_active_yoy_pct": 1.6,
+    "new_listings_yoy_pct": -10.3,
+    "total_sar": "14.2%"
   },
   "areas": [
     {
