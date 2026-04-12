@@ -6,3 +6,5 @@ venv/
 *.egg-info/
 subscribers.json
 .DS_Store
+smart_money_data.json
+index_local.html

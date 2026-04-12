@@ -588,62 +588,71 @@ def build_html(top3: list[dict], top3_six: list[dict], top3_known: list[dict], g
   <title data-i18n="site_title">Greater Vancouver Newcomer Hub</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {{
-      --bg: #0c0c0e;
-      --bg-elevated: #161618;
-      --bg-hover: #1c1c1f;
-      --border: #2a2a2e;
-      --text: #e4e4e7;
-      --text-muted: #a1a1aa;
-      --accent: #f97316;
-      --accent-hover: #fb923c;
-      --link: #f97316;
-      --link-hover: #fdba74;
+      --bg: #1f1e1c;
+      --bg-elevated: #2c2b29;
+      --bg-hover: #37352f;
+      --border: rgba(255,255,255,0.07);
+      --border-strong: rgba(255,255,255,0.13);
+      --text: #f0efed;
+      --text-muted: #a39e98;
+      --text-faint: #615d59;
+      --accent: #dd5b00;
+      --accent-hover: #c25000;
+      --link: #dd5b00;
+      --link-hover: #f97316;
+      --shadow-card: 0 1px 3px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.35), 0 4px 16px rgba(0,0,0,0.2);
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.4), 0 2px 4px rgba(0,0,0,0.25);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
     }}
     * {{ box-sizing: border-box; }}
     body {{
-      font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
       background: var(--bg);
       color: var(--text);
-      max-width: 920px;
+      max-width: 960px;
       margin: 0 auto;
       padding: 2rem 1.25rem;
       line-height: 1.6;
       min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
     }}
     h1 {{
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       font-weight: 700;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.03em;
       margin-bottom: 0.5rem;
     }}
     h2 {{
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 600;
-      border-bottom: 2px solid var(--accent);
-      padding-bottom: 0.35rem;
+      letter-spacing: -0.02em;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
       margin-top: 0;
       margin-bottom: 0.5rem;
     }}
     .meta {{
       color: var(--text-muted);
-      font-size: 0.875rem;
+      font-size: 0.82rem;
       margin-bottom: 0.75rem;
     }}
     .meta strong {{ color: var(--text); }}
     #tier-filter {{
       background: var(--bg-elevated);
       color: var(--text);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 0.5rem 2rem 0.5rem 0.75rem;
-      font-size: 0.9rem;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      padding: 0.45rem 2rem 0.45rem 0.75rem;
+      font-size: 0.875rem;
       font-family: inherit;
       cursor: pointer;
       appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23a1a1aa' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%239b9691' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 0.6rem center;
     }}
@@ -656,26 +665,27 @@ def build_html(top3: list[dict], top3_six: list[dict], top3_known: list[dict], g
       border-collapse: collapse;
       table-layout: fixed;
       margin-top: 1rem;
-      border-radius: 12px;
+      border-radius: var(--radius-lg);
       overflow: hidden;
       border: 1px solid var(--border);
+      box-shadow: var(--shadow-card);
     }}
     th, td {{
-      padding: 0.75rem 0.85rem;
+      padding: 0.7rem 0.9rem;
       text-align: left;
       border-bottom: 1px solid var(--border);
     }}
     th {{
       background: var(--bg-elevated);
       font-weight: 600;
-      font-size: 0.8rem;
+      font-size: 0.72rem;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      color: var(--text-faint);
     }}
     tbody tr {{
       background: var(--bg-elevated);
-      transition: background 0.15s ease;
+      transition: background 0.12s ease;
     }}
     tbody tr:hover {{
       background: var(--bg-hover);
@@ -709,33 +719,34 @@ def build_html(top3: list[dict], top3_six: list[dict], top3_known: list[dict], g
     .td-logo.no-logo .logo-placeholder {{ display: inline !important; }}
     @media (max-width: 768px) {{
       thead {{ display: none; }}
-      table {{ display: block; border: none; margin-top: 0.5rem; }}
+      table {{ display: block; border: none; margin-top: 0.5rem; box-shadow: none; }}
       tbody {{ display: block; }}
       tr {{
         display: block;
         background: var(--bg-elevated);
         border: 1px solid var(--border);
-        border-radius: 12px;
-        margin-bottom: 1rem;
+        border-radius: var(--radius-lg);
+        margin-bottom: 0.75rem;
         padding: 1rem 1.25rem;
-        transition: border-color 0.15s ease;
+        transition: border-color 0.12s ease;
+        box-shadow: var(--shadow-sm);
       }}
-      tr:hover {{ border-color: var(--accent); }}
+      tr:hover {{ border-color: var(--border-strong); }}
       td {{
         display: flex;
         align-items: flex-start;
         gap: 0.5rem;
-        padding: 0.5rem 0;
+        padding: 0.45rem 0;
         border: none;
-        font-size: 0.9rem;
+        font-size: 0.875rem;
       }}
       td::before {{
         content: attr(data-label);
         font-weight: 600;
-        font-size: 0.75rem;
+        font-size: 0.68rem;
         text-transform: uppercase;
-        letter-spacing: 0.03em;
-        color: var(--text-muted);
+        letter-spacing: 0.06em;
+        color: var(--text-faint);
         min-width: 4.5em;
         flex-shrink: 0;
       }}
@@ -751,42 +762,46 @@ def build_html(top3: list[dict], top3_six: list[dict], top3_known: list[dict], g
       padding: 1.5rem;
       background: var(--bg-elevated);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
     }}
     .subscribe h2 {{ margin-bottom: 0.5rem; }}
-    .subscribe p {{ color: var(--text-muted); font-size: 0.9rem; margin: 0.5rem 0; }}
-    .subscribe label {{ display: block; margin-bottom: 0.25rem; font-size: 0.9rem; }}
+    .subscribe p {{ color: var(--text-muted); font-size: 0.875rem; margin: 0.5rem 0; }}
+    .subscribe label {{ display: block; margin-bottom: 0.25rem; font-size: 0.875rem; font-weight: 500; }}
     .subscribe input, .subscribe textarea {{
       width: 100%;
       max-width: 320px;
-      padding: 0.6rem 0.75rem;
-      margin-top: 0.25rem;
+      padding: 0.55rem 0.75rem;
+      margin-top: 0.2rem;
       background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
       color: var(--text);
       font-family: inherit;
-      font-size: 0.9rem;
+      font-size: 0.875rem;
+      transition: border-color 0.12s;
     }}
-    .subscribe input::placeholder, .subscribe textarea::placeholder {{ color: var(--text-muted); opacity: 0.8; }}
+    .subscribe input::placeholder, .subscribe textarea::placeholder {{ color: var(--text-faint); }}
     .subscribe input:focus, .subscribe textarea:focus {{
       outline: none;
       border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(249,115,22,0.15);
     }}
     .subscribe button {{
       margin-top: 0.75rem;
-      padding: 0.6rem 1.25rem;
+      padding: 0.55rem 1.25rem;
       background: var(--accent);
-      color: #0c0c0e;
+      color: #111110;
       border: none;
-      border-radius: 8px;
+      border-radius: var(--radius-sm);
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.875rem;
       font-family: inherit;
       cursor: pointer;
-      transition: background 0.15s ease;
+      transition: background 0.12s ease, box-shadow 0.12s ease;
+      box-shadow: var(--shadow-sm);
     }}
-    .subscribe button:hover {{ background: var(--accent-hover); }}
+    .subscribe button:hover {{ background: var(--accent-hover); box-shadow: 0 2px 8px rgba(249,115,22,0.35); }}
     .gic-section {{ margin-top: 2.5rem; }}
     .gic-section h2 {{ margin-top: 0; }}
     .lang-bar {{
@@ -796,14 +811,14 @@ def build_html(top3: list[dict], top3_six: list[dict], top3_known: list[dict], g
       margin-bottom: 1.25rem;
       flex-wrap: wrap;
     }}
-    .lang-bar .lang-label {{ color: var(--text-muted); font-size: 0.85rem; margin-right: 0.25rem; }}
+    .lang-bar .lang-label {{ color: var(--text-muted); font-size: 0.8rem; font-weight: 500; margin-right: 0.25rem; }}
     .lang-bar select {{
       background: var(--bg-elevated);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 0.4rem 0.6rem;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      padding: 0.35rem 0.6rem;
       color: var(--text);
-      font-size: 0.95rem;
+      font-size: 0.875rem;
       font-family: inherit;
       cursor: pointer;
       min-width: 10rem;
@@ -811,35 +826,36 @@ def build_html(top3: list[dict], top3_six: list[dict], top3_known: list[dict], g
     .lang-bar select:hover, .lang-bar select:focus {{ border-color: var(--accent); outline: none; }}
     .bottom-actions {{ display: flex; align-items: stretch; gap: 1.5rem; flex-wrap: wrap; margin-top: 2.5rem; }}
     .bottom-actions .subscribe, .bottom-actions .coffee {{ flex: 1; min-width: 280px; margin-top: 0; }}
-    .coffee {{ padding: 1.5rem; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 12px; display: flex; flex-direction: column; }}
+    .coffee {{ padding: 1.5rem; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-lg); display: flex; flex-direction: column; box-shadow: var(--shadow-card); }}
     .coffee h2 {{ margin-bottom: 0.5rem; margin-top: 0; }}
     .coffee .meta {{ margin-bottom: 0.5rem; }}
-    .coffee-visual {{ position: relative; margin: 1.25rem auto 1rem; width: 260px; flex: 1; min-height: 140px; display: flex; align-items: center; justify-content: center; background-color: #161618; }}
-    .coffee-visual::before {{ content: ""; position: absolute; inset: 0; background-color: #161618; z-index: 0; }}
+    .coffee-visual {{ position: relative; margin: 1.25rem auto 1rem; width: 260px; flex: 1; min-height: 140px; display: flex; align-items: center; justify-content: center; background-color: var(--bg-elevated); }}
+    .coffee-visual::before {{ content: ""; position: absolute; inset: 0; background-color: var(--bg-elevated); z-index: 0; }}
     .coffee-visual img {{ position: relative; z-index: 1; display: block; width: 240px; height: auto; max-width: 100%; }}
     .coffee .coffee-btn {{
       display: inline-block;
       width: fit-content;
       margin-top: 0.75rem;
-      padding: 0.6rem 1.25rem;
+      padding: 0.55rem 1.25rem;
       background: var(--accent);
-      color: #0c0c0e;
+      color: #111110;
       font-weight: 600;
       border: none;
-      border-radius: 8px;
+      border-radius: var(--radius-sm);
       text-decoration: none;
-      font-size: 0.9rem;
+      font-size: 0.875rem;
       font-family: inherit;
       cursor: pointer;
-      transition: background 0.15s ease;
+      transition: background 0.12s ease, box-shadow 0.12s ease;
+      box-shadow: var(--shadow-sm);
     }}
-    .coffee .coffee-btn:hover {{ background: var(--accent-hover); }}
+    .coffee .coffee-btn:hover {{ background: var(--accent-hover); box-shadow: 0 2px 8px rgba(249,115,22,0.35); }}
     footer.page-footer {{
       margin-top: 3rem;
       padding-top: 1.25rem;
       border-top: 1px solid var(--border);
-      color: var(--text-muted);
-      font-size: 0.8rem;
+      color: var(--text-faint);
+      font-size: 0.78rem;
       line-height: 1.5;
       text-align: center;
     }}
@@ -847,12 +863,13 @@ def build_html(top3: list[dict], top3_six: list[dict], top3_known: list[dict], g
     /* ── Tab nav ── */
     .site-header {{ margin-bottom: 1.5rem; }}
     .site-header h1 {{ margin-bottom: 0.25rem; }}
-    .tab-nav {{ list-style: none; margin: 1rem 0 0; padding: 0; display: flex; gap: 0.5rem; flex-wrap: wrap; border-bottom: 2px solid var(--border); }}
-    .tab-nav li {{ margin-bottom: -2px; }}
+    .tab-nav {{ list-style: none; margin: 1rem 0 0; padding: 0; display: flex; gap: 0.25rem; flex-wrap: wrap; border-bottom: 1px solid var(--border); }}
+    .tab-nav li {{ margin-bottom: -1px; }}
     .tab-btn {{
       background: none; border: none; border-bottom: 2px solid transparent;
-      color: var(--text-muted); font-family: inherit; font-size: 0.95rem; font-weight: 500;
-      padding: 0.5rem 1rem; cursor: pointer; transition: color 0.15s, border-color 0.15s;
+      color: var(--text-muted); font-family: inherit; font-size: 0.9rem; font-weight: 500;
+      padding: 0.5rem 1rem; cursor: pointer; transition: color 0.12s, border-color 0.12s;
+      letter-spacing: -0.01em;
     }}
     .tab-btn:hover {{ color: var(--text); }}
     .tab-btn.active {{ color: var(--accent); border-bottom-color: var(--accent); }}
@@ -860,165 +877,166 @@ def build_html(top3: list[dict], top3_six: list[dict], top3_known: list[dict], g
     .tab-panel.active {{ display: block; }}
     /* ── Real estate cards ── */
     .re-cards {{ display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin: 1rem 0; }}
-    .re-card {{ background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; text-align: center; }}
+    .re-card {{ background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; text-align: center; box-shadow: var(--shadow-card); }}
     .re-card-icon {{ font-size: 1.75rem; margin-bottom: 0.4rem; }}
-    .re-card-label {{ font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.5rem; }}
+    .re-card-label {{ font-size: 0.72rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.5rem; font-weight: 600; }}
     .re-card-sales {{ font-size: 1.1rem; font-weight: 600; }}
-    .re-card-price {{ font-size: 1.4rem; font-weight: 700; color: var(--accent); margin: 0.25rem 0; }}
+    .re-card-price {{ font-size: 1.4rem; font-weight: 700; color: var(--accent); margin: 0.25rem 0; letter-spacing: -0.02em; }}
     .re-card-yoy {{ font-size: 0.85rem; margin-bottom: 0.2rem; }}
-    .re-card-meta {{ font-size: 0.8rem; color: var(--text-muted); }}
+    .re-card-meta {{ font-size: 0.78rem; color: var(--text-muted); }}
     .re-summary-meta {{ margin-top: 0.5rem; }}
     /* ── Insight banner ── */
-    .re-insight {{ background: var(--bg-elevated); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 10px; padding: 1rem 1.25rem; margin: 1rem 0; }}
-    .re-insight-title {{ font-size: 0.85rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.5rem; }}
+    .re-insight {{ background: var(--bg-elevated); border: 1px solid var(--border); border-left: 2px solid var(--accent); border-radius: var(--radius-md); padding: 1rem 1.25rem; margin: 1rem 0; box-shadow: var(--shadow-sm); }}
+    .re-insight-title {{ font-size: 0.72rem; font-weight: 700; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.5rem; }}
     .re-insight-list {{ margin: 0; padding: 0 0 0 1.1rem; list-style: disc; }}
-    .re-insight-list li {{ font-size: 0.9rem; color: var(--text); margin-bottom: 0.3rem; line-height: 1.5; }}
+    .re-insight-list li {{ font-size: 0.875rem; color: var(--text); margin-bottom: 0.3rem; line-height: 1.5; }}
     /* ── Market tags ── */
-    .re-market-tag {{ display: inline-block; font-size: 0.72rem; font-weight: 600; padding: 0.15rem 0.5rem; border-radius: 4px; margin-left: 0.3rem; vertical-align: middle; }}
-    .re-buyer {{ background: rgba(96,165,250,0.15); color: #60a5fa; }}
-    .re-seller {{ background: rgba(249,115,22,0.15); color: #f97316; }}
-    .re-balanced {{ background: rgba(74,222,128,0.15); color: #4ade80; }}
+    .re-market-tag {{ display: inline-block; font-size: 0.68rem; font-weight: 600; padding: 0.1rem 0.45rem; border-radius: 4px; margin-left: 0.3rem; vertical-align: middle; letter-spacing: 0.02em; }}
+    .re-buyer {{ background: rgba(96,165,250,0.12); color: #7eb8f7; }}
+    .re-seller {{ background: rgba(249,115,22,0.12); color: #f97316; }}
+    .re-balanced {{ background: rgba(74,222,128,0.12); color: #5dd67a; }}
     /* ── Opportunity cards ── */
     .re-opp-grid {{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin: 1rem 0 1.5rem; }}
-    .re-opp-card {{ background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 10px; padding: 0.9rem 1rem; }}
+    .re-opp-card {{ background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.9rem 1rem; box-shadow: var(--shadow-sm); }}
     .re-opp-icon {{ font-size: 1.3rem; margin-bottom: 0.25rem; }}
-    .re-opp-label {{ font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 0.35rem; }}
-    .re-opp-finding {{ font-size: 0.92rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }}
+    .re-opp-label {{ font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-faint); margin-bottom: 0.35rem; }}
+    .re-opp-finding {{ font-size: 0.9rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; letter-spacing: -0.01em; }}
     .re-opp-desc {{ font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; }}
-    .re-opp-buyers {{ border-left: 3px solid #60a5fa; }}
-    .re-opp-value {{ border-left: 3px solid #4ade80; }}
-    .re-opp-momentum {{ border-left: 3px solid #06b6d4; }}
-    .re-opp-correction {{ border-left: 3px solid #f97316; }}
+    .re-opp-buyers {{ border-left: 2px solid #60a5fa; }}
+    .re-opp-value {{ border-left: 2px solid #4ade80; }}
+    .re-opp-momentum {{ border-left: 2px solid #22d3ee; }}
+    .re-opp-correction {{ border-left: 2px solid #f97316; }}
     @media (max-width: 640px) {{ .re-opp-grid {{ grid-template-columns: 1fr 1fr; }} }}
     /* ── GIC explainer ── */
     .gic-explainer {{ margin: 2rem 0 0; }}
-    .gic-explainer-toggle {{ display: flex; align-items: center; gap: 0.5rem; background: none; border: none; color: var(--text-muted); font-size: 0.85rem; cursor: pointer; padding: 0; }}
+    .gic-explainer-toggle {{ display: flex; align-items: center; gap: 0.5rem; background: none; border: none; color: var(--text-muted); font-size: 0.8rem; cursor: pointer; padding: 0; font-family: inherit; }}
     .gic-explainer-toggle:hover {{ color: var(--text); }}
-    .gic-explainer-toggle .toggle-arrow {{ transition: transform 0.2s; display: inline-block; }}
+    .gic-explainer-toggle .toggle-arrow {{ transition: transform 0.18s; display: inline-block; }}
     .gic-explainer-toggle.open .toggle-arrow {{ transform: rotate(90deg); }}
     .gic-explainer-body {{ display: none; margin-top: 1rem; }}
     .gic-explainer-body.open {{ display: block; }}
     .gic-cards {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem; margin-top: 0.75rem; }}
-    .gic-card {{ background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; }}
+    .gic-card {{ background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1rem; box-shadow: var(--shadow-sm); }}
     .gic-card-icon {{ font-size: 1.4rem; margin-bottom: 0.4rem; }}
-    .gic-card-title {{ font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); margin-bottom: 0.4rem; }}
-    .gic-card-body {{ font-size: 0.82rem; color: var(--text-muted); line-height: 1.55; }}
+    .gic-card-title {{ font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 0.4rem; }}
+    .gic-card-body {{ font-size: 0.8rem; color: var(--text-muted); line-height: 1.55; }}
     /* ── Snapshot 4-card grid ── */
     .re-snap-grid {{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin: 1rem 0 1.5rem; }}
-    .re-snap-card {{ background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 10px; padding: 0.9rem 1rem; }}
-    .re-snap-overview {{ border-left: 3px solid var(--accent); }}
-    .re-snap-title {{ font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 0.6rem; }}
+    .re-snap-card {{ background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.9rem 1rem; box-shadow: var(--shadow-sm); }}
+    .re-snap-overview {{ border-left: 2px solid var(--accent); }}
+    .re-snap-title {{ font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-faint); margin-bottom: 0.6rem; }}
     .re-snap-row {{ display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; font-size: 0.8rem; margin-bottom: 0.35rem; }}
     .re-snap-label {{ color: var(--text-muted); flex-shrink: 0; max-width: 55%; }}
     .re-snap-val {{ text-align: right; min-width: 0; word-break: break-word; }}
     .re-snap-icon {{ font-size: 1.5rem; text-align: center; margin-bottom: 0.3rem; }}
-    .re-snap-type {{ font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); text-align: center; margin-bottom: 0.4rem; }}
-    .re-snap-price {{ font-size: 1.25rem; font-weight: 700; color: var(--accent); text-align: center; margin-bottom: 0.15rem; }}
-    .re-snap-yoy {{ font-size: 0.82rem; text-align: center; margin-bottom: 0.4rem; }}
-    .re-snap-meta {{ font-size: 0.78rem; color: var(--text-muted); text-align: center; margin-bottom: 0.2rem; }}
-    .re-snap-sar {{ font-size: 0.78rem; text-align: center; color: var(--text-muted); }}
+    .re-snap-type {{ font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-faint); text-align: center; margin-bottom: 0.4rem; }}
+    .re-snap-price {{ font-size: 1.2rem; font-weight: 700; color: var(--accent); text-align: center; margin-bottom: 0.15rem; letter-spacing: -0.02em; }}
+    .re-snap-yoy {{ font-size: 0.8rem; text-align: center; margin-bottom: 0.4rem; }}
+    .re-snap-meta {{ font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-bottom: 0.2rem; }}
+    .re-snap-sar {{ font-size: 0.75rem; text-align: center; color: var(--text-muted); }}
     @media (max-width: 640px) {{ .re-snap-grid {{ grid-template-columns: 1fr 1fr; }} }}
     /* ── Inventory row ── */
     .re-inventory-row {{ display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 0.75rem 0 1.5rem; }}
-    .re-inv-item {{ font-size: 0.9rem; color: var(--text-muted); }}
+    .re-inv-item {{ font-size: 0.875rem; color: var(--text-muted); }}
     .re-inv-item strong {{ color: var(--text); }}
     /* ── Leaderboard controls ── */
     .re-lb-controls {{ margin-bottom: 0.75rem; }}
     .re-lb-top-row {{ display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.75rem; }}
-    .re-lb-period-nav {{ display: flex; gap: 0.375rem; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 10px; padding: 3px; }}
+    .re-lb-period-nav {{ display: flex; gap: 3px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 3px; }}
     .re-lb-period {{
-      background: none; border: none; border-radius: 7px;
-      color: var(--text-muted); font-family: inherit; font-size: 0.84rem; padding: 0.3rem 0.75rem;
-      cursor: pointer; transition: all 0.15s; white-space: nowrap;
+      background: none; border: none; border-radius: calc(var(--radius-md) - 2px);
+      color: var(--text-muted); font-family: inherit; font-size: 0.82rem; padding: 0.28rem 0.7rem;
+      cursor: pointer; transition: all 0.12s; white-space: nowrap;
     }}
     .re-lb-period:hover {{ color: var(--text); }}
-    .re-lb-period.active {{ background: var(--accent); color: #0c0c0e; font-weight: 700; }}
+    .re-lb-period.active {{ background: var(--accent); color: #111110; font-weight: 700; box-shadow: var(--shadow-sm); }}
     .re-lb-filter {{ display: flex; gap: 0.4rem; flex-wrap: wrap; }}
     .re-lb-btn {{
-      background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 8px;
-      color: var(--text-muted); font-family: inherit; font-size: 0.82rem; padding: 0.35rem 0.75rem;
-      cursor: pointer; transition: all 0.15s;
+      background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-sm);
+      color: var(--text-muted); font-family: inherit; font-size: 0.8rem; padding: 0.3rem 0.7rem;
+      cursor: pointer; transition: all 0.12s;
     }}
-    .re-lb-btn:hover {{ border-color: var(--accent); color: var(--text); }}
-    .re-lb-btn.active {{ background: var(--accent); border-color: var(--accent); color: #0c0c0e; font-weight: 600; }}
-    .lb-src {{ display: inline-block; font-size: 0.65rem; font-weight: 700; padding: 0.1rem 0.3rem; border-radius: 4px; vertical-align: middle; margin-left: 0.25rem; line-height: 1.4; }}
-    .lb-src-gvr {{ background: #1a3a5c; color: #7ec8f0; }}
-    .lb-src-fvreb {{ background: #1a3a2a; color: #6fd89a; }}
+    .re-lb-btn:hover {{ border-color: var(--border-strong); color: var(--text); }}
+    .re-lb-btn.active {{ background: var(--accent); border-color: var(--accent); color: #111110; font-weight: 600; }}
+    .lb-src {{ display: inline-block; font-size: 0.62rem; font-weight: 700; padding: 0.1rem 0.3rem; border-radius: 3px; vertical-align: middle; margin-left: 0.25rem; line-height: 1.4; }}
+    .lb-src-gvr {{ background: rgba(96,165,250,0.15); color: #7eb8f7; }}
+    .lb-src-fvreb {{ background: rgba(74,222,128,0.15); color: #5dd67a; }}
     /* ── Leaderboard card ── */
-    .re-leaderboard-card {{ background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; min-width: 0; }}
-    .re-leaderboard-title {{ font-size: 0.95rem; font-weight: 700; margin-bottom: 0.15rem; }}
-    .re-leaderboard-sub {{ font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.75rem; }}
+    .re-leaderboard-card {{ background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; min-width: 0; box-shadow: var(--shadow-card); }}
+    .re-leaderboard-title {{ font-size: 0.9rem; font-weight: 700; margin-bottom: 0.15rem; letter-spacing: -0.01em; }}
+    .re-leaderboard-sub {{ font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.75rem; }}
     .re-lb-scroll {{ overflow-x: auto; -webkit-overflow-scrolling: touch; }}
-    .re-lb-table {{ width: 100%; border-collapse: collapse; font-size: 0.82rem; white-space: nowrap; }}
-    .re-lb-table th {{ background: var(--bg); color: var(--text-muted); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.03em; padding: 0.4rem 0.5rem; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; }}
-    .re-lb-table td {{ padding: 0.4rem 0.5rem; border-bottom: 1px solid var(--border); vertical-align: middle; }}
+    .re-lb-table {{ width: 100%; border-collapse: collapse; font-size: 0.8rem; white-space: nowrap; }}
+    .re-lb-table th {{ background: var(--bg); color: var(--text-faint); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.4rem 0.5rem; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; font-weight: 600; }}
+    .re-lb-table td {{ padding: 0.38rem 0.5rem; border-bottom: 1px solid var(--border); vertical-align: middle; }}
     .re-lb-table tr:last-child td {{ border-bottom: none; }}
     .re-lb-table tbody tr:hover {{ background: var(--bg-hover); }}
-    .lb-rank {{ color: var(--text-muted); font-size: 0.75rem; width: 1.5rem; }}
-    .lb-area {{ white-space: nowrap; font-size: 0.83rem; }}
-    .lb-type {{ font-size: 0.78rem; color: var(--text-muted); white-space: nowrap; }}
-    .lb-price {{ font-size: 0.83rem; font-weight: 600; white-space: nowrap; }}
-    .lb-yoy,.lb-mom,.lb-ppsf {{ font-size: 0.82rem; text-align: right; white-space: nowrap; }}
+    .lb-rank {{ color: var(--text-faint); font-size: 0.72rem; width: 1.5rem; }}
+    .lb-area {{ white-space: nowrap; font-size: 0.82rem; }}
+    .lb-type {{ font-size: 0.75rem; color: var(--text-muted); white-space: nowrap; }}
+    .lb-price {{ font-size: 0.82rem; font-weight: 600; white-space: nowrap; }}
+    .lb-yoy,.lb-mom,.lb-ppsf {{ font-size: 0.8rem; text-align: right; white-space: nowrap; }}
     /* ── Area filter & detail ── */
     .re-area-filter {{ display: flex; gap: 0.4rem 0.5rem; flex-wrap: wrap; align-items: center; margin: 1rem 0 0.75rem; }}
-    .re-area-group-label {{ width: 100%; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-top: 0.5rem; }}
+    .re-area-group-label {{ width: 100%; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-faint); margin-top: 0.5rem; }}
     .re-area-btn {{
-      background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 8px;
-      color: var(--text-muted); font-family: inherit; font-size: 0.82rem; padding: 0.35rem 0.75rem;
-      cursor: pointer; transition: all 0.15s;
+      background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-sm);
+      color: var(--text-muted); font-family: inherit; font-size: 0.8rem; padding: 0.3rem 0.7rem;
+      cursor: pointer; transition: all 0.12s;
     }}
-    .re-area-btn:hover {{ border-color: var(--accent); color: var(--text); }}
-    .re-area-btn.active {{ background: var(--accent); border-color: var(--accent); color: #0c0c0e; font-weight: 600; }}
+    .re-area-btn:hover {{ border-color: var(--border-strong); color: var(--text); }}
+    .re-area-btn.active {{ background: var(--accent); border-color: var(--accent); color: #111110; font-weight: 600; }}
     /* ── Area detail panel ── */
-    .re-area-detail {{ background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; margin-bottom: 1.5rem; display: none; }}
+    .re-area-detail {{ background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 1.5rem; display: none; box-shadow: var(--shadow-card); }}
     .re-area-detail.visible {{ display: block; }}
-    .re-area-detail-title {{ font-size: 1rem; font-weight: 700; margin-bottom: 1rem; }}
+    .re-area-detail-title {{ font-size: 1rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.02em; }}
     .re-area-type-cards {{ display: grid; grid-template-columns: repeat(3,1fr); gap: 0.75rem; }}
     /* ── Area mini card (amc) ── */
-    .re-amc {{ background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; text-align: left; }}
-    .amc-label {{ font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.4rem; }}
-    .amc-price {{ font-size: 1.1rem; font-weight: 700; color: var(--accent); margin: 0.2rem 0; }}
-    .amc-stat {{ display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; margin-top: 0.3rem; }}
-    .amc-stat-label {{ color: var(--text-muted); font-size: 0.75rem; }}
+    .re-amc {{ background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1rem; text-align: left; }}
+    .amc-label {{ font-size: 0.7rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; font-weight: 600; }}
+    .amc-price {{ font-size: 1.1rem; font-weight: 700; color: var(--accent); margin: 0.2rem 0; letter-spacing: -0.02em; }}
+    .amc-stat {{ display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; margin-top: 0.3rem; }}
+    .amc-stat-label {{ color: var(--text-muted); font-size: 0.72rem; }}
     /* ── Type filter (legacy, for table view) ── */
     .re-type-filter {{ display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 1rem 0 0.5rem; }}
     .re-type-btn {{
-      background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 8px;
-      color: var(--text-muted); font-family: inherit; font-size: 0.85rem; padding: 0.4rem 0.85rem;
-      cursor: pointer; transition: all 0.15s;
+      background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-sm);
+      color: var(--text-muted); font-family: inherit; font-size: 0.82rem; padding: 0.35rem 0.8rem;
+      cursor: pointer; transition: all 0.12s;
     }}
-    .re-type-btn:hover {{ border-color: var(--accent); color: var(--text); }}
-    .re-type-btn.active {{ background: var(--accent); border-color: var(--accent); color: #0c0c0e; font-weight: 600; }}
+    .re-type-btn:hover {{ border-color: var(--border-strong); color: var(--text); }}
+    .re-type-btn.active {{ background: var(--accent); border-color: var(--accent); color: #111110; font-weight: 600; }}
     .re-area-table {{ table-layout: auto; }}
     /* ── Unified area cards ── */
     .re-unified-controls {{ display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; margin: 1rem 0 1.5rem; }}
     .re-area-cards-container {{ display: flex; flex-direction: column; gap: 1.75rem; }}
     .re-area-group-section {{ }}
-    .re-area-group-title {{ font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-muted); margin-bottom: 0.75rem; padding-bottom: 0.25rem; border-bottom: 1px solid var(--border); }}
-    .re-area-cards-grid {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.75rem; }}
+    .re-area-group-title {{ font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-faint); margin-bottom: 0.75rem; padding-bottom: 0.25rem; border-bottom: 1px solid var(--border); }}
+    .re-area-cards-grid {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 0.75rem; }}
     .re-area-card {{
-      background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 10px;
-      padding: 0.9rem 1rem; position: relative; transition: border-color 0.15s;
+      background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-md);
+      padding: 0.9rem 1rem; position: relative; transition: border-color 0.12s, box-shadow 0.12s;
+      box-shadow: var(--shadow-sm);
     }}
-    .re-area-card:hover {{ border-color: var(--accent); }}
-    .re-area-card-name {{ font-size: 0.85rem; font-weight: 700; padding-right: 1.5rem; margin-bottom: 0.5rem; line-height: 1.2; }}
-    .re-area-card-rank {{ position: absolute; top: 0.7rem; right: 0.7rem; font-size: 0.65rem; font-weight: 700; color: var(--text-muted); }}
-    .re-area-card-price {{ font-size: 1.05rem; font-weight: 700; color: var(--accent); margin-bottom: 0.35rem; }}
-    .re-area-card-metric {{ display: flex; justify-content: space-between; font-size: 0.8rem; }}
+    .re-area-card:hover {{ border-color: var(--border-strong); box-shadow: var(--shadow-card); }}
+    .re-area-card-name {{ font-size: 0.85rem; font-weight: 700; padding-right: 1.5rem; margin-bottom: 0.5rem; line-height: 1.2; letter-spacing: -0.01em; }}
+    .re-area-card-rank {{ position: absolute; top: 0.7rem; right: 0.7rem; font-size: 0.62rem; font-weight: 700; color: var(--text-faint); }}
+    .re-area-card-price {{ font-size: 1.05rem; font-weight: 700; color: var(--accent); margin-bottom: 0.35rem; letter-spacing: -0.02em; }}
+    .re-area-card-metric {{ display: flex; justify-content: space-between; font-size: 0.78rem; }}
     .re-area-card-metric-label {{ color: var(--text-muted); }}
     /* All-types: sub-rows */
     .re-area-card-subtypes {{ margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 0.3rem; }}
-    .re-area-card-subrow {{ display: grid; grid-template-columns: 1fr auto auto; gap: 0.4rem; align-items: center; font-size: 0.78rem; }}
+    .re-area-card-subrow {{ display: grid; grid-template-columns: 1fr auto auto; gap: 0.4rem; align-items: center; font-size: 0.75rem; }}
     .re-area-card-subrow-type {{ color: var(--text-muted); }}
     .re-area-card-subrow-price {{ font-weight: 600; text-align: right; }}
     .re-area-card-subrow-pct {{ font-weight: 600; text-align: right; min-width: 3.5rem; }}
-    .re-area-card-sar {{ margin-top: 0.45rem; padding-top: 0.4rem; border-top: 1px solid var(--border); font-size: 0.75rem; }}
+    .re-area-card-sar {{ margin-top: 0.45rem; padding-top: 0.4rem; border-top: 1px solid var(--border); font-size: 0.72rem; }}
     @media (max-width: 640px) {{
       .re-cards {{ grid-template-columns: 1fr; }}
       .re-area-type-cards {{ grid-template-columns: 1fr; }}
       .re-area-cards-grid {{ grid-template-columns: 1fr 1fr; }}
       .tab-nav {{ gap: 0.25rem; }}
-      .tab-btn {{ font-size: 0.85rem; padding: 0.4rem 0.6rem; }}
+      .tab-btn {{ font-size: 0.82rem; padding: 0.4rem 0.6rem; }}
     }}
     /* ── Global footer actions ── */
     .global-footer-actions {{ display: flex; align-items: stretch; gap: 1.5rem; flex-wrap: wrap; margin-top: 2.5rem; }}
@@ -1132,6 +1150,7 @@ def build_html(top3: list[dict], top3_six: list[dict], top3_known: list[dict], g
     {subscribe_html}
     {coffee_html}
   </div>
+
   <footer class="page-footer" role="contentinfo">
     <p data-i18n="footer_copyright">© 2025–2026 Greater Vancouver Newcomer Hub. All rights reserved.</p>
     <p data-i18n="footer_disclaimer">Rates and data are for reference only. Not investment or legal advice.</p>
@@ -1222,7 +1241,7 @@ def build_newsletter_html(lang: str, top3_six: list[dict], updated_at: str, site
     def _pct_str(v):
         if v is None: return "—"
         sign = "+" if v >= 0 else ""
-        color = "#16a34a" if v >= 0 else "#ea580c"
+        color = "#1aae39" if v >= 0 else "#dd5b00"
         return f'<span style="color:{color};font-weight:600;">{sign}{v:.1f}%</span>'
 
     re_html = ""
@@ -1533,7 +1552,7 @@ def _fmt_yoy(pct):
     if pct is None:
         return ""
     sign = "+" if pct >= 0 else ""
-    color = "#4ade80" if pct >= 0 else "#f97316"
+    color = "#1aae39" if pct >= 0 else "#dd5b00"
     arrow = "↑" if pct >= 0 else "↓"
     return f'<span style="color:{color};font-size:0.85rem;font-weight:600;">{arrow} {sign}{pct:.1f}% YoY</span>'
 
@@ -1802,7 +1821,7 @@ def build_property_html(metro: dict, areas: list[dict], hpi_by_area: list[dict] 
         if val is None:
             return ""
         sign = "+" if val >= 0 else ""
-        color = "#4ade80" if val >= 0 else "#f97316"
+        color = "#1aae39" if val >= 0 else "#dd5b00"
         return f'<span style="color:{color};font-weight:600;font-size:{size};">{sign}{val:.1f}%</span>'
 
     def _stat_row(label_i18n, label_en, value_html):
@@ -1933,7 +1952,7 @@ def build_property_html(metro: dict, areas: list[dict], hpi_by_area: list[dict] 
             if val is None:
                 return '<span style="color:var(--text-muted)">—</span>'
             sign = "+" if val >= 0 else ""
-            color = "#4ade80" if val >= 0 else "#f97316"
+            color = "#1aae39" if val >= 0 else "#dd5b00"
             return f'<span style="color:{color};font-weight:600;">{sign}{val:.1f}%</span>'
 
         def _area_card(area, sort_key, type_filter):
