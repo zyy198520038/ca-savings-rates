@@ -3,8 +3,8 @@
 """
 黄金 & 比特币「聪明钱 / 风险状态」仪表盘
 ========================================
-本地专用脚本，生成包含智能仪表盘 Tab 的 index_local.html，
-同时写入 smart_money_data.json（均不推送 GitHub）。
+脚本：直接将智能仪表盘 Tab 注入 index.html（可推送 GitHub Pages），
+同时写入 smart_money_data.json（不推送 GitHub，含原始数据）。
 
 用法：
     python3 smart_money.py            # 抓取数据 + 生成页面
@@ -24,7 +24,7 @@ warnings.filterwarnings("ignore")
 BASE_DIR = Path(__file__).parent
 DATA_FILE = BASE_DIR / "smart_money_data.json"
 INDEX_SRC  = BASE_DIR / "index.html"
-INDEX_OUT  = BASE_DIR / "index_local.html"
+INDEX_OUT  = BASE_DIR / "index.html"   # 直接覆盖 index.html，供 GitHub Pages 使用
 
 # ── 状态机阈值（保守默认，可调整）──────────────────────────────────────
 THRESHOLDS = {
@@ -1526,18 +1526,32 @@ def inject_tab_into_html(src_html: str, tab_html: str) -> str:
     """
     将智能仪表盘 Tab 注入到现有 index.html 中。
     在 Tab 导航栏添加按钮，在 </body> 前添加 Tab 面板（带密码保护，4小时过期）。
+    幂等：若已注入则先移除旧版再注入新版。
     """
-    # 1. 在 tab-nav </ul> 前插入新按钮
-    nav_btn = '      <li><button class="tab-btn" data-tab="smart" data-i18n="tab_smart">📊 智能仪表盘</button></li>\n'
+    import re
+    # 0. 幂等：移除已有的 smart tab 注入（用 sentinel 注释定界）
+    src_html = re.sub(
+        r'\s*<!-- smart-nav-start -->.*?<!-- smart-nav-end -->',
+        '', src_html, flags=re.DOTALL
+    )
+    src_html = re.sub(
+        r'<!-- smart-panel-start -->.*?<!-- smart-panel-end -->\n?',
+        '', src_html, flags=re.DOTALL
+    )
+
+    # 1. 在 tab-nav </ul> 前插入新按钮（含 sentinel 注释）
+    nav_btn = ('<!-- smart-nav-start -->'
+               '<li><button class="tab-btn" data-tab="smart" data-i18n="tab_smart">📊 智能仪表盘</button></li>'
+               '<!-- smart-nav-end -->\n')
     src_html = src_html.replace(
         '    </ul>\n  </header>',
-        nav_btn + '    </ul>\n  </header>',
+        '      ' + nav_btn + '    </ul>\n  </header>',
         1
     )
 
     # 2. 带密码保护的 Tab 面板（SHA-256 校验，4 小时 localStorage 过期）
     PWD_HASH = "5fc4ebd05f7af1c722eb400bdcd51826a461423b88ee11163b13cdbe567834ae"
-    panel = f"""
+    panel = f"""<!-- smart-panel-start -->
   <div id="tab-smart" class="tab-panel" role="tabpanel">
     <h2 data-i18n="tab_smart">📊 智能仪表盘</h2>
 
@@ -1612,6 +1626,7 @@ def inject_tab_into_html(src_html: str, tab_html: str) -> str:
 }})();
     </script>
   </div>
+<!-- smart-panel-end -->
 """
     marker = '\n  <div class="global-footer-actions">'
     if marker in src_html:
@@ -1709,10 +1724,11 @@ def main():
         f.write(result)
     print(f"已生成 {INDEX_OUT}")
     print()
+    print("部署到 GitHub Pages：")
+    print("  git add index.html && git commit -m 'chore: update smart dashboard' && git push")
+    print()
     print("本地预览：")
-    print("  cd /Users/yiyzhu/ca-savings-rates")
-    print("  python3 -m http.server 8080")
-    print("  然后打开 http://localhost:8080/index_local.html")
+    print("  python3 -m http.server 8080  →  http://localhost:8080/")
 
 
 if __name__ == "__main__":
