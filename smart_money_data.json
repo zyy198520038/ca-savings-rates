@@ -1,0 +1,3144 @@
+{
+  "updated_at": "2026-04-12 05:03 UTC",
+  "gold": {
+    "state": "ACCUMULATE",
+    "score": 80,
+    "stars": 4,
+    "indicators": [
+      {
+        "key": "tips",
+        "name": "实际利率（TIPS 10Y）",
+        "value": 4.32,
+        "unit": "%",
+        "pct": 63.3,
+        "direction": "中性",
+        "hint": "📌 黄金不付息，实际利率越低越利好金价。\n→ 当前实际利率处于历史中性区间，影响有限"
+      },
+      {
+        "key": "dxy",
+        "name": "美元指数（DXY）",
+        "value": 98.7,
+        "unit": "",
+        "pct": 30.0,
+        "direction": "顺风",
+        "chg8": 0.92,
+        "hint": "📌 黄金以美元计价，美元越弱金价越容易上涨。更关键的是「趋势」：当美元在过去8周持续贬值（>2%），往往是金价上涨的强力催化剂。\n→ 当前美元偏弱，对金价 ✅ 偏有利（若8周跌幅>2%则触发ACCUMULATE信号）"
+      },
+      {
+        "key": "vix",
+        "name": "VIX 恐慌指数",
+        "value": 19.2,
+        "unit": "",
+        "pct": 61.1,
+        "direction": "中性",
+        "hint": "📌 VIX 是股市恐慌指数，极高时连黄金也可能被抛售套现。\n→ 当前情绪中性，波动不极端"
+      },
+      {
+        "key": "gold_hv",
+        "name": "黄金波动率（HV 20W）",
+        "value": 29.6,
+        "unit": "%",
+        "pct": 98.9,
+        "direction": "逆风",
+        "hint": "📌 波动率高说明金价近期大幅震荡，一次性买入风险较大。\n→ 当前波动率处于历史高位，⚠️ 建议分批小额操作"
+      },
+      {
+        "key": "gold_trend",
+        "name": "黄金中期趋势（200W 均线）",
+        "value": true,
+        "value_display": "均线上方 ↑",
+        "unit": "",
+        "pct": 20,
+        "direction": "顺风",
+        "gold_chg8": -5.4,
+        "dev_pct": 81.7,
+        "ma200": 2634.0,
+        "price_now": 4787.0,
+        "hint": "📌 200 周均线是长期趋势的「地基」，价格在上方说明大趋势向上，历史上大多数买入机会都在均线上方。\n→ 当前金价在 200 周均线上方，✅ 中期趋势健康"
+      },
+      {
+        "key": "cot",
+        "name": "COT 黄金净多头（Managed Money）",
+        "value": 126040,
+        "unit": "手",
+        "pct": 50.3,
+        "direction": "中性",
+        "hint": "📌 COT 净多头反映机构对黄金的整体多空态度，极高 = 拥挤，极低 = 悲观但有反弹空间。\n→ 当前仓位处于历史中性区间"
+      }
+    ]
+  },
+  "btc": {
+    "state": "ACCUMULATE",
+    "score": 100,
+    "stars": 5,
+    "indicators": [
+      {
+        "key": "btc_hv",
+        "name": "BTC 波动率（HV 20W）",
+        "value": 37.1,
+        "unit": "%",
+        "pct": 27.8,
+        "direction": "顺风",
+        "hint": "📌 波动率低说明 BTC 近期价格稳定，一次性买入的时机风险较小。\n→ 当前波动率偏低，✅ 适合正常仓位操作"
+      },
+      {
+        "key": "btc_trend",
+        "name": "BTC 中期趋势（200W 均线）",
+        "value": true,
+        "value_display": "均线上方 ↑",
+        "unit": "",
+        "pct": 20,
+        "direction": "顺风",
+        "hint": "📌 200 周均线是 BTC 历史上最可靠的牛熊分界线，历史上每次跌破后都经历了较长熊市。在均线上方说明大趋势没有破坏。\n→ 当前 BTC 在 200 周均线上方，✅ 中期趋势向上"
+      },
+      {
+        "key": "funding",
+        "name": "BTC 资金费率（年化）",
+        "value": -6.4,
+        "unit": "%",
+        "pct": 8.0,
+        "direction": "顺风",
+        "hint": "📌 资金费率是永续合约多头付给空头的费用。费率为负说明空头更多，多数人在做空或不看好——这通常是底部特征，价格更容易向上修复。\n→ 当前费率偏低/为负，✅ 市场不拥挤，适合考虑买入"
+      },
+      {
+        "key": "oi",
+        "name": "BTC 均线偏离度（距200W均线）",
+        "value": "+19.8",
+        "unit": "%",
+        "pct": 6.1,
+        "direction": "顺风",
+        "hint": "📌 均线偏离度衡量 BTC 当前价格比 200 周长期均线高多少。偏离越低说明价格越接近「历史地板」，历史上这种情况往往是中长期买入的好时机。\n→ 当前偏离度处于历史低位，✅ 价格接近长期均线，超跌风险较小"
+      }
+    ]
+  },
+  "backtest_gold": [
+    {
+      "date": "2022-04-18",
+      "price": 1971.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2022-04-25",
+      "price": 1931.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2022-05-02",
+      "price": 1909.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2022-05-09",
+      "price": 1881.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2022-05-16",
+      "price": 1807.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2022-05-23",
+      "price": 1842.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2022-05-30",
+      "price": 1851.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2022-06-06",
+      "price": 1845.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2022-06-13",
+      "price": 1872.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2022-06-20",
+      "price": 1836.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2022-06-27",
+      "price": 1826.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2022-07-04",
+      "price": 1799.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2022-07-11",
+      "price": 1741.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2022-07-18",
+      "price": 1702.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2022-07-25",
+      "price": 1727.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2022-08-01",
+      "price": 1763.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2022-08-08",
+      "price": 1773.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2022-08-15",
+      "price": 1799.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2022-08-22",
+      "price": 1748.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2022-08-29",
+      "price": 1736.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2022-09-05",
+      "price": 1710.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2022-09-12",
+      "price": 1716.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2022-09-19",
+      "price": 1672.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2022-09-26",
+      "price": 1645.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2022-10-03",
+      "price": 1662.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2022-10-10",
+      "price": 1700.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2022-10-17",
+      "price": 1642.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2022-10-24",
+      "price": 1651.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2022-10-31",
+      "price": 1640.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2022-11-07",
+      "price": 1672.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2022-11-14",
+      "price": 1766.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2022-11-21",
+      "price": 1752.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2022-11-28",
+      "price": 1753.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2022-12-05",
+      "price": 1796.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2022-12-12",
+      "price": 1798.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2022-12-19",
+      "price": 1790.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2022-12-26",
+      "price": 1796.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-01-02",
+      "price": 1820.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-01-09",
+      "price": 1864.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-01-16",
+      "price": 1918.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-01-23",
+      "price": 1926.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-01-30",
+      "price": 1929.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-02-06",
+      "price": 1863.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-02-13",
+      "price": 1863.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-02-20",
+      "price": 1840.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-02-27",
+      "price": 1809.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-03-06",
+      "price": 1848.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-03-13",
+      "price": 1862.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-03-20",
+      "price": 1970.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-03-27",
+      "price": 1982.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-04-03",
+      "price": 1969.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-04-10",
+      "price": 2012.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-04-17",
+      "price": 2002.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-04-24",
+      "price": 1980.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-05-01",
+      "price": 1990.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-05-08",
+      "price": 2017.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-05-15",
+      "price": 2014.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-05-22",
+      "price": 1979.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-05-29",
+      "price": 1944.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-06-05",
+      "price": 1952.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-06-12",
+      "price": 1962.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-06-19",
+      "price": 1958.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-06-26",
+      "price": 1919.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-07-03",
+      "price": 1921.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-07-10",
+      "price": 1926.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-07-17",
+      "price": 1960.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-07-24",
+      "price": 1964.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-07-31",
+      "price": 1960.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-08-07",
+      "price": 1940.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-08-14",
+      "price": 1913.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-08-21",
+      "price": 1886.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-08-28",
+      "price": 1911.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-09-04",
+      "price": 1940.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-09-11",
+      "price": 1918.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-09-18",
+      "price": 1924.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-09-25",
+      "price": 1925.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-10-02",
+      "price": 1848.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-10-09",
+      "price": 1830.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-10-16",
+      "price": 1927.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-10-23",
+      "price": 1982.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-10-30",
+      "price": 1989.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-11-06",
+      "price": 1992.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-11-13",
+      "price": 1933.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-11-20",
+      "price": 1982.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-11-27",
+      "price": 2002.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-12-04",
+      "price": 2071.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-12-11",
+      "price": 1998.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-12-18",
+      "price": 2021.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-12-25",
+      "price": 2057.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2024-01-01",
+      "price": 2062.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2024-01-08",
+      "price": 2042.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-01-15",
+      "price": 2047.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-01-22",
+      "price": 2026.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-01-29",
+      "price": 2017.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-02-05",
+      "price": 2036.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-02-12",
+      "price": 2023.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-02-19",
+      "price": 2012.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-02-26",
+      "price": 2039.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-03-04",
+      "price": 2087.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-03-11",
+      "price": 2179.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-03-18",
+      "price": 2157.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-03-25",
+      "price": 2158.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-04-01",
+      "price": 2217.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-04-08",
+      "price": 2326.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2024-04-15",
+      "price": 2356.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2024-04-22",
+      "price": 2398.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-04-29",
+      "price": 2335.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-05-06",
+      "price": 2299.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-05-13",
+      "price": 2367.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-05-20",
+      "price": 2412.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-05-27",
+      "price": 2332.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-06-03",
+      "price": 2323.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-06-10",
+      "price": 2305.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-06-17",
+      "price": 2331.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-06-24",
+      "price": 2316.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-07-01",
+      "price": 2328.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-07-08",
+      "price": 2388.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-07-15",
+      "price": 2414.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-07-22",
+      "price": 2396.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-07-29",
+      "price": 2380.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-08-05",
+      "price": 2426.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2024-08-12",
+      "price": 2432.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2024-08-19",
+      "price": 2499.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2024-08-26",
+      "price": 2508.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2024-09-02",
+      "price": 2494.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2024-09-09",
+      "price": 2494.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2024-09-16",
+      "price": 2581.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2024-09-23",
+      "price": 2620.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2024-09-30",
+      "price": 2644.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2024-10-07",
+      "price": 2646.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-10-14",
+      "price": 2658.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-10-21",
+      "price": 2714.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-10-28",
+      "price": 2741.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-11-04",
+      "price": 2739.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-11-11",
+      "price": 2688.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-11-18",
+      "price": 2566.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-11-25",
+      "price": 2710.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-12-02",
+      "price": 2657.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-12-09",
+      "price": 2639.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-12-16",
+      "price": 2656.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-12-23",
+      "price": 2629.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-12-30",
+      "price": 2617.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-01-06",
+      "price": 2645.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-01-13",
+      "price": 2708.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-01-20",
+      "price": 2744.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-01-27",
+      "price": 2777.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-02-03",
+      "price": 2812.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-02-10",
+      "price": 2867.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-02-17",
+      "price": 2884.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-02-24",
+      "price": 2938.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2025-03-03",
+      "price": 2837.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-03-10",
+      "price": 2905.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2025-03-17",
+      "price": 2994.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2025-03-24",
+      "price": 3018.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2025-03-31",
+      "price": 3086.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2025-04-07",
+      "price": 3012.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2025-04-14",
+      "price": 3222.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2025-04-21",
+      "price": 3309.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-04-28",
+      "price": 3282.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2025-05-05",
+      "price": 3232.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2025-05-12",
+      "price": 3335.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2025-05-19",
+      "price": 3182.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2025-05-26",
+      "price": 3364.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2025-06-02",
+      "price": 3289.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-06-09",
+      "price": 3323.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-06-16",
+      "price": 3431.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-06-23",
+      "price": 3368.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-06-30",
+      "price": 3274.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2025-07-07",
+      "price": 3332.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2025-07-14",
+      "price": 3356.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-07-21",
+      "price": 3353.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-07-28",
+      "price": 3334.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-08-04",
+      "price": 3348.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-08-11",
+      "price": 3439.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-08-18",
+      "price": 3336.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-08-25",
+      "price": 3374.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-09-01",
+      "price": 3474.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-09-08",
+      "price": 3613.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-09-15",
+      "price": 3649.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-09-22",
+      "price": 3672.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-09-29",
+      "price": 3775.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-10-06",
+      "price": 3881.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-10-13",
+      "price": 3976.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-10-20",
+      "price": 4190.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-10-27",
+      "price": 4118.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-11-03",
+      "price": 3982.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-11-10",
+      "price": 3999.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-11-17",
+      "price": 4088.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-11-24",
+      "price": 4077.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-12-01",
+      "price": 4218.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-12-08",
+      "price": 4213.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-12-15",
+      "price": 4300.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-12-22",
+      "price": 4361.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-12-29",
+      "price": 4529.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2026-01-05",
+      "price": 4314.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2026-01-12",
+      "price": 4490.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2026-01-19",
+      "price": 4588.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2026-01-26",
+      "price": 4976.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2026-02-02",
+      "price": 4714.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2026-02-09",
+      "price": 4951.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2026-02-16",
+      "price": 5022.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2026-02-23",
+      "price": 5059.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2026-03-02",
+      "price": 5230.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2026-03-09",
+      "price": 5146.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2026-03-16",
+      "price": 5052.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2026-03-23",
+      "price": 4570.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2026-03-30",
+      "price": 4492.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2026-04-06",
+      "price": 4652.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2026-04-12",
+      "price": 4652.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    }
+  ],
+  "backtest_btc": [
+    {
+      "date": "2022-04-18",
+      "price": 39717.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2022-04-25",
+      "price": 39469.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2022-05-02",
+      "price": 38469.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2022-05-09",
+      "price": 34059.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2022-05-16",
+      "price": 31305.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2022-05-23",
+      "price": 30324.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2022-05-30",
+      "price": 29446.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2022-06-06",
+      "price": 29907.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2022-06-13",
+      "price": 26763.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2022-06-20",
+      "price": 20553.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2022-06-27",
+      "price": 21027.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2022-07-04",
+      "price": 19297.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2022-07-11",
+      "price": 20860.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2022-07-18",
+      "price": 20779.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2022-07-25",
+      "price": 22609.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2022-08-01",
+      "price": 23337.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2022-08-08",
+      "price": 23176.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2022-08-15",
+      "price": 24319.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2022-08-22",
+      "price": 21534.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2022-08-29",
+      "price": 19617.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2022-09-05",
+      "price": 19987.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2022-09-12",
+      "price": 21769.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2022-09-19",
+      "price": 19420.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2022-09-26",
+      "price": 18802.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2022-10-03",
+      "price": 19044.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2022-10-10",
+      "price": 19446.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2022-10-17",
+      "price": 19268.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2022-10-24",
+      "price": 19567.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2022-10-31",
+      "price": 20636.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2022-11-07",
+      "price": 20926.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2022-11-14",
+      "price": 16353.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2022-11-21",
+      "price": 16292.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2022-11-28",
+      "price": 16445.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2022-12-05",
+      "price": 17130.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2022-12-12",
+      "price": 17104.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2022-12-19",
+      "price": 16758.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2022-12-26",
+      "price": 16842.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2023-01-02",
+      "price": 16625.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2023-01-09",
+      "price": 17091.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2023-01-16",
+      "price": 20881.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2023-01-23",
+      "price": 22720.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2023-01-30",
+      "price": 23775.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2023-02-06",
+      "price": 22956.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2023-02-13",
+      "price": 21788.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2023-02-20",
+      "price": 24328.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2023-02-27",
+      "price": 23561.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2023-03-06",
+      "price": 22436.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2023-03-13",
+      "price": 22164.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2023-03-20",
+      "price": 28039.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-03-27",
+      "price": 27994.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-04-03",
+      "price": 28199.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-04-10",
+      "price": 28333.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-04-17",
+      "price": 30315.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-04-24",
+      "price": 27591.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-05-01",
+      "price": 29269.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-05-08",
+      "price": 28455.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-05-15",
+      "price": 26931.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-05-22",
+      "price": 26754.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-05-29",
+      "price": 28086.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-06-05",
+      "price": 27119.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-06-12",
+      "price": 25940.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2023-06-19",
+      "price": 26336.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2023-06-26",
+      "price": 30480.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-07-03",
+      "price": 30621.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-07-10",
+      "price": 30171.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-07-17",
+      "price": 30249.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-07-24",
+      "price": 30085.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-07-31",
+      "price": 29275.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-08-07",
+      "price": 29042.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-08-14",
+      "price": 29283.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-08-21",
+      "price": 26190.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2023-08-28",
+      "price": 26090.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2023-09-04",
+      "price": 25970.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2023-09-11",
+      "price": 25832.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2023-09-18",
+      "price": 26534.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2023-09-25",
+      "price": 26257.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2023-10-02",
+      "price": 27984.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-10-09",
+      "price": 27935.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2023-10-16",
+      "price": 27160.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    },
+    {
+      "date": "2023-10-23",
+      "price": 29994.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-10-30",
+      "price": 34538.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-11-06",
+      "price": 35049.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-11-13",
+      "price": 37055.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-11-20",
+      "price": 37387.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-11-27",
+      "price": 37479.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-12-04",
+      "price": 39978.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2023-12-11",
+      "price": 43780.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-12-18",
+      "price": 41365.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2023-12-25",
+      "price": 43016.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-01-01",
+      "price": 42265.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-01-08",
+      "price": 43943.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-01-15",
+      "price": 41796.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2024-01-22",
+      "price": 41546.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2024-01-29",
+      "price": 42036.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2024-02-05",
+      "price": 42584.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2024-02-12",
+      "price": 48294.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-02-19",
+      "price": 52123.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-02-26",
+      "price": 51733.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-03-04",
+      "price": 63167.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2024-03-11",
+      "price": 69020.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2024-03-18",
+      "price": 68391.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2024-03-25",
+      "price": 67234.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2024-04-01",
+      "price": 71334.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2024-04-08",
+      "price": 69363.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2024-04-15",
+      "price": 65739.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2024-04-22",
+      "price": 64927.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2024-04-29",
+      "price": 63113.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2024-05-06",
+      "price": 64031.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2024-05-13",
+      "price": 61448.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-05-20",
+      "price": 66278.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2024-05-27",
+      "price": 68518.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2024-06-03",
+      "price": 67752.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2024-06-10",
+      "price": 69648.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2024-06-17",
+      "price": 66639.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2024-06-24",
+      "price": 63181.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-07-01",
+      "price": 62678.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-07-08",
+      "price": 55849.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-07-15",
+      "price": 60788.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-07-22",
+      "price": 68155.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2024-07-29",
+      "price": 68256.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2024-08-05",
+      "price": 58117.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-08-12",
+      "price": 58719.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-08-19",
+      "price": 58484.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-08-26",
+      "price": 64334.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-09-02",
+      "price": 57325.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-09-09",
+      "price": 54842.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-09-16",
+      "price": 59183.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-09-23",
+      "price": 63649.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-09-30",
+      "price": 65635.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-10-07",
+      "price": 62819.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-10-14",
+      "price": 62851.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-10-21",
+      "price": 69002.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-10-28",
+      "price": 67929.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-11-04",
+      "price": 68741.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-11-11",
+      "price": 80474.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2024-11-18",
+      "price": 89846.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2024-11-25",
+      "price": 98014.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2024-12-02",
+      "price": 97280.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2024-12-09",
+      "price": 101236.0,
+      "signal": "DE_RISK",
+      "stars": 1,
+      "score": 20
+    },
+    {
+      "date": "2024-12-16",
+      "price": 104299.0,
+      "signal": "DE_RISK",
+      "stars": 1,
+      "score": 20
+    },
+    {
+      "date": "2024-12-23",
+      "price": 95105.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2024-12-30",
+      "price": 93530.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-01-06",
+      "price": 98315.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-01-13",
+      "price": 94488.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-01-20",
+      "price": 101090.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-01-27",
+      "price": 102682.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-02-03",
+      "price": 97689.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-02-10",
+      "price": 96500.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-02-17",
+      "price": 96175.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-02-24",
+      "price": 96274.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-03-03",
+      "price": 94248.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-03-10",
+      "price": 80601.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-03-17",
+      "price": 82580.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-03-24",
+      "price": 86054.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-03-31",
+      "price": 82335.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-04-07",
+      "price": 78214.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-04-14",
+      "price": 83685.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-04-21",
+      "price": 85174.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-04-28",
+      "price": 93755.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-05-05",
+      "price": 94316.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-05-12",
+      "price": 104106.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-05-19",
+      "price": 106446.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-05-26",
+      "price": 109035.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-06-02",
+      "price": 105652.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-06-09",
+      "price": 105794.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-06-16",
+      "price": 105552.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-06-23",
+      "price": 100987.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-06-30",
+      "price": 108386.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-07-07",
+      "price": 109232.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-07-14",
+      "price": 119116.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-07-21",
+      "price": 117301.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-07-28",
+      "price": 119448.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-08-04",
+      "price": 114218.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-08-11",
+      "price": 119307.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-08-18",
+      "price": 117453.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-08-25",
+      "price": 113458.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-09-01",
+      "price": 108237.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-09-08",
+      "price": 111168.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-09-15",
+      "price": 115408.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-09-22",
+      "price": 115306.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-09-29",
+      "price": 112123.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-10-06",
+      "price": 123513.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-10-13",
+      "price": 115170.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-10-20",
+      "price": 108667.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-10-27",
+      "price": 114472.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-11-03",
+      "price": 110640.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-11-10",
+      "price": 104720.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
+    },
+    {
+      "date": "2025-11-17",
+      "price": 94177.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-11-24",
+      "price": 86805.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-12-01",
+      "price": 90394.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-12-08",
+      "price": 90406.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-12-15",
+      "price": 88175.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-12-22",
+      "price": 88622.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-12-29",
+      "price": 87836.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2026-01-05",
+      "price": 91413.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2026-01-12",
+      "price": 90827.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2026-01-19",
+      "price": 93634.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2026-01-26",
+      "price": 86572.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2026-02-02",
+      "price": 76974.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2026-02-09",
+      "price": 70265.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2026-02-16",
+      "price": 68788.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2026-02-23",
+      "price": 67659.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2026-03-02",
+      "price": 65738.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2026-03-09",
+      "price": 65970.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2026-03-16",
+      "price": 72790.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2026-03-23",
+      "price": 67845.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2026-03-30",
+      "price": 65955.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2026-04-06",
+      "price": 68982.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2026-04-12",
+      "price": 68982.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
+    }
+  ],
+  "accuracy": {
+    "gold": {
+      "accumulate_win_rate": 0.72,
+      "derisk_win_rate": 0.36,
+      "n_accumulate": 54,
+      "n_derisk": 11,
+      "note": "信号后 4 周价格方向准确率（仅供参考，过往不代表未来）",
+      "stars": {
+        "1": {
+          "win4": null,
+          "win26": null,
+          "avg4": null,
+          "avg26": null,
+          "n4": 0,
+          "n26": 0
+        },
+        "2": {
+          "win4": 0.64,
+          "win26": 1.0,
+          "avg4": -0.1,
+          "avg26": 18.1,
+          "n4": 11,
+          "n26": 6
+        },
+        "3": {
+          "win4": 0.63,
+          "win26": 0.89,
+          "avg4": 2.0,
+          "avg26": 15.2,
+          "n4": 139,
+          "n26": 122
+        },
+        "4": {
+          "win4": 0.72,
+          "win26": 0.91,
+          "avg4": 2.0,
+          "avg26": 13.3,
+          "n4": 54,
+          "n26": 54
+        },
+        "5": {
+          "win4": null,
+          "win26": null,
+          "avg4": null,
+          "avg26": null,
+          "n4": 0,
+          "n26": 0
+        }
+      }
+    },
+    "btc": {
+      "accumulate_win_rate": 0.58,
+      "derisk_win_rate": 0.58,
+      "n_accumulate": 91,
+      "n_derisk": 71,
+      "note": "信号后 4 周价格方向准确率（仅供参考，过往不代表未来）",
+      "stars": {
+        "1": {
+          "win4": 0.0,
+          "win26": 1.0,
+          "avg4": -6.1,
+          "avg26": 2.9,
+          "n4": 2,
+          "n26": 2
+        },
+        "2": {
+          "win4": 0.43,
+          "win26": 0.53,
+          "avg4": -1.3,
+          "avg26": 1.3,
+          "n4": 69,
+          "n26": 64
+        },
+        "3": {
+          "win4": 0.6,
+          "win26": 0.9,
+          "avg4": 4.9,
+          "avg26": 35.6,
+          "n4": 42,
+          "n26": 31
+        },
+        "4": {
+          "win4": 0.47,
+          "win26": 0.72,
+          "avg4": 0.2,
+          "avg26": 33.4,
+          "n4": 45,
+          "n26": 39
+        },
+        "5": {
+          "win4": 0.7,
+          "win26": 0.91,
+          "avg4": 7.4,
+          "avg26": 52.2,
+          "n4": 46,
+          "n26": 46
+        }
+      }
+    }
+  }
+}

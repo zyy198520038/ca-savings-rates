@@ -54,9 +54,12 @@ jobs:
           FORCE_PROPERTY_REFRESH: ${{ (github.event.schedule == '0 16 5 * *' || github.event.inputs.force_property == 'true') && 'true' || 'false' }}
         run: python scrape_and_build.py
 
+      - name: Inject smart dashboard tab
+        run: python smart_money.py --no-fetch
+
       - name: Commit and push if changed
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add index.html top3.json property_data.json
+          git add index.html top3.json property_data.json smart_money_data.json
           git diff --staged --quiet || (git commit -m "chore: update rates and property data" && git push)

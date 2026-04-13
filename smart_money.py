@@ -24,7 +24,7 @@ warnings.filterwarnings("ignore")
 BASE_DIR = Path(__file__).parent
 DATA_FILE = BASE_DIR / "smart_money_data.json"
 INDEX_SRC  = BASE_DIR / "index.html"
-INDEX_OUT  = BASE_DIR / "index.html"   # 直接覆盖 index.html，供 GitHub Pages 使用
+INDEX_OUT  = BASE_DIR / "index.html"   # 默认输出；--local 时改为 index_local.html
 
 # ── 状态机阈值（保守默认，可调整）──────────────────────────────────────
 THRESHOLDS = {
@@ -1642,10 +1642,16 @@ def inject_tab_into_html(src_html: str, tab_html: str) -> str:
 # ══════════════════════════════════════════════════════════════════════
 
 def main():
-    parser = argparse.ArgumentParser(description="生成黄金 & BTC 智能仪表盘（本地专用）")
+    parser = argparse.ArgumentParser(description="生成黄金 & BTC 智能仪表盘")
     parser.add_argument("--no-fetch", action="store_true",
                         help="跳过数据抓取，使用缓存的 smart_money_data.json 重建页面")
+    parser.add_argument("--local", action="store_true",
+                        help="输出到 index_local.html（本地开发用），不覆盖 index.html")
     args = parser.parse_args()
+
+    global INDEX_OUT
+    if args.local:
+        INDEX_OUT = BASE_DIR / "index_local.html"
 
     if args.no_fetch and DATA_FILE.exists():
         print("使用缓存数据...")
@@ -1724,11 +1730,11 @@ def main():
         f.write(result)
     print(f"已生成 {INDEX_OUT}")
     print()
-    print("部署到 GitHub Pages：")
-    print("  git add index.html && git commit -m 'chore: update smart dashboard' && git push")
-    print()
-    print("本地预览：")
-    print("  python3 -m http.server 8080  →  http://localhost:8080/")
+    if args.local:
+        print("本地预览：  python3 -m http.server 8080  →  http://localhost:8080/index_local.html")
+    else:
+        print("部署：  git add index.html smart_money_data.json && git commit -m 'chore: update smart dashboard' && git push")
+        print("本地预览：  python3 -m http.server 8080  →  http://localhost:8080/")
 
 
 if __name__ == "__main__":
