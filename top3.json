@@ -1,15 +1,6 @@
 {
-  "updated_at": "2026-04-13 17:06 UTC",
+  "updated_at": "2026-04-20 16:03 UTC",
   "top3": [
-    {
-      "bank_product": "Scotiabank Momentum PLUS Savings Account",
-      "rate": 4.75,
-      "rate_display": "4.75%\\* for the first 3 months",
-      "condition": "限时首3个月（是否需新开户或新资金请以官网为准）；条款适用",
-      "source": "RateHub",
-      "source_url": "https://www.ratehub.ca/savings-accounts/accounts/high-interest",
-      "link": "https://www.scotiabank.com/ca/en/personal/bank-accounts/savings-accounts/momentum-plus-savings-account.html"
-    },
     {
       "bank_product": "CIBC eAdvantage Savings Account",
       "rate": 4.6,
@@ -27,6 +18,15 @@
       "source": "RateHub",
       "source_url": "https://www.ratehub.ca/savings-accounts/accounts/high-interest",
       "link": "https://www.rbcroyalbank.com/bank-accounts/savings-accounts/high-interest-savings-account.html"
+    },
+    {
+      "bank_product": "Tangerine Savings Account",
+      "rate": 4.5,
+      "rate_display": "4.50% for the first 5 months",
+      "condition": "限时首5个月（是否需新开户或新资金请以官网为准）",
+      "source": "RateHub",
+      "source_url": "https://www.ratehub.ca/savings-accounts/accounts/high-interest",
+      "link": "https://www.tangerine.ca/en/personal/save/savings-account"
     }
   ],
   "gic_top": [
@@ -71,100 +71,10 @@
       "link": "https://www.ratehub.ca/gics/best-gic-rates"
     },
     {
-      "bank_product": "EQ Bank GICs",
-      "rate": 3.7,
-      "term_label": "2年",
-      "term_years": 2,
-      "min_investment": "$100",
-      "source": "RateHub GIC",
-      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
-      "link": "https://www.ratehub.ca/gics/best-gic-rates"
-    },
-    {
       "bank_product": "MCAN Wealth GICs",
       "rate": 3.7,
       "term_label": "2年",
       "term_years": 2,
-      "min_investment": "$100",
-      "source": "RateHub GIC",
-      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
-      "link": "https://www.ratehub.ca/gics/best-gic-rates"
-    },
-    {
-      "bank_product": "EQ Bank GICs",
-      "rate": 3.75,
-      "term_label": "3年",
-      "term_years": 3,
-      "min_investment": "$100",
-      "source": "RateHub GIC",
-      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
-      "link": "https://www.ratehub.ca/gics/best-gic-rates"
-    },
-    {
-      "bank_product": "MCAN Wealth GICs",
-      "rate": 3.75,
-      "term_label": "3年",
-      "term_years": 3,
-      "min_investment": "$100",
-      "source": "RateHub GIC",
-      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
-      "link": "https://www.ratehub.ca/gics/best-gic-rates"
-    },
-    {
-      "bank_product": "Achieva Financial GICs",
-      "rate": 3.7,
-      "term_label": "3年",
-      "term_years": 3,
-      "min_investment": "$1,000",
-      "source": "RateHub GIC",
-      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
-      "link": "https://www.ratehub.ca/gics/best-gic-rates"
-    },
-    {
-      "bank_product": "EQ Bank GICs",
-      "rate": 3.85,
-      "term_label": "4年",
-      "term_years": 4,
-      "min_investment": "$100",
-      "source": "RateHub GIC",
-      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
-      "link": "https://www.ratehub.ca/gics/best-gic-rates"
-    },
-    {
-      "bank_product": "MCAN Wealth GICs",
-      "rate": 3.85,
-      "term_label": "4年",
-      "term_years": 4,
-      "min_investment": "$100",
-      "source": "RateHub GIC",
-      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
-      "link": "https://www.ratehub.ca/gics/best-gic-rates"
-    },
-    {
-      "bank_product": "Achieva Financial GICs",
-      "rate": 3.75,
-      "term_label": "4年",
-      "term_years": 4,
-      "min_investment": "$1,000",
-      "source": "RateHub GIC",
-      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
-      "link": "https://www.ratehub.ca/gics/best-gic-rates"
-    },
-    {
-      "bank_product": "EQ Bank GICs",
-      "rate": 4.0,
-      "term_label": "5年",
-      "term_years": 5,
-      "min_investment": "$100",
-      "source": "RateHub GIC",
-      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
-      "link": "https://www.ratehub.ca/gics/best-gic-rates"
-    },
-    {
-      "bank_product": "MCAN Wealth GICs",
-      "rate": 4.0,
-      "term_label": "5年",
-      "term_years": 5,
       "min_investment": "$100",
       "source": "RateHub GIC",
       "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
@@ -172,7 +82,97 @@
     },
     {
       "bank_product": "Saven Financial GICs",
+      "rate": 3.7,
+      "term_label": "2年",
+      "term_years": 2,
+      "min_investment": "$1,000",
+      "source": "RateHub GIC",
+      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
+      "link": "https://www.ratehub.ca/gics/best-gic-rates"
+    },
+    {
+      "bank_product": "Saven Financial GICs",
+      "rate": 3.8,
+      "term_label": "3年",
+      "term_years": 3,
+      "min_investment": "$1,000",
+      "source": "RateHub GIC",
+      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
+      "link": "https://www.ratehub.ca/gics/best-gic-rates"
+    },
+    {
+      "bank_product": "MCAN Wealth GICs",
+      "rate": 3.75,
+      "term_label": "3年",
+      "term_years": 3,
+      "min_investment": "$100",
+      "source": "RateHub GIC",
+      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
+      "link": "https://www.ratehub.ca/gics/best-gic-rates"
+    },
+    {
+      "bank_product": "Achieva Financial GICs",
+      "rate": 3.7,
+      "term_label": "3年",
+      "term_years": 3,
+      "min_investment": "$1,000",
+      "source": "RateHub GIC",
+      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
+      "link": "https://www.ratehub.ca/gics/best-gic-rates"
+    },
+    {
+      "bank_product": "Saven Financial GICs",
       "rate": 3.9,
+      "term_label": "4年",
+      "term_years": 4,
+      "min_investment": "$1,000",
+      "source": "RateHub GIC",
+      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
+      "link": "https://www.ratehub.ca/gics/best-gic-rates"
+    },
+    {
+      "bank_product": "MCAN Wealth GICs",
+      "rate": 3.85,
+      "term_label": "4年",
+      "term_years": 4,
+      "min_investment": "$100",
+      "source": "RateHub GIC",
+      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
+      "link": "https://www.ratehub.ca/gics/best-gic-rates"
+    },
+    {
+      "bank_product": "EQ Bank GICs",
+      "rate": 3.8,
+      "term_label": "4年",
+      "term_years": 4,
+      "min_investment": "$100",
+      "source": "RateHub GIC",
+      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
+      "link": "https://www.ratehub.ca/gics/best-gic-rates"
+    },
+    {
+      "bank_product": "EQ Bank GICs",
+      "rate": 4.0,
+      "term_label": "5年",
+      "term_years": 5,
+      "min_investment": "$100",
+      "source": "RateHub GIC",
+      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
+      "link": "https://www.ratehub.ca/gics/best-gic-rates"
+    },
+    {
+      "bank_product": "MCAN Wealth GICs",
+      "rate": 4.0,
+      "term_label": "5年",
+      "term_years": 5,
+      "min_investment": "$100",
+      "source": "RateHub GIC",
+      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
+      "link": "https://www.ratehub.ca/gics/best-gic-rates"
+    },
+    {
+      "bank_product": "Oaken Financial GICs",
+      "rate": 4.0,
       "term_label": "5年",
       "term_years": 5,
       "min_investment": "$1,000",
