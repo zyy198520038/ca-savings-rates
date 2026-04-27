@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-20 16:03 UTC",
+  "updated_at": "2026-04-27 16:22 UTC",
   "top3": [
     {
       "bank_product": "CIBC eAdvantage Savings Account",
@@ -141,21 +141,11 @@
       "link": "https://www.ratehub.ca/gics/best-gic-rates"
     },
     {
-      "bank_product": "EQ Bank GICs",
+      "bank_product": "Oaken Financial GICs",
       "rate": 3.8,
       "term_label": "4年",
       "term_years": 4,
-      "min_investment": "$100",
-      "source": "RateHub GIC",
-      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
-      "link": "https://www.ratehub.ca/gics/best-gic-rates"
-    },
-    {
-      "bank_product": "EQ Bank GICs",
-      "rate": 4.0,
-      "term_label": "5年",
-      "term_years": 5,
-      "min_investment": "$100",
+      "min_investment": "$1,000",
       "source": "RateHub GIC",
       "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
       "link": "https://www.ratehub.ca/gics/best-gic-rates"
@@ -172,6 +162,16 @@
     },
     {
       "bank_product": "Oaken Financial GICs",
+      "rate": 4.0,
+      "term_label": "5年",
+      "term_years": 5,
+      "min_investment": "$1,000",
+      "source": "RateHub GIC",
+      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
+      "link": "https://www.ratehub.ca/gics/best-gic-rates"
+    },
+    {
+      "bank_product": "Saven Financial GICs",
       "rate": 4.0,
       "term_label": "5年",
       "term_years": 5,
