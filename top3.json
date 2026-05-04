@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-27 16:22 UTC",
+  "updated_at": "2026-05-04 16:27 UTC",
   "top3": [
     {
       "bank_product": "CIBC eAdvantage Savings Account",
@@ -20,13 +20,13 @@
       "link": "https://www.rbcroyalbank.com/bank-accounts/savings-accounts/high-interest-savings-account.html"
     },
     {
-      "bank_product": "Tangerine Savings Account",
-      "rate": 4.5,
-      "rate_display": "4.50% for the first 5 months",
+      "bank_product": "Simplii Financial High-Interest Savings Account",
+      "rate": 4.6,
+      "rate_display": "4.60% for the first 5 months",
       "condition": "限时首5个月（是否需新开户或新资金请以官网为准）",
       "source": "RateHub",
       "source_url": "https://www.ratehub.ca/savings-accounts/accounts/high-interest",
-      "link": "https://www.tangerine.ca/en/personal/save/savings-account"
+      "link": "https://www.simplii.com/en/bank-accounts/high-interest-savings.html"
     }
   ],
   "gic_top": [
