@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-08 17:00 UTC",
+  "updated_at": "2026-06-09 16:25 UTC",
   "gold": {
     "state": "ACCUMULATE",
     "score": 80,
@@ -8,9 +8,9 @@
       {
         "key": "tips",
         "name": "实际利率（TIPS 10Y）",
-        "value": 4.56,
+        "value": 4.53,
         "unit": "%",
-        "pct": 90.0,
+        "pct": 88.9,
         "direction": "逆风",
         "hint": "📌 黄金不付息，实际利率越高，存款/债券收益越好，资金会流出黄金。\n→ 当前实际利率偏高，对金价 ⚠️ 有一定压力"
       },
@@ -27,16 +27,16 @@
       {
         "key": "vix",
         "name": "VIX 恐慌指数",
-        "value": 18.4,
+        "value": 21.4,
         "unit": "",
-        "pct": 55.6,
-        "direction": "中性",
-        "hint": "📌 VIX 是股市恐慌指数，极高时连黄金也可能被抛售套现。\n→ 当前情绪中性，波动不极端"
+        "pct": 77.8,
+        "direction": "逆风",
+        "hint": "📌 VIX 极高说明市场恐慌，历史上「卖一切」行情中黄金也可能短期被抛售。\n→ 当前恐慌情绪偏高，短期波动风险上升"
       },
       {
         "key": "gold_hv",
         "name": "黄金波动率（HV 20W）",
-        "value": 25.4,
+        "value": 25.3,
         "unit": "%",
         "pct": 85.6,
         "direction": "逆风",
@@ -50,10 +50,10 @@
         "unit": "",
         "pct": 20,
         "direction": "顺风",
-        "gold_chg8": -7.5,
-        "dev_pct": 58.3,
-        "ma200": 2761.0,
-        "price_now": 4369.0,
+        "gold_chg8": -9.3,
+        "dev_pct": 55.2,
+        "ma200": 2760.0,
+        "price_now": 4284.0,
         "hint": "📌 200 周均线是长期趋势的「地基」，价格在上方说明大趋势向上，历史上大多数买入机会都在均线上方。\n→ 当前金价在 200 周均线上方，✅ 中期趋势健康"
       },
       {
@@ -69,13 +69,13 @@
   },
   "btc": {
     "state": "ACCUMULATE",
-    "score": 80,
-    "stars": 4,
+    "score": 100,
+    "stars": 5,
     "indicators": [
       {
         "key": "btc_hv",
         "name": "BTC 波动率（HV 20W）",
-        "value": 43.7,
+        "value": 43.8,
         "unit": "%",
         "pct": 68.9,
         "direction": "中性",
@@ -84,24 +84,24 @@
       {
         "key": "btc_trend",
         "name": "BTC 中期趋势（200W 均线）",
-        "value": true,
-        "value_display": "均线上方 ↑",
+        "value": false,
+        "value_display": "均线下方 ↓",
         "unit": "",
-        "pct": 20,
-        "direction": "顺风",
-        "hint": "📌 200 周均线是 BTC 历史上最可靠的牛熊分界线，历史上每次跌破后都经历了较长熊市。在均线上方说明大趋势没有破坏。\n→ 当前 BTC 在 200 周均线上方，✅ 中期趋势向上",
-        "price_now": 63506.0
+        "pct": 80,
+        "direction": "逆风",
+        "hint": "📌 BTC 历史上跌破 200 周均线后，通常还有大幅下跌空间（2018、2022 年均如此）。这是最重要的风险信号之一。\n→ 当前 BTC 已跌破 200 周均线，⚠️ 建议大幅降低风险",
+        "price_now": 60982.0
       },
       {
         "key": "oi",
         "name": "BTC 均线偏离度（距200W均线）",
-        "value": "+2.4",
+        "value": "-1.7",
         "unit": "%",
-        "pct": 0.9,
+        "pct": 0.0,
         "direction": "顺风",
         "hint": "📌 均线偏离度衡量 BTC 当前价格比 200 周长期均线高多少。偏离越低说明价格越接近「历史地板」，历史上这种情况往往是中长期买入的好时机。\n→ 当前偏离度处于历史低位，✅ 价格接近长期均线，超跌风险较小",
-        "price_now": 63506.0,
-        "ma200": 62021.0
+        "price_now": 60982.0,
+        "ma200": 62009.0
       }
     ]
   },
@@ -1557,6 +1557,13 @@
     },
     {
       "date": "2026-06-08",
+      "price": 4337.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
+      "date": "2026-06-09",
       "price": 4337.0,
       "signal": "ACCUMULATE",
       "stars": 4,
@@ -3019,6 +3026,13 @@
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
+    },
+    {
+      "date": "2026-06-09",
+      "price": 63240.0,
+      "signal": "ACCUMULATE",
+      "stars": 5,
+      "score": 100
     }
   ],
   "accuracy": {
