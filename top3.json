@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-06 17:37 UTC",
+  "updated_at": "2026-07-20 16:38 UTC",
   "top3": [
     {
       "bank_product": "CIBC eAdvantage Savings Account",
@@ -72,7 +72,7 @@
     },
     {
       "bank_product": "Saven Financial GICs",
-      "rate": 3.85,
+      "rate": 3.7,
       "term_label": "2年",
       "term_years": 2,
       "min_investment": "$1,000",
@@ -102,7 +102,7 @@
     },
     {
       "bank_product": "Saven Financial GICs",
-      "rate": 3.85,
+      "rate": 3.75,
       "term_label": "3年",
       "term_years": 3,
       "min_investment": "$1,000",
@@ -132,7 +132,7 @@
     },
     {
       "bank_product": "Saven Financial GICs",
-      "rate": 3.9,
+      "rate": 3.8,
       "term_label": "4年",
       "term_years": 4,
       "min_investment": "$1,000",
