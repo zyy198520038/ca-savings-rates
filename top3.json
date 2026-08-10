@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-05 17:42 UTC",
+  "updated_at": "2026-08-10 16:10 UTC",
   "top3": [
     {
       "bank_product": "CIBC eAdvantage Savings Account",
@@ -81,8 +81,8 @@
       "link": "https://www.ratehub.ca/gics/best-gic-rates"
     },
     {
-      "bank_product": "Hubert Financial GICs",
-      "rate": 3.8,
+      "bank_product": "Saven Financial GICs",
+      "rate": 3.85,
       "term_label": "2年",
       "term_years": 2,
       "min_investment": "$1,000",
@@ -111,8 +111,8 @@
       "link": "https://www.ratehub.ca/gics/best-gic-rates"
     },
     {
-      "bank_product": "Hubert Financial GICs",
-      "rate": 3.75,
+      "bank_product": "Saven Financial GICs",
+      "rate": 3.9,
       "term_label": "3年",
       "term_years": 3,
       "min_investment": "$1,000",
@@ -141,8 +141,8 @@
       "link": "https://www.ratehub.ca/gics/best-gic-rates"
     },
     {
-      "bank_product": "Hubert Financial GICs",
-      "rate": 3.8,
+      "bank_product": "Saven Financial GICs",
+      "rate": 3.95,
       "term_label": "4年",
       "term_years": 4,
       "min_investment": "$1,000",
