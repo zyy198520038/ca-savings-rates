@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-17 15:36 UTC",
+  "updated_at": "2026-08-24 15:49 UTC",
   "top3": [
     {
       "bank_product": "CIBC eAdvantage Savings Account",
@@ -72,7 +72,7 @@
     },
     {
       "bank_product": "Oaken Financial GICs",
-      "rate": 3.85,
+      "rate": 3.9,
       "term_label": "2年",
       "term_years": 2,
       "min_investment": "$1,000",
@@ -91,21 +91,21 @@
       "link": "https://www.ratehub.ca/gics/best-gic-rates"
     },
     {
-      "bank_product": "MCAN Wealth GICs",
-      "rate": 3.9,
+      "bank_product": "Oaken Financial GICs",
+      "rate": 4.0,
       "term_label": "3年",
       "term_years": 3,
-      "min_investment": "$100",
+      "min_investment": "$1,000",
       "source": "RateHub GIC",
       "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
       "link": "https://www.ratehub.ca/gics/best-gic-rates"
     },
     {
-      "bank_product": "Oaken Financial GICs",
+      "bank_product": "MCAN Wealth GICs",
       "rate": 3.9,
       "term_label": "3年",
       "term_years": 3,
-      "min_investment": "$1,000",
+      "min_investment": "$100",
       "source": "RateHub GIC",
       "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
       "link": "https://www.ratehub.ca/gics/best-gic-rates"
@@ -121,21 +121,21 @@
       "link": "https://www.ratehub.ca/gics/best-gic-rates"
     },
     {
-      "bank_product": "MCAN Wealth GICs",
-      "rate": 3.95,
+      "bank_product": "Oaken Financial GICs",
+      "rate": 4.05,
       "term_label": "4年",
       "term_years": 4,
-      "min_investment": "$100",
+      "min_investment": "$1,000",
       "source": "RateHub GIC",
       "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
       "link": "https://www.ratehub.ca/gics/best-gic-rates"
     },
     {
-      "bank_product": "Oaken Financial GICs",
+      "bank_product": "MCAN Wealth GICs",
       "rate": 3.95,
       "term_label": "4年",
       "term_years": 4,
-      "min_investment": "$1,000",
+      "min_investment": "$100",
       "source": "RateHub GIC",
       "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
       "link": "https://www.ratehub.ca/gics/best-gic-rates"
@@ -152,7 +152,7 @@
     },
     {
       "bank_product": "Oaken Financial GICs",
-      "rate": 4.1,
+      "rate": 4.25,
       "term_label": "5年",
       "term_years": 5,
       "min_investment": "$1,000",
