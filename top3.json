@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-24 15:49 UTC",
+  "updated_at": "2026-08-31 20:50 UTC",
   "top3": [
     {
       "bank_product": "CIBC eAdvantage Savings Account",
@@ -31,21 +31,21 @@
   ],
   "gic_top": [
     {
-      "bank_product": "MCAN Wealth GICs",
+      "bank_product": "Achieva Financial GICs",
       "rate": 3.65,
       "term_label": "1年",
       "term_years": 1,
-      "min_investment": "$100",
+      "min_investment": "$1,000",
       "source": "RateHub GIC",
       "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
       "link": "https://www.ratehub.ca/gics/best-gic-rates"
     },
     {
-      "bank_product": "Achieva Financial GICs",
-      "rate": 3.6,
+      "bank_product": "MCAN Wealth GICs",
+      "rate": 3.65,
       "term_label": "1年",
       "term_years": 1,
-      "min_investment": "$1,000",
+      "min_investment": "$100",
       "source": "RateHub GIC",
       "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
       "link": "https://www.ratehub.ca/gics/best-gic-rates"
@@ -101,21 +101,21 @@
       "link": "https://www.ratehub.ca/gics/best-gic-rates"
     },
     {
-      "bank_product": "MCAN Wealth GICs",
-      "rate": 3.9,
+      "bank_product": "Achieva Financial GICs",
+      "rate": 3.95,
       "term_label": "3年",
       "term_years": 3,
-      "min_investment": "$100",
+      "min_investment": "$1,000",
       "source": "RateHub GIC",
       "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
       "link": "https://www.ratehub.ca/gics/best-gic-rates"
     },
     {
-      "bank_product": "Saven Financial GICs",
+      "bank_product": "MCAN Wealth GICs",
       "rate": 3.9,
       "term_label": "3年",
       "term_years": 3,
-      "min_investment": "$1,000",
+      "min_investment": "$100",
       "source": "RateHub GIC",
       "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
       "link": "https://www.ratehub.ca/gics/best-gic-rates"
@@ -162,7 +162,7 @@
     },
     {
       "bank_product": "Achieva Financial GICs",
-      "rate": 4.05,
+      "rate": 4.1,
       "term_label": "5年",
       "term_years": 5,
       "min_investment": "$1,000",
