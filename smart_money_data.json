@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-14 18:56 UTC",
+  "updated_at": "2026-09-15 17:49 UTC",
   "gold": {
     "state": "NEUTRAL",
     "score": 60,
@@ -8,37 +8,37 @@
       {
         "key": "tips",
         "name": "实际利率（TIPS 10Y）",
-        "value": 4.96,
+        "value": 5.01,
         "unit": "%",
-        "pct": 97.8,
+        "pct": 98.9,
         "direction": "逆风",
         "hint": "📌 黄金不付息，实际利率越高，存款/债券收益越好，资金会流出黄金。\n→ 当前实际利率偏高，对金价 ⚠️ 有一定压力"
       },
       {
         "key": "dxy",
         "name": "美元指数（DXY）",
-        "value": 99.4,
+        "value": 99.6,
         "unit": "",
-        "pct": 55.6,
+        "pct": 60.0,
         "direction": "中性",
-        "chg8": -0.39,
+        "chg8": -0.16,
         "hint": "📌 黄金以美元计价，美元强弱直接影响全球买家成本。本系统重点看8周美元变化趋势。\n→ 当前美元处于历史中性区间，影响有限"
       },
       {
         "key": "vix",
         "name": "VIX 恐慌指数",
-        "value": 16.7,
+        "value": 17.6,
         "unit": "",
-        "pct": 46.7,
+        "pct": 54.4,
         "direction": "中性",
         "hint": "📌 VIX 是股市恐慌指数，极高时连黄金也可能被抛售套现。\n→ 当前情绪中性，波动不极端"
       },
       {
         "key": "gold_hv",
         "name": "黄金波动率（HV 20W）",
-        "value": 21.3,
+        "value": 21.6,
         "unit": "%",
-        "pct": 57.8,
+        "pct": 58.9,
         "direction": "中性",
         "hint": "📌 波动率衡量价格震荡幅度，偏高时建议分批而非一次性大额。\n→ 当前波动率适中"
       },
@@ -50,10 +50,10 @@
         "unit": "",
         "pct": 20,
         "direction": "顺风",
-        "gold_chg8": 7.4,
-        "dev_pct": 47.9,
-        "ma200": 2940.0,
-        "price_now": 4348.0,
+        "gold_chg8": 5.6,
+        "dev_pct": 46.8,
+        "ma200": 2955.0,
+        "price_now": 4337.0,
         "hint": "📌 200 周均线是长期趋势的「地基」，价格在上方说明大趋势向上，历史上大多数买入机会都在均线上方。\n→ 当前金价在 200 周均线上方，✅ 中期趋势健康"
       },
       {
@@ -75,9 +75,9 @@
       {
         "key": "btc_hv",
         "name": "BTC 波动率（HV 20W）",
-        "value": 52.6,
+        "value": 52.4,
         "unit": "%",
-        "pct": 95.6,
+        "pct": 94.4,
         "direction": "逆风",
         "hint": "📌 BTC 波动率极高时，单日价格可能涨跌超过 10%，一次性大额买入的风险很大。\n→ 当前波动率偏高，⚠️ 建议缩小单笔规模"
       },
@@ -90,144 +90,144 @@
         "pct": 20,
         "direction": "顺风",
         "hint": "📌 200 周均线是 BTC 历史上最可靠的牛熊分界线，历史上每次跌破后都经历了较长熊市。在均线上方说明大趋势没有破坏。\n→ 当前 BTC 在 200 周均线上方，✅ 中期趋势向上",
-        "price_now": 79212.0
+        "price_now": 76989.0
       },
       {
         "key": "oi",
         "name": "BTC 均线偏离度（距200W均线）",
-        "value": "+21.0",
+        "value": "+17.6",
         "unit": "%",
-        "pct": 20.0,
+        "pct": 14.8,
         "direction": "顺风",
         "hint": "📌 均线偏离度衡量 BTC 当前价格比 200 周长期均线高多少。偏离越低说明价格越接近「历史地板」，历史上这种情况往往是中长期买入的好时机。\n→ 当前偏离度处于历史低位，✅ 价格接近长期均线，超跌风险较小",
-        "price_now": 79212.0,
-        "ma200": 65484.0
+        "price_now": 76989.0,
+        "ma200": 65473.0
       }
     ]
   },
   "backtest_gold": [
     {
       "date": "2022-09-26",
-      "price": 1645.0,
+      "price": 1656.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2022-10-03",
-      "price": 1662.0,
+      "price": 1672.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2022-10-10",
-      "price": 1700.0,
+      "price": 1709.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2022-10-17",
-      "price": 1642.0,
+      "price": 1649.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2022-10-24",
-      "price": 1651.0,
+      "price": 1656.0,
       "signal": "DE_RISK",
       "stars": 2,
       "score": 40
     },
     {
       "date": "2022-10-31",
-      "price": 1640.0,
+      "price": 1645.0,
       "signal": "DE_RISK",
       "stars": 2,
       "score": 40
     },
     {
       "date": "2022-11-07",
-      "price": 1672.0,
+      "price": 1677.0,
       "signal": "DE_RISK",
       "stars": 2,
       "score": 40
     },
     {
       "date": "2022-11-14",
-      "price": 1766.0,
+      "price": 1769.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2022-11-21",
-      "price": 1752.0,
+      "price": 1754.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2022-11-28",
-      "price": 1753.0,
+      "price": 1754.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2022-12-05",
-      "price": 1796.0,
+      "price": 1810.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2022-12-12",
-      "price": 1798.0,
+      "price": 1811.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2022-12-19",
-      "price": 1790.0,
+      "price": 1800.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2022-12-26",
-      "price": 1796.0,
+      "price": 1804.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2023-01-02",
-      "price": 1820.0,
+      "price": 1826.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2023-01-09",
-      "price": 1864.0,
+      "price": 1870.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2023-01-16",
-      "price": 1918.0,
+      "price": 1922.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2023-01-23",
-      "price": 1926.0,
+      "price": 1928.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
@@ -241,56 +241,56 @@
     },
     {
       "date": "2023-02-06",
-      "price": 1863.0,
+      "price": 1877.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2023-02-13",
-      "price": 1863.0,
+      "price": 1874.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2023-02-20",
-      "price": 1840.0,
+      "price": 1850.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2023-02-27",
-      "price": 1809.0,
+      "price": 1817.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2023-03-06",
-      "price": 1848.0,
+      "price": 1855.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2023-03-13",
-      "price": 1862.0,
+      "price": 1867.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2023-03-20",
-      "price": 1970.0,
+      "price": 1974.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2023-03-27",
-      "price": 1982.0,
+      "price": 1984.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
@@ -304,49 +304,49 @@
     },
     {
       "date": "2023-04-10",
-      "price": 2012.0,
+      "price": 2026.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2023-04-17",
-      "price": 2002.0,
+      "price": 2016.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2023-04-24",
-      "price": 1980.0,
-      "signal": "ACCUMULATE",
-      "stars": 4,
-      "score": 80
-    },
-    {
-      "date": "2023-05-01",
       "price": 1990.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
+      "date": "2023-05-01",
+      "price": 1999.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
+    },
+    {
       "date": "2023-05-08",
-      "price": 2017.0,
+      "price": 2025.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2023-05-15",
-      "price": 2014.0,
+      "price": 2020.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2023-05-22",
-      "price": 1979.0,
+      "price": 1982.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
@@ -360,56 +360,56 @@
     },
     {
       "date": "2023-06-05",
-      "price": 1952.0,
+      "price": 1970.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2023-06-12",
-      "price": 1962.0,
+      "price": 1977.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2023-06-19",
-      "price": 1958.0,
+      "price": 1971.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2023-06-26",
-      "price": 1919.0,
+      "price": 1930.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2023-07-03",
-      "price": 1921.0,
+      "price": 1929.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2023-07-10",
-      "price": 1926.0,
+      "price": 1932.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2023-07-17",
-      "price": 1960.0,
+      "price": 1964.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2023-07-24",
-      "price": 1964.0,
+      "price": 1967.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
@@ -423,175 +423,175 @@
     },
     {
       "date": "2023-08-07",
-      "price": 1940.0,
+      "price": 1976.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2023-08-14",
-      "price": 1913.0,
+      "price": 1947.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2023-08-21",
-      "price": 1886.0,
+      "price": 1916.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2023-08-28",
-      "price": 1911.0,
-      "signal": "NEUTRAL",
-      "stars": 3,
-      "score": 60
-    },
-    {
-      "date": "2023-09-04",
       "price": 1940.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
+      "date": "2023-09-04",
+      "price": 1967.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
       "date": "2023-09-11",
-      "price": 1918.0,
+      "price": 1943.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2023-09-18",
-      "price": 1924.0,
+      "price": 1946.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2023-09-25",
-      "price": 1925.0,
+      "price": 1946.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2023-10-02",
-      "price": 1848.0,
+      "price": 1866.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2023-10-09",
-      "price": 1830.0,
+      "price": 1845.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2023-10-16",
-      "price": 1927.0,
+      "price": 1942.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2023-10-23",
-      "price": 1982.0,
+      "price": 1994.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2023-10-30",
-      "price": 1989.0,
+      "price": 1998.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2023-11-06",
-      "price": 1992.0,
+      "price": 1999.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2023-11-13",
-      "price": 1933.0,
+      "price": 1938.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2023-11-20",
-      "price": 1982.0,
+      "price": 1985.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2023-11-27",
-      "price": 2002.0,
+      "price": 2003.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2023-12-04",
-      "price": 2071.0,
+      "price": 2090.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2023-12-11",
-      "price": 1998.0,
+      "price": 2014.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2023-12-18",
-      "price": 2021.0,
+      "price": 2036.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2023-12-25",
-      "price": 2057.0,
+      "price": 2069.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2024-01-01",
-      "price": 2062.0,
+      "price": 2072.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2024-01-08",
-      "price": 2042.0,
+      "price": 2050.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2024-01-15",
-      "price": 2047.0,
+      "price": 2052.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2024-01-22",
-      "price": 2026.0,
+      "price": 2029.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
@@ -605,56 +605,56 @@
     },
     {
       "date": "2024-02-05",
-      "price": 2036.0,
+      "price": 2054.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2024-02-12",
-      "price": 2023.0,
-      "signal": "NEUTRAL",
-      "stars": 3,
-      "score": 60
-    },
-    {
-      "date": "2024-02-19",
-      "price": 2012.0,
-      "signal": "NEUTRAL",
-      "stars": 3,
-      "score": 60
-    },
-    {
-      "date": "2024-02-26",
       "price": 2039.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
+      "date": "2024-02-19",
+      "price": 2024.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2024-02-26",
+      "price": 2049.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
       "date": "2024-03-04",
-      "price": 2087.0,
+      "price": 2096.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2024-03-11",
-      "price": 2179.0,
+      "price": 2186.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2024-03-18",
-      "price": 2157.0,
+      "price": 2162.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2024-03-25",
-      "price": 2158.0,
+      "price": 2160.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
@@ -668,56 +668,56 @@
     },
     {
       "date": "2024-04-08",
-      "price": 2326.0,
+      "price": 2345.0,
       "signal": "DE_RISK",
       "stars": 2,
       "score": 40
     },
     {
       "date": "2024-04-15",
-      "price": 2356.0,
+      "price": 2374.0,
       "signal": "DE_RISK",
       "stars": 2,
       "score": 40
     },
     {
       "date": "2024-04-22",
-      "price": 2398.0,
-      "signal": "NEUTRAL",
-      "stars": 3,
-      "score": 60
+      "price": 2414.0,
+      "signal": "DE_RISK",
+      "stars": 2,
+      "score": 40
     },
     {
       "date": "2024-04-29",
-      "price": 2335.0,
+      "price": 2347.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2024-05-06",
-      "price": 2299.0,
+      "price": 2309.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2024-05-13",
-      "price": 2367.0,
+      "price": 2375.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2024-05-20",
-      "price": 2412.0,
+      "price": 2417.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2024-05-27",
-      "price": 2332.0,
+      "price": 2334.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
@@ -731,175 +731,175 @@
     },
     {
       "date": "2024-06-10",
-      "price": 2305.0,
+      "price": 2325.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2024-06-17",
-      "price": 2331.0,
+      "price": 2349.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2024-06-24",
-      "price": 2316.0,
+      "price": 2331.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2024-07-01",
-      "price": 2328.0,
+      "price": 2340.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2024-07-08",
-      "price": 2388.0,
+      "price": 2398.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2024-07-15",
-      "price": 2414.0,
+      "price": 2421.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2024-07-22",
-      "price": 2396.0,
+      "price": 2399.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2024-07-29",
-      "price": 2380.0,
+      "price": 2381.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2024-08-05",
-      "price": 2426.0,
+      "price": 2470.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2024-08-12",
-      "price": 2432.0,
+      "price": 2473.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2024-08-19",
-      "price": 2499.0,
+      "price": 2538.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2024-08-26",
-      "price": 2508.0,
+      "price": 2546.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2024-09-02",
-      "price": 2494.0,
+      "price": 2528.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2024-09-09",
-      "price": 2494.0,
+      "price": 2525.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2024-09-16",
-      "price": 2581.0,
+      "price": 2611.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2024-09-23",
-      "price": 2620.0,
+      "price": 2646.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2024-09-30",
-      "price": 2644.0,
+      "price": 2668.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2024-10-07",
-      "price": 2646.0,
+      "price": 2668.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2024-10-14",
-      "price": 2658.0,
+      "price": 2676.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2024-10-21",
-      "price": 2714.0,
+      "price": 2730.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2024-10-28",
-      "price": 2741.0,
+      "price": 2755.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2024-11-04",
-      "price": 2739.0,
+      "price": 2749.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2024-11-11",
-      "price": 2688.0,
+      "price": 2695.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2024-11-18",
-      "price": 2566.0,
+      "price": 2570.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2024-11-25",
-      "price": 2710.0,
+      "price": 2712.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
@@ -913,56 +913,56 @@
     },
     {
       "date": "2024-12-09",
-      "price": 2639.0,
+      "price": 2660.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2024-12-16",
-      "price": 2656.0,
+      "price": 2676.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2024-12-23",
-      "price": 2629.0,
-      "signal": "NEUTRAL",
-      "stars": 3,
-      "score": 60
-    },
-    {
-      "date": "2024-12-30",
-      "price": 2617.0,
-      "signal": "NEUTRAL",
-      "stars": 3,
-      "score": 60
-    },
-    {
-      "date": "2025-01-06",
       "price": 2645.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
+      "date": "2024-12-30",
+      "price": 2632.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-01-06",
+      "price": 2655.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
       "date": "2025-01-13",
-      "price": 2708.0,
+      "price": 2715.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2025-01-20",
-      "price": 2744.0,
+      "price": 2749.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2025-01-27",
-      "price": 2777.0,
+      "price": 2779.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
@@ -976,49 +976,49 @@
     },
     {
       "date": "2025-02-10",
-      "price": 2867.0,
+      "price": 2888.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2025-02-17",
-      "price": 2884.0,
+      "price": 2901.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2025-02-24",
-      "price": 2938.0,
+      "price": 2953.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2025-03-03",
-      "price": 2837.0,
+      "price": 2848.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2025-03-10",
-      "price": 2905.0,
+      "price": 2914.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2025-03-17",
-      "price": 2994.0,
+      "price": 3001.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2025-03-24",
-      "price": 3018.0,
+      "price": 3021.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
@@ -1032,56 +1032,56 @@
     },
     {
       "date": "2025-04-07",
-      "price": 3012.0,
+      "price": 3035.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2025-04-14",
-      "price": 3222.0,
+      "price": 3245.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2025-04-21",
-      "price": 3309.0,
+      "price": 3328.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2025-04-28",
-      "price": 3282.0,
+      "price": 3298.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2025-05-05",
-      "price": 3232.0,
+      "price": 3243.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2025-05-12",
-      "price": 3335.0,
+      "price": 3344.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2025-05-19",
-      "price": 3182.0,
+      "price": 3187.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2025-05-26",
-      "price": 3364.0,
+      "price": 3366.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
@@ -1095,294 +1095,294 @@
     },
     {
       "date": "2025-06-09",
-      "price": 3323.0,
+      "price": 3347.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2025-06-16",
-      "price": 3431.0,
+      "price": 3453.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2025-06-23",
-      "price": 3368.0,
+      "price": 3386.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2025-06-30",
-      "price": 3274.0,
+      "price": 3288.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2025-07-07",
-      "price": 3332.0,
+      "price": 3346.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2025-07-14",
-      "price": 3356.0,
+      "price": 3364.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2025-07-21",
-      "price": 3353.0,
+      "price": 3358.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2025-07-28",
-      "price": 3334.0,
-      "signal": "NEUTRAL",
-      "stars": 3,
-      "score": 60
-    },
-    {
-      "date": "2025-08-04",
-      "price": 3348.0,
-      "signal": "NEUTRAL",
-      "stars": 3,
-      "score": 60
-    },
-    {
-      "date": "2025-08-11",
-      "price": 3439.0,
-      "signal": "NEUTRAL",
-      "stars": 3,
-      "score": 60
-    },
-    {
-      "date": "2025-08-18",
       "price": 3336.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
+      "date": "2025-08-04",
+      "price": 3400.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-08-11",
+      "price": 3491.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
+      "date": "2025-08-18",
+      "price": 3383.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
+    },
+    {
       "date": "2025-08-25",
-      "price": 3374.0,
+      "price": 3418.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2025-09-01",
-      "price": 3474.0,
+      "price": 3516.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2025-09-08",
-      "price": 3613.0,
+      "price": 3653.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2025-09-15",
-      "price": 3649.0,
+      "price": 3686.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2025-09-22",
-      "price": 3672.0,
+      "price": 3706.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2025-09-29",
-      "price": 3775.0,
+      "price": 3809.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2025-10-06",
-      "price": 3881.0,
+      "price": 3909.0,
       "signal": "DE_RISK",
       "stars": 2,
       "score": 40
     },
     {
       "date": "2025-10-13",
-      "price": 3976.0,
+      "price": 4000.0,
       "signal": "DE_RISK",
       "stars": 2,
       "score": 40
     },
     {
       "date": "2025-10-20",
-      "price": 4190.0,
+      "price": 4213.0,
       "signal": "DE_RISK",
       "stars": 2,
       "score": 40
     },
     {
       "date": "2025-10-27",
-      "price": 4118.0,
+      "price": 4138.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2025-11-03",
-      "price": 3982.0,
+      "price": 3996.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2025-11-10",
-      "price": 3999.0,
+      "price": 4010.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2025-11-17",
-      "price": 4088.0,
+      "price": 4094.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2025-11-24",
-      "price": 4077.0,
+      "price": 4080.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2025-12-01",
-      "price": 4218.0,
+      "price": 4255.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2025-12-08",
-      "price": 4213.0,
+      "price": 4243.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2025-12-15",
-      "price": 4300.0,
+      "price": 4328.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2025-12-22",
-      "price": 4361.0,
+      "price": 4387.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2025-12-29",
-      "price": 4529.0,
+      "price": 4553.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2026-01-05",
-      "price": 4314.0,
+      "price": 4330.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2026-01-12",
-      "price": 4490.0,
+      "price": 4501.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2026-01-19",
-      "price": 4588.0,
+      "price": 4595.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2026-01-26",
-      "price": 4976.0,
+      "price": 4980.0,
       "signal": "DE_RISK",
       "stars": 2,
       "score": 40
     },
     {
       "date": "2026-02-02",
-      "price": 4714.0,
+      "price": 4745.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2026-02-09",
-      "price": 4951.0,
+      "price": 4980.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2026-02-16",
-      "price": 5022.0,
+      "price": 5046.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2026-02-23",
-      "price": 5059.0,
+      "price": 5081.0,
       "signal": "DE_RISK",
       "stars": 2,
       "score": 40
     },
     {
       "date": "2026-03-02",
-      "price": 5230.0,
+      "price": 5248.0,
       "signal": "DE_RISK",
       "stars": 2,
       "score": 40
     },
     {
       "date": "2026-03-09",
-      "price": 5146.0,
+      "price": 5159.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2026-03-16",
-      "price": 5052.0,
+      "price": 5062.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2026-03-23",
-      "price": 4570.0,
+      "price": 4575.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
@@ -1396,161 +1396,161 @@
     },
     {
       "date": "2026-04-06",
-      "price": 4652.0,
+      "price": 4680.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2026-04-13",
-      "price": 4762.0,
+      "price": 4787.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2026-04-20",
-      "price": 4858.0,
+      "price": 4880.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2026-04-27",
-      "price": 4722.0,
+      "price": 4741.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2026-05-04",
-      "price": 4630.0,
+      "price": 4644.0,
       "signal": "ACCUMULATE",
       "stars": 5,
       "score": 100
     },
     {
       "date": "2026-05-11",
-      "price": 4720.0,
+      "price": 4731.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2026-05-18",
-      "price": 4556.0,
+      "price": 4562.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2026-05-25",
-      "price": 4521.0,
+      "price": 4523.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2026-06-01",
-      "price": 4560.0,
+      "price": 4593.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2026-06-08",
-      "price": 4337.0,
+      "price": 4365.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2026-06-15",
-      "price": 4215.0,
+      "price": 4239.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2026-06-22",
-      "price": 4145.0,
+      "price": 4173.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2026-06-29",
-      "price": 4079.0,
+      "price": 4096.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2026-07-06",
-      "price": 4175.0,
+      "price": 4187.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2026-07-13",
-      "price": 4104.0,
+      "price": 4114.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2026-07-20",
-      "price": 4013.0,
+      "price": 4019.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2026-07-27",
-      "price": 4068.0,
+      "price": 4071.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2026-08-03",
-      "price": 4049.0,
+      "price": 4107.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2026-08-10",
-      "price": 4341.0,
+      "price": 4400.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2026-08-17",
-      "price": 4380.0,
+      "price": 4437.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2026-08-24",
-      "price": 4624.0,
+      "price": 4681.0,
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
     },
     {
       "date": "2026-08-31",
-      "price": 4478.0,
+      "price": 4530.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
     },
     {
       "date": "2026-09-07",
-      "price": 4430.0,
+      "price": 4477.0,
       "signal": "NEUTRAL",
       "stars": 3,
       "score": 60
@@ -1561,6 +1561,13 @@
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
+    },
+    {
+      "date": "2026-09-15",
+      "price": 4409.0,
+      "signal": "NEUTRAL",
+      "stars": 3,
+      "score": 60
     }
   ],
   "backtest_btc": [
@@ -3019,14 +3026,21 @@
       "signal": "ACCUMULATE",
       "stars": 4,
       "score": 80
+    },
+    {
+      "date": "2026-09-15",
+      "price": 76838.0,
+      "signal": "ACCUMULATE",
+      "stars": 4,
+      "score": 80
     }
   ],
   "accuracy": {
     "gold": {
-      "accumulate_win_rate": 0.63,
-      "derisk_win_rate": 0.36,
+      "accumulate_win_rate": 0.66,
+      "derisk_win_rate": 0.33,
       "n_accumulate": 62,
-      "n_derisk": 11,
+      "n_derisk": 12,
       "note": "信号后 4 周价格方向准确率（仅供参考，过往不代表未来）",
       "stars": {
         "1": {
@@ -3038,33 +3052,33 @@
           "n26": 0
         },
         "2": {
-          "win4": 0.64,
-          "win26": 0.73,
-          "avg4": -0.1,
-          "avg26": 9.3,
-          "n4": 11,
-          "n26": 11
+          "win4": 0.67,
+          "win26": 0.75,
+          "avg4": -0.3,
+          "avg26": 9.8,
+          "n4": 12,
+          "n26": 12
         },
         "3": {
-          "win4": 0.69,
+          "win4": 0.65,
           "win26": 0.87,
           "avg4": 2.4,
           "avg26": 15.1,
-          "n4": 131,
-          "n26": 123
+          "n4": 130,
+          "n26": 122
         },
         "4": {
-          "win4": 0.64,
+          "win4": 0.67,
           "win26": 0.94,
-          "avg4": 1.8,
-          "avg26": 14.2,
+          "avg4": 1.9,
+          "avg26": 14.1,
           "n4": 61,
           "n26": 48
         },
         "5": {
           "win4": 0.0,
           "win26": null,
-          "avg4": -1.5,
+          "avg4": -1.1,
           "avg26": null,
           "n4": 1,
           "n26": 0
