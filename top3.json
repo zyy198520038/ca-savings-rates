@@ -1,35 +1,45 @@
 {
-  "updated_at": "2026-10-19 20:36 UTC",
+  "updated_at": "2026-11-02 23:15 UTC",
   "top3": [
     {
       "bank_product": "CIBC eAdvantage Savings Account",
-      "rate": 4.6,
-      "rate_display": "4.60% for the first 3 months",
+      "rate": 5.0,
+      "rate_display": "5.00% for the first 3 months",
       "condition": "限时首3个月（是否需新开户或新资金请以官网为准）",
       "source": "RateHub",
       "source_url": "https://www.ratehub.ca/savings-accounts/accounts/high-interest",
       "link": "https://www.cibc.com/en/personal-banking/bank-accounts/savings-accounts/eadvantage-high-interest-savings-account.html"
     },
     {
-      "bank_product": "RBC High-Interest eSavings Account",
-      "rate": 4.6,
-      "rate_display": "4.60%",
-      "condition": "见官网",
-      "source": "RateHub",
-      "source_url": "https://www.ratehub.ca/savings-accounts/accounts/high-interest",
-      "link": "https://www.rbcroyalbank.com/bank-accounts/savings-accounts/high-interest-savings-account.html"
-    },
-    {
       "bank_product": "Simplii Financial High-Interest Savings Account",
-      "rate": 4.6,
-      "rate_display": "4.60% for the first 5 months",
+      "rate": 5.0,
+      "rate_display": "5.00% for the first 5 months",
       "condition": "限时首5个月（是否需新开户或新资金请以官网为准）",
       "source": "RateHub",
       "source_url": "https://www.ratehub.ca/savings-accounts/accounts/high-interest",
       "link": "https://www.simplii.com/en/bank-accounts/high-interest-savings.html"
+    },
+    {
+      "bank_product": "RBC High-Interest eSavings Account",
+      "rate": 4.7,
+      "rate_display": "4.70% for the first 3 months",
+      "condition": "限时首3个月（是否需新开户或新资金请以官网为准）",
+      "source": "RateHub",
+      "source_url": "https://www.ratehub.ca/savings-accounts/accounts/high-interest",
+      "link": "https://www.rbcroyalbank.com/bank-accounts/savings-accounts/high-interest-savings-account.html"
     }
   ],
   "gic_top": [
+    {
+      "bank_product": "Achieva Financial GICs",
+      "rate": 3.95,
+      "term_label": "1年",
+      "term_years": 1,
+      "min_investment": "$1,000",
+      "source": "RateHub GIC",
+      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
+      "link": "https://www.ratehub.ca/gics/best-gic-rates"
+    },
     {
       "bank_product": "Hubert Financial GICs",
       "rate": 3.85,
@@ -43,16 +53,6 @@
     {
       "bank_product": "Saven Financial GICs",
       "rate": 3.8,
-      "term_label": "1年",
-      "term_years": 1,
-      "min_investment": "$1,000",
-      "source": "RateHub GIC",
-      "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
-      "link": "https://www.ratehub.ca/gics/best-gic-rates"
-    },
-    {
-      "bank_product": "Oaken Financial GICs",
-      "rate": 3.75,
       "term_label": "1年",
       "term_years": 1,
       "min_investment": "$1,000",
@@ -82,7 +82,7 @@
     },
     {
       "bank_product": "Achieva Financial GICs",
-      "rate": 4.05,
+      "rate": 4.1,
       "term_label": "2年",
       "term_years": 2,
       "min_investment": "$1,000",
@@ -111,11 +111,11 @@
       "link": "https://www.ratehub.ca/gics/best-gic-rates"
     },
     {
-      "bank_product": "EQ Bank GICs",
+      "bank_product": "Achieva Financial GICs",
       "rate": 4.15,
       "term_label": "3年",
       "term_years": 3,
-      "min_investment": "$100",
+      "min_investment": "$1,000",
       "source": "RateHub GIC",
       "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
       "link": "https://www.ratehub.ca/gics/best-gic-rates"
@@ -141,11 +141,11 @@
       "link": "https://www.ratehub.ca/gics/best-gic-rates"
     },
     {
-      "bank_product": "EQ Bank GICs",
+      "bank_product": "Achieva Financial GICs",
       "rate": 4.2,
       "term_label": "4年",
       "term_years": 4,
-      "min_investment": "$100",
+      "min_investment": "$1,000",
       "source": "RateHub GIC",
       "source_url": "https://www.ratehub.ca/gics/best-gic-rates",
       "link": "https://www.ratehub.ca/gics/best-gic-rates"
@@ -172,7 +172,7 @@
     },
     {
       "bank_product": "Achieva Financial GICs",
-      "rate": 4.3,
+      "rate": 4.35,
       "term_label": "5年",
       "term_years": 5,
       "min_investment": "$1,000",
