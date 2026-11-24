@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-16 23:54 UTC",
+  "updated_at": "2026-11-24 02:16 UTC",
   "top3": [
     {
       "bank_product": "CIBC eAdvantage Savings Account",
@@ -11,6 +11,15 @@
       "link": "https://www.cibc.com/en/personal-banking/bank-accounts/savings-accounts/eadvantage-high-interest-savings-account.html"
     },
     {
+      "bank_product": "Scotiabank Momentum PLUS Savings Account",
+      "rate": 5.0,
+      "rate_display": "Up to 5.00% for the first 3 months",
+      "condition": "限时首3个月（是否需新开户或新资金请以官网为准）",
+      "source": "RateHub",
+      "source_url": "https://www.ratehub.ca/savings-accounts/accounts/high-interest",
+      "link": "https://www.scotiabank.com/ca/en/personal/bank-accounts/savings-accounts/momentum-plus-savings-account.html"
+    },
+    {
       "bank_product": "Simplii Financial High-Interest Savings Account",
       "rate": 5.0,
       "rate_display": "5.00% for the first 5 months",
@@ -18,15 +27,6 @@
       "source": "RateHub",
       "source_url": "https://www.ratehub.ca/savings-accounts/accounts/high-interest",
       "link": "https://www.simplii.com/en/bank-accounts/high-interest-savings.html"
-    },
-    {
-      "bank_product": "Scotiabank Momentum PLUS Savings Account",
-      "rate": 4.95,
-      "rate_display": "4.95% for the first three months",
-      "condition": "见官网",
-      "source": "RateHub",
-      "source_url": "https://www.ratehub.ca/savings-accounts/accounts/high-interest",
-      "link": "https://www.scotiabank.com/ca/en/personal/bank-accounts/savings-accounts/momentum-plus-savings-account.html"
     }
   ],
   "gic_top": [
